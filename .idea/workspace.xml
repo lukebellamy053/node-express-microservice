@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="315b7b22-5211-4127-bc65-8e023b58d11a" name="Default Changelist" comment="Updated the package name and readme">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1038817115">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="LICENSE" value="1" />
+          <entry key="json" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JSON" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="tsconfig" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="json" value="1" />
+          <entry key="md" value="486" />
+          <entry key="txt" value="35" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JSON" value="1" />
+          <entry key="Markdown" value="486" />
+          <entry key="PLAIN_TEXT" value="35" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.js.language.service.starts" />
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="336">
+                <caret line="141" column="28" lean-forward="true" selection-start-line="141" selection-start-column="28" selection-end-line="141" selection-end-column="28" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tsconfig.json">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LICENSE">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/package.json" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="315b7b22-5211-4127-bc65-8e023b58d11a" name="Default Changelist" comment="" />
+      <created>1542155384980</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1542155384980</updated>
+      <workItem from="1542155386109" duration="915000" />
+    </task>
+    <task id="LOCAL-00001" summary="Updated the package name and readme">
+      <created>1542156795975</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1542156795975</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="915000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="npm" side_tool="true" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="TypeScript" />
+      <window_info anchor="bottom" id="NativeScript" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Nativescript Palette" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/Interfaces/index.js" />
+        <option value="$PROJECT_DIR$/src/Interfaces/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/Interfaces/index.js.map" />
+        <option value="$PROJECT_DIR$/src/Interfaces/EnvironmentInterface.js" />
+        <option value="$PROJECT_DIR$/src/Interfaces/EnvironmentInterface.d.ts" />
+        <option value="$PROJECT_DIR$/src/Interfaces/EnvironmentInterface.js.map" />
+        <option value="$PROJECT_DIR$/src/Interfaces/RouteInterface.js" />
+        <option value="$PROJECT_DIR$/src/Interfaces/RouteInterface.d.ts" />
+        <option value="$PROJECT_DIR$/src/Interfaces/RouteInterface.js.map" />
+        <option value="$PROJECT_DIR$/src/Classes/index.js" />
+        <option value="$PROJECT_DIR$/src/Classes/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/Classes/index.js.map" />
+        <option value="$PROJECT_DIR$/src/Classes/RouteItem.js" />
+        <option value="$PROJECT_DIR$/src/Classes/RouteItem.d.ts" />
+        <option value="$PROJECT_DIR$/src/Classes/RouteItem.js.map" />
+        <option value="$PROJECT_DIR$/src/Server/Controller.js" />
+        <option value="$PROJECT_DIR$/src/Server/Controller.d.ts" />
+        <option value="$PROJECT_DIR$/src/Server/Controller.js.map" />
+        <option value="$PROJECT_DIR$/src/Server/ExpressServer.js" />
+        <option value="$PROJECT_DIR$/src/Server/ExpressServer.d.ts" />
+        <option value="$PROJECT_DIR$/src/Server/ExpressServer.js.map" />
+        <option value="$PROJECT_DIR$/src/Server/index.js" />
+        <option value="$PROJECT_DIR$/src/Server/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/Server/index.js.map" />
+        <option value="$PROJECT_DIR$/src/Server/Decorators.js" />
+        <option value="$PROJECT_DIR$/src/Server/Decorators.d.ts" />
+        <option value="$PROJECT_DIR$/src/Server/Decorators.js.map" />
+        <option value="$PROJECT_DIR$/src/Utils/PathHandler.js" />
+        <option value="$PROJECT_DIR$/src/Utils/PathHandler.d.ts" />
+        <option value="$PROJECT_DIR$/src/Utils/PathHandler.js.map" />
+        <option value="$PROJECT_DIR$/src/Utils/ResponseUtils.js" />
+        <option value="$PROJECT_DIR$/src/Utils/ResponseUtils.d.ts" />
+        <option value="$PROJECT_DIR$/src/Utils/ResponseUtils.js.map" />
+        <option value="$PROJECT_DIR$/src/Utils/index.js" />
+        <option value="$PROJECT_DIR$/src/Utils/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/Utils/index.js.map" />
+        <option value="$PROJECT_DIR$/src/Utils/AuthHandler.js" />
+        <option value="$PROJECT_DIR$/src/Utils/AuthHandler.d.ts" />
+        <option value="$PROJECT_DIR$/src/Utils/AuthHandler.js.map" />
+        <option value="$PROJECT_DIR$/src/Enums/index.js" />
+        <option value="$PROJECT_DIR$/src/Enums/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/Enums/index.js.map" />
+        <option value="$PROJECT_DIR$/src/Enums/Method.js" />
+        <option value="$PROJECT_DIR$/src/Enums/Method.d.ts" />
+        <option value="$PROJECT_DIR$/src/Enums/Method.js.map" />
+        <option value="$PROJECT_DIR$/src/DBHandler.js" />
+        <option value="$PROJECT_DIR$/src/DBHandler.d.ts" />
+        <option value="$PROJECT_DIR$/src/DBHandler.js.map" />
+        <option value="$PROJECT_DIR$/src/Config.js" />
+        <option value="$PROJECT_DIR$/src/Config.d.ts" />
+        <option value="$PROJECT_DIR$/src/Config.js.map" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/index.js.map" />
+        <option value="$PROJECT_DIR$/src/Environment.js" />
+        <option value="$PROJECT_DIR$/src/Environment.d.ts" />
+        <option value="$PROJECT_DIR$/src/Environment.js.map" />
+        <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/index.d.ts" />
+        <option value="$PROJECT_DIR$/index.js.map" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated the package name and readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the package name and readme" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="336">
+            <caret line="141" column="28" lean-forward="true" selection-start-line="141" selection-start-column="28" selection-end-line="141" selection-end-column="28" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

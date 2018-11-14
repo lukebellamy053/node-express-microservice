@@ -1,12 +1,13 @@
 {
   "name": "node-express-microservice",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Creates a new simple microservice server",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",
-    "test": "mocha -r ts-node/register src/**/*.spec.ts --exit"
+    "test": "mocha -r ts-node/register src/**/*.spec.ts --exit",
+    "install": "tsc"
   },
   "dependencies": {
     "async": "^2.6.1",
