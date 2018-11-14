@@ -8,7 +8,7 @@ $ npm i node-express-microservice
 ```
 
 ## Usage
-This package sets up a basic express server that can connect to MongoDB and map methods in controllers to your routes. This aim of this package is to speed up API development by allowing the developer to spend less time writing infrastructure and more time writing code.
+This package sets up a basic express server that can connect to MongoDB and map methods in controllers to your routes. The aim of this package is to speed up API development by allowing the developer to spend less time writing infrastructure and more time writing code.
 
 ### Extend The ExpressServer Class
 In order to create a new server, you need to create a server that extends the ExpressServer class and imports any controllers you want to use.

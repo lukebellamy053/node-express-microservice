@@ -1,8 +1,12 @@
 {
   "name": "node-express-microservice",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Creates a new simple microservice server",
   "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukebellamy053/express-microservice"
+  },
   "types": "src/index.d.ts",
   "scripts": {
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",
