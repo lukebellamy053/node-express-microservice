@@ -1,10 +1,10 @@
-import {env} from "..";
-import {fail} from "./ResponseUtils";
-import {Method} from "../Enums/Method";
-import {Request, Response} from "express";
-import {verifyRequest} from "./AuthHandler";
-import {RouteItem} from "../Classes/RouteItem";
-import {RouteInterface} from "../Interfaces/RouteInterface";
+import {env} from '..';
+import {fail} from './ResponseUtils';
+import {Method} from '../Enums';
+import {Request, Response} from 'express';
+import {verifyRequest} from './AuthHandler';
+import {RouteItem} from '../Classes';
+import {RouteInterface} from '../Interfaces';
 
 /**
  * A class to handle the registration of routes
@@ -15,11 +15,12 @@ export class PathHandler {
     public static server: any;
     private static mControllers = {};
     private static mPending: RouteItem[] = [];
-    private static userDatabaseObject:any;
+    private static userDatabaseObject: any;
+    private static customVerification: any;
 
     /**
      * Set the DB collection to load the users data from
-     * @param users 
+     * @param users
      */
     public static setUserDatabaseObject(users: any) {
         PathHandler.userDatabaseObject = users;
@@ -36,7 +37,7 @@ export class PathHandler {
 
     /**
      * Add a route to be inited
-     * @param {RouteItem} routeItem
+     * @param route
      */
     public static addPendingRoute(route: RouteInterface) {
         this.mPending.push(new RouteItem(route.path, route.handler, route.method, route.protected, route.admin));
@@ -45,7 +46,8 @@ export class PathHandler {
     /**
      * Register the default paths
      */
-    public static registerDefaults() {
+    public static registerDefaults(request_verifier?: (req: any, res: any, next: any) => any) {
+        PathHandler.customVerification = request_verifier;
 
         this.mPending.forEach((pending: RouteItem) => {
             this.register(pending);
@@ -93,10 +95,13 @@ export class PathHandler {
      * @param {RouteInterface} route
      */
     public static register(route: RouteItem): void {
-
         if (route.protected) {
             this.app.all(route.path, (req: any, res: any, next: any) => {
-                verifyRequest(req, res, next);
+                if (PathHandler.customVerification) {
+                    PathHandler.customVerification(req, res, next);
+                } else {
+                    verifyRequest(req, res, next);
+                }
             });
         }
 
@@ -149,21 +154,25 @@ export class PathHandler {
      * @param jwtVerify
      */
     public static registerRoute(path: string, handler: any, method?: number, isProtected ?: boolean, isAdmin: boolean = false, jwtVerify: boolean = false) {
-
         if (isProtected !== undefined && isProtected) {
             this.app.all(path, (req: any, res: any, next: any) => {
                 if (jwtVerify) {
-                    verifyRequest(req, res, next);
+                    if (PathHandler.customVerification) {
+                        PathHandler.customVerification(req, res, next);
+                    } else {
+                        verifyRequest(req, res, next);
+                    }
                 } else {
-                    PathHandler.verifyRequest(req, isAdmin).then((verified: boolean) => {
-                        if (verified) {
-                            next();
-                        } else {
+                    PathHandler.verifyRequest(req, isAdmin)
+                        .then((verified: boolean) => {
+                            if (verified) {
+                                next();
+                            } else {
+                                fail(res, 'You don\'t have permission to do that');
+                            }
+                        }, () => {
                             fail(res, 'You don\'t have permission to do that');
-                        }
-                    }, () => {
-                        fail(res, 'You don\'t have permission to do that');
-                    })
+                        });
                 }
             });
         }

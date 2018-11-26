@@ -31,7 +31,7 @@ export function verifyRequest(req: any, res: any, next: any) {
  * @param req
  * @returns string | null
  */
-function getToken(req: any): string | null {
+export function getToken(req: any): string | null {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
         // Handle token presented as a Bearer token in the Authorization header
         return req.headers.authorization.split(' ')[1];

@@ -1,7 +1,7 @@
-import { PathHandler } from "../Utils";
-import { EnvironmentInterface } from "../Interfaces";
-import { Request, Response } from "express";
-import { EnvironmentConfig, DBHandler, env } from "..";
+import {PathHandler} from '../Utils';
+import {EnvironmentInterface} from '../Interfaces';
+import {Request, Response} from 'express';
+import {EnvironmentConfig, DBHandler, env} from '..';
 
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
@@ -36,19 +36,8 @@ export class ExpressServer {
      */
     constructor(env_config: EnvironmentInterface) {
         // Merge the environment variables to the provided list
-        new EnvironmentConfig(Object.assign({},process.env,env_config));
+        new EnvironmentConfig(Object.assign({}, process.env, env_config));
         this.init();
-    }
-
-    /**
-     * Init the server
-     */
-    init() {
-        process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-        // Check if the user wants to use a custom DB system
-        if(!env('CUSTOM_DB',false)) {
-            new DBHandler();
-        }
         this.middleware();
         this.paths();
         this.errorHandler();
@@ -56,10 +45,21 @@ export class ExpressServer {
     }
 
     /**
+     * Init the server
+     */
+    init() {
+        process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+        // Check if the user wants to use a custom DB system
+        if (!env('CUSTOM_DB', false)) {
+            new DBHandler();
+        }
+    }
+
+    /**
      * Register any middleware
      */
     middleware() {
-        this.app.use(this.parser.urlencoded({ extended: true }));
+        this.app.use(this.parser.urlencoded({extended: true}));
         this.app.use(this.parser.json());
     }
 
@@ -76,7 +76,7 @@ export class ExpressServer {
      */
     errorHandler() {
         this.app.use((error: any, request: Request, response: Response, next: any) => {
-            console.log("Exception caught");
+            console.log('Exception caught');
             console.error(error);
             response.status(500);
             response.send(JSON.stringify({

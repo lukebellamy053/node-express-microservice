@@ -1,6 +1,6 @@
 {
   "name": "node-express-microservice",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Creates a new simple microservice server",
   "main": "src/index.js",
   "repository": {
@@ -10,8 +10,7 @@
   "types": "src/index.d.ts",
   "scripts": {
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",
-    "test": "mocha -r ts-node/register src/**/*.spec.ts --exit",
-    "install": "tsc"
+    "test": "mocha -r ts-node/register src/**/*.spec.ts --exit"
   },
   "dependencies": {
     "async": "^2.6.1",
@@ -22,11 +21,11 @@
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
-    "mongoose": "^5.1.6",
+    "mongoose": "^5.3.12",
     "mongoose-delete": "^0.4.0",
     "node-mailjet": "^3.3.1",
     "reflect-metadata": "^0.1.12",
-    "typegoose": "^5.2.1",
+    "typegoose": "^5.4.1",
     "typescript": "^2.9.2"
   },
   "devDependencies": {

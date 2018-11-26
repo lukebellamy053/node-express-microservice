@@ -1,16 +1,16 @@
-import { Request, Response } from "express";
+import {Request, Response} from 'express';
 
 /**
  * The base controller
  * Gets the active user from a request
  */
 export class Controller {
-    // The request object
-    private req: Request;
-    // The response object
-    private res: Response;
     // The required parameters for controllers
     private static required_params: Map<string, string[]>;
+    // The response object
+    private res: Response;
+    // The request object
+    protected req: Request;
     // The mongoose object to get user objects
     protected userMongooseObj: any;
     // The active user object
@@ -24,7 +24,7 @@ export class Controller {
     // The GET params from the request
     protected queryParams: any;
     // noinspection JSUnusedGlobalSymbols
-    protected async = require("async");
+    protected async = require('async');
 
     /**
      * Class constructor
@@ -39,12 +39,12 @@ export class Controller {
 
     /**
      * Parse the request and send it to the correct controller
-     * @param request 
-     * @param response 
-     * @param method 
+     * @param request
+     * @param response
+     * @param method
      */
     protected doInit(request: Request, response: Response, method?: string) {
-        // Allow the user to set any variables before the contruction begins
+        // Allow the user to set any variables before the construction begins
         this.preConstruct();
         // Set the request, response and variables
         this.req = request;
@@ -56,36 +56,54 @@ export class Controller {
         // Make sure the method has been provided, otherwise nothing can be called
         if (method !== undefined) {
             // Get the ID of the active user, might be null
-            const user_id = (<any>request).active_user_id;
+            this.loadActiveUser().then(() => {
+                this.executeMethod(method);
+            }, (error) => {
+                this.fail(error);
+            });
+        }
+    }
+
+    /**
+     * Load the active user object
+     * Uses MongoDB by default, but can be overridden
+     */
+    protected loadActiveUser(): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            const user_id = (<any>this.req).active_user_id;
+            // Check if the user id has been set
+            if (!user_id) {
+                // There is not ID, carry on
+                resolve();
+            }
+
             try {
                 // Check if a user is found
-                if (user_id != null && this.userMongooseObj) {
+                if (this.userMongooseObj) {
                     // Get the user object from the DB
                     this.userMongooseObj.findById(user_id).then((user: any) => {
                         if (user) {
                             // Set the active user and continue
                             this.activeUser = user;
-                            this.executeMethod(method);
+                            resolve();
                         } else {
-                            this.fail("Invalid token provided. User not found");
+                            reject('Invalid ID provided. User not found');
                         }
                     });
-                } else {
-                    this.executeMethod(method);
                 }
             } catch (e) {
-                this.fail(e);
+                reject(e);
             }
-        }
+        });
     }
 
     /**
-    * Fail the request
-    * @param {string} reason
-    */
+     * Fail the request
+     * @param {string} reason
+     */
     public fail(reason: string): void {
         if (this.res != null) {
-            this.res.json({ success: false, error: reason });
+            this.res.json({success: false, error: reason});
             this.res.end();
         }
     }
@@ -177,7 +195,7 @@ export class Controller {
     protected success(data?: any): void {
         // Send a success request
         if (this.res !== undefined) {
-            this.res.json({ success: true, data: data });
+            this.res.json({success: true, data: data});
             this.res.end();
         }
     }

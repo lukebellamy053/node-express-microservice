@@ -1,4 +1,4 @@
-import {Environment} from "./Environment";
+import {Environment} from './Environment';
 
 /**
  * Holds the environment to use
@@ -7,12 +7,21 @@ import {Environment} from "./Environment";
 export class EnvironmentConfig {
     public static env_to_use: any = Environment;
 
+    /**
+     * Add values to the environment
+     * @param values
+     */
+    public static addValues(values: Object) {
+        EnvironmentConfig.env_to_use = Object.assign(EnvironmentConfig.env_to_use, values);
+    }
+
     constructor(merge?: any) {
         if (merge === undefined) {
             merge = {};
         }
         EnvironmentConfig.env_to_use = Object.assign(Environment, merge);
     }
+
 }
 
 /**
