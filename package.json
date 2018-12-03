@@ -1,8 +1,7 @@
 {
   "name": "node-express-microservice",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Creates a new simple microservice server",
-  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/lukebellamy053/express-microservice"
@@ -10,7 +9,8 @@
   "types": "src/index.d.ts",
   "scripts": {
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",
-    "test": "mocha -r ts-node/register src/**/*.spec.ts --exit"
+    "test": "mocha -r ts-node/register src/**/*.spec.ts --exit",
+    "postinstall": "tsc || exit 0"
   },
   "dependencies": {
     "async": "^2.6.1",
