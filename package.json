@@ -1,6 +1,6 @@
 {
   "name": "node-express-microservice",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Creates a new simple microservice server",
   "main": "src/index.js",
   "repository": {
