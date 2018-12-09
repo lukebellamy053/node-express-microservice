@@ -165,14 +165,14 @@ export class Controller {
             // Check if the request can continue
             if (can_continue) {
                 // @ts-ignore
-                (<any>this[name])();
+                (<any>this[name]).apply(this,Object.values(this.urlParams));
             } else {
                 // Tell the caller that something is missing
                 this.fail('Missing key parameter');
             }
         } else {
             // @ts-ignore
-            (<any>this[name])();
+            (<any>this[name]).apply(this,Object.values(this.urlParams));
         }
     }
 
