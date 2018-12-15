@@ -67,6 +67,7 @@ export class PathHandler {
 
         // Handle non-used paths
         PathHandler.registerRoute('*', (req: Request, res: Response) => {
+            res.status(404);
             res.json({
                 success: false,
                 error: 'Path doesn\'t exist',

@@ -1,13 +1,14 @@
-import {Response} from "express";
-import {env} from ".."
+import {Response} from 'express';
+import {env} from '..'
 
 /**
  * Respond with a success message
  * @param req
  * @param data
+ * @param code
  */
-export function success(req: Response, data?: any) {
-    req.status(200).json({
+export function success(req: Response, data?: any, code: number = 200) {
+    req.status(code).json({
         success: true,
         version: env('APP_VERSION'),
         build: env('APP_BUILD'),
@@ -20,9 +21,10 @@ export function success(req: Response, data?: any) {
  * Send a failed request message
  * @param req
  * @param {string} reason
+ * @param code
  */
-export function fail(req: Response, reason: string) {
-    req.status(200).json({
+export function fail(req: Response, reason: string, code: number = 200) {
+    req.status(code).json({
         success: false,
         version: env('APP_VERSION'),
         build: env('APP_BUILD'),

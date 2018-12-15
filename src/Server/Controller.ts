@@ -100,10 +100,12 @@ export class Controller {
     /**
      * Fail the request
      * @param {string} reason
+     * @param code - The HTTP response code
      */
-    public fail(reason: string): void {
+    public fail(reason: string, code: number = 500): void {
         if (this.res != null) {
-            this.res.json({success: false, error: reason});
+            this.res.status(code);
+            this.res.json({success: false, error: reason, code: code});
             this.res.end();
         }
     }
@@ -165,14 +167,14 @@ export class Controller {
             // Check if the request can continue
             if (can_continue) {
                 // @ts-ignore
-                (<any>this[name]).apply(this,Object.values(this.urlParams));
+                (<any>this[name]).apply(this, Object.values(this.urlParams));
             } else {
                 // Tell the caller that something is missing
                 this.fail('Missing key parameter');
             }
         } else {
             // @ts-ignore
-            (<any>this[name]).apply(this,Object.values(this.urlParams));
+            (<any>this[name]).apply(this, Object.values(this.urlParams));
         }
     }
 
@@ -190,12 +192,14 @@ export class Controller {
 
     /**
      * Send a success response
-     * @param data
+     * @param data - The data to send back to the user
+     * @param code - The HTTP Response code
      */
-    protected success(data?: any): void {
+    protected success(data?: any, code: number = 200): void {
         // Send a success request
         if (this.res !== undefined) {
-            this.res.json({success: true, data: data});
+            this.res.status(code);
+            this.res.json({success: true, data: data, code: code});
             this.res.end();
         }
     }
