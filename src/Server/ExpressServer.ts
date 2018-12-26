@@ -19,13 +19,11 @@ export class ExpressServer {
     // Holds a reference to the controllers
     protected controllers = {};
 
-    protected app;
-
     /**
      * Get the express app
      */
     public get serverApp() {
-        return this.app;
+        return app;
     }
 
 
@@ -37,8 +35,6 @@ export class ExpressServer {
     constructor(env_config: EnvironmentInterface) {
         // Merge the environment variables to the provided list
         new EnvironmentConfig(Object.assign({}, process.env, env_config));
-        this.app = app;
-        PathHandler.app = app;
         this.init();
         this.middleware();
         this.paths();

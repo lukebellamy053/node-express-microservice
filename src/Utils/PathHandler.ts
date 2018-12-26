@@ -5,13 +5,13 @@ import {Request, Response} from 'express';
 import {verifyRequest} from './AuthHandler';
 import {RouteItem} from '../Classes';
 import {RouteInterface} from '../Interfaces';
+import { app } from '../Server/App';
 
 /**
  * A class to handle the registration of routes
  */
 export class PathHandler {
 
-    public static app: any;
     public static server: any;
     private static mControllers = {};
     private static mPending: RouteItem[] = [];
@@ -97,7 +97,7 @@ export class PathHandler {
      */
     public static register(route: RouteItem): void {
         if (route.protected) {
-            this.app.all(route.path, (req: any, res: any, next: any) => {
+            app.all(route.path, (req: any, res: any, next: any) => {
                 if (PathHandler.customVerification) {
                     PathHandler.customVerification(req, res, next);
                 } else {
@@ -116,22 +116,22 @@ export class PathHandler {
 
         switch (route.method) {
             case Method.GET:
-                this.app.get(route.path, handler);
+                app.get(route.path, handler);
                 break;
             case Method.DELETE:
-                this.app.delete(route.path, handler);
+                app.delete(route.path, handler);
                 break;
             case Method.OPTIONS:
-                this.app.options(route.path, handler);
+                app.options(route.path, handler);
                 break;
             case Method.POST:
-                this.app.post(route.path, handler);
+                app.post(route.path, handler);
                 break;
             case Method.PUT:
-                this.app.put(route.path, handler);
+                app.put(route.path, handler);
                 break;
             default:
-                this.app.all(route.path, handler);
+                app.all(route.path, handler);
         }
     }
 
@@ -156,7 +156,7 @@ export class PathHandler {
      */
     public static registerRoute(path: string, handler: any, method?: number, isProtected ?: boolean, isAdmin: boolean = false, jwtVerify: boolean = false) {
         if (isProtected !== undefined && isProtected) {
-            this.app.all(path, (req: any, res: any, next: any) => {
+            app.all(path, (req: any, res: any, next: any) => {
                 if (jwtVerify) {
                     if (PathHandler.customVerification) {
                         PathHandler.customVerification(req, res, next);
@@ -179,28 +179,28 @@ export class PathHandler {
         }
 
         if (method === undefined) {
-            this.app.all(path, (req: any, res: any) => {
+            app.all(path, (req: any, res: any) => {
                 handler(req, res);
             });
         } else {
             if (method === Method.GET) {
-                this.app.get(path, (req: any, res: any) => {
+                app.get(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.POST) {
-                this.app.post(path, (req: any, res: any) => {
+                app.post(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.PUT) {
-                this.app.update(path, (req: any, res: any) => {
+                app.update(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.DELETE) {
-                this.app.delete(path, (req: any, res: any) => {
+                app.delete(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.OPTIONS) {
-                this.app.options(path, (req: any, res: any) => {
+                app.options(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             }
