@@ -5,7 +5,6 @@ import {Request, Response} from 'express';
 import {verifyRequest} from './AuthHandler';
 import {RouteItem} from '../Classes';
 import {RouteInterface} from '../Interfaces';
-import { app } from '../Server/App';
 
 /**
  * A class to handle the registration of routes
@@ -17,6 +16,11 @@ export class PathHandler {
     private static mPending: RouteItem[] = [];
     private static userDatabaseObject: any;
     private static customVerification: any;
+    private static mApp;
+
+    public static set app(value: any) {
+        this.mApp = value;
+    }
 
     /**
      * Set the DB collection to load the users data from
@@ -97,7 +101,7 @@ export class PathHandler {
      */
     public static register(route: RouteItem): void {
         if (route.protected) {
-            app.all(route.path, (req: any, res: any, next: any) => {
+            this.mApp.all(route.path, (req: any, res: any, next: any) => {
                 if (PathHandler.customVerification) {
                     PathHandler.customVerification(req, res, next);
                 } else {
@@ -116,22 +120,22 @@ export class PathHandler {
 
         switch (route.method) {
             case Method.GET:
-                app.get(route.path, handler);
+                this.mApp.get(route.path, handler);
                 break;
             case Method.DELETE:
-                app.delete(route.path, handler);
+                this.mApp.delete(route.path, handler);
                 break;
             case Method.OPTIONS:
-                app.options(route.path, handler);
+                this.mApp.options(route.path, handler);
                 break;
             case Method.POST:
-                app.post(route.path, handler);
+                this.mApp.post(route.path, handler);
                 break;
             case Method.PUT:
-                app.put(route.path, handler);
+                this.mApp.put(route.path, handler);
                 break;
             default:
-                app.all(route.path, handler);
+                this.mApp.all(route.path, handler);
         }
     }
 
@@ -156,7 +160,7 @@ export class PathHandler {
      */
     public static registerRoute(path: string, handler: any, method?: number, isProtected ?: boolean, isAdmin: boolean = false, jwtVerify: boolean = false) {
         if (isProtected !== undefined && isProtected) {
-            app.all(path, (req: any, res: any, next: any) => {
+            this.mApp.all(path, (req: any, res: any, next: any) => {
                 if (jwtVerify) {
                     if (PathHandler.customVerification) {
                         PathHandler.customVerification(req, res, next);
@@ -179,28 +183,28 @@ export class PathHandler {
         }
 
         if (method === undefined) {
-            app.all(path, (req: any, res: any) => {
+            this.mApp.all(path, (req: any, res: any) => {
                 handler(req, res);
             });
         } else {
             if (method === Method.GET) {
-                app.get(path, (req: any, res: any) => {
+                this.mApp.get(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.POST) {
-                app.post(path, (req: any, res: any) => {
+                this.mApp.post(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.PUT) {
-                app.update(path, (req: any, res: any) => {
+                this.mApp.update(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.DELETE) {
-                app.delete(path, (req: any, res: any) => {
+                this.mApp.delete(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.OPTIONS) {
-                app.options(path, (req: any, res: any) => {
+                this.mApp.options(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             }
