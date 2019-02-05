@@ -1,8 +1,7 @@
 import {PathHandler} from '../Utils';
 import {EnvironmentInterface} from '../Interfaces';
-import {Request, Response} from 'express';
+import {Express, Request, Response} from 'express';
 import {EnvironmentConfig, DBHandler, env} from '..';
-import {app} from './App';
 
 const parser = require('body-parser');
 
@@ -15,11 +14,10 @@ process.on('uncaughtException', function (err) {
  * Creates the express application
  */
 export class ExpressServer {
-
+    // The express application
+    protected app: Express;
     // Holds a reference to the controllers
     protected controllers = {};
-
-    protected app;
 
     /**
      * Get the express app
@@ -35,10 +33,12 @@ export class ExpressServer {
      * @param {EnvironmentInterface} env_config
      */
     constructor(env_config: EnvironmentInterface) {
+        // Require these here so they can be used in child classes
+        const express = require('express');
+        // Create the express app
+        this.app = express();
         // Merge the environment variables to the provided list
         new EnvironmentConfig(Object.assign({}, process.env, env_config));
-        this.app = app;
-        PathHandler.app = app;
         this.init();
         this.middleware();
         this.paths();
@@ -61,8 +61,8 @@ export class ExpressServer {
      * Register any middleware
      */
     middleware() {
-        app.use(parser.urlencoded({extended: true}));
-        app.use(parser.json());
+        this.app.use(parser.urlencoded({extended: true}));
+        this.app.use(parser.json());
     }
 
     /**
@@ -70,14 +70,14 @@ export class ExpressServer {
      */
     paths() {
         // Add the proxy routes
-        PathHandler.app = app;
+        PathHandler.app = this.app;
     }
 
     /**
      * Handle any uncaught errors
      */
     errorHandler() {
-        app.use((error: any, request: Request, response: Response, next: any) => {
+        this.app.use((error: any, request: Request, response: Response, next: any) => {
             console.log('Exception caught');
             console.error(error);
             response.status(500);
@@ -92,7 +92,8 @@ export class ExpressServer {
      * Start the server and listen to the required port
      */
     listen() {
-        const server = app.listen(env('PORT', 8080), () => {
+        const server = this.app.listen(env('PORT', 8080), () => {
+            // @ts-ignore
             const port = server.address().port;
             console.log(`Service listening on ${port}`);
         });

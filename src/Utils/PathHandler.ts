@@ -11,12 +11,16 @@ import {RouteInterface} from '../Interfaces';
  */
 export class PathHandler {
 
-    public static app: any;
     public static server: any;
     private static mControllers = {};
     private static mPending: RouteItem[] = [];
     private static userDatabaseObject: any;
     private static customVerification: any;
+    private static mApp;
+
+    public static set app(value: any) {
+        this.mApp = value;
+    }
 
     /**
      * Add a new controller item
@@ -88,7 +92,7 @@ export class PathHandler {
      */
     public static register(route: RouteItem): void {
         if (route.protected) {
-            this.app.all(route.path, (req: any, res: any, next: any) => {
+            this.mApp.all(route.path, (req: any, res: any, next: any) => {
                 if (PathHandler.customVerification) {
                     PathHandler.customVerification(req, res, next);
                 } else {
@@ -107,22 +111,22 @@ export class PathHandler {
 
         switch (route.method) {
             case Method.GET:
-                this.app.get(route.path, handler);
+                this.mApp.get(route.path, handler);
                 break;
             case Method.DELETE:
-                this.app.delete(route.path, handler);
+                this.mApp.delete(route.path, handler);
                 break;
             case Method.OPTIONS:
-                this.app.options(route.path, handler);
+                this.mApp.options(route.path, handler);
                 break;
             case Method.POST:
-                this.app.post(route.path, handler);
+                this.mApp.post(route.path, handler);
                 break;
             case Method.PUT:
-                this.app.put(route.path, handler);
+                this.mApp.put(route.path, handler);
                 break;
             default:
-                this.app.all(route.path, handler);
+                this.mApp.all(route.path, handler);
         }
     }
 
@@ -147,7 +151,7 @@ export class PathHandler {
      */
     public static registerRoute(path: string, handler: any, method?: number, isProtected ?: boolean, isAdmin: boolean = false, jwtVerify: boolean = false) {
         if (isProtected !== undefined && isProtected) {
-            this.app.all(path, (req: any, res: any, next: any) => {
+            this.mApp.all(path, (req: any, res: any, next: any) => {
                 if (jwtVerify) {
                     if (PathHandler.customVerification) {
                         PathHandler.customVerification(req, res, next);
@@ -170,28 +174,28 @@ export class PathHandler {
         }
 
         if (method === undefined) {
-            this.app.all(path, (req: any, res: any) => {
+            this.mApp.all(path, (req: any, res: any) => {
                 handler(req, res);
             });
         } else {
             if (method === Method.GET) {
-                this.app.get(path, (req: any, res: any) => {
+                this.mApp.get(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.POST) {
-                this.app.post(path, (req: any, res: any) => {
+                this.mApp.post(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.PUT) {
-                this.app.update(path, (req: any, res: any) => {
+                this.mApp.update(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.DELETE) {
-                this.app.delete(path, (req: any, res: any) => {
+                this.mApp.delete(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.OPTIONS) {
-                this.app.options(path, (req: any, res: any) => {
+                this.mApp.options(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             }
