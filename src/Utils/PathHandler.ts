@@ -19,15 +19,6 @@ export class PathHandler {
     private static customVerification: any;
 
     /**
-     * Set the DB collection to load the users data from
-     * @param users
-     */
-    public static setUserDatabaseObject(users: any) {
-        PathHandler.userDatabaseObject = users;
-    }
-
-
-    /**
      * Add a new controller item
      * @param controller_item
      */
@@ -217,13 +208,26 @@ export class PathHandler {
      * @param jwtVerify
      */
     public static registerProxy(path: string, proxy: any, remove_path: string, isProtected ?: boolean, isAdmin: boolean = false, jwtVerify: boolean = false) {
-        console.log(`Registering proxy for ${path} to ${proxy}`);
-        this.registerRoute(path, (req: Request, res: Response) => {
+
+        const postAuth = (req: Request, res: Response) => {
             if (remove_path != null) {
                 req.url = req.url.replace(remove_path, '');
             }
             proxy(req, res);
-        }, undefined, isProtected, isAdmin, jwtVerify);
+        };
+
+        this.app.all(path, (req, res) => {
+            if (!isProtected) {
+                postAuth(req, res);
+            } else {
+                if (PathHandler.customVerification) {
+                    PathHandler.customVerification(req, res, postAuth);
+                } else {
+                    verifyRequest(req, res, postAuth);
+                }
+            }
+        });
+
     }
 
     /**
@@ -233,19 +237,23 @@ export class PathHandler {
      */
     private static verifyRequest(req: any, adminOnly: boolean = false): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
-            if (req.active_user_id != null) {
-                PathHandler.userDatabaseObject.findOne({_id: req.active_user_id})
-                    .then((user: any) => {
-                        if (adminOnly) {
-                            resolve(user != null && user.isAdmin);
-                        } else {
-                            resolve(user != null);
-                        }
-                    }, () => {
-                        reject('Invalid User ID Found');
-                    });
+            if (this.customVerification) {
+                PathHandler.customVerification(req, null, resolve);
             } else {
-                reject('No User ID Found');
+                if (req.active_user_id != null) {
+                    PathHandler.userDatabaseObject.findOne({_id: req.active_user_id})
+                        .then((user: any) => {
+                            if (adminOnly) {
+                                resolve(user != null && user.isAdmin);
+                            } else {
+                                resolve(user != null);
+                            }
+                        }, () => {
+                            reject('Invalid User ID Found');
+                        });
+                } else {
+                    reject('No User ID Found');
+                }
             }
         });
     }
