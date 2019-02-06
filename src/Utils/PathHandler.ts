@@ -5,6 +5,7 @@ import {Request, Response} from 'express';
 import {verifyRequest} from './AuthHandler';
 import {RouteItem} from '../Classes';
 import {RouteInterface} from '../Interfaces';
+import {ExpressServer} from '../Server';
 
 /**
  * A class to handle the registration of routes
@@ -16,10 +17,10 @@ export class PathHandler {
     private static mPending: RouteItem[] = [];
     private static userDatabaseObject: any;
     private static customVerification: any;
-    private static mApp;
 
-    public static set app(value: any) {
-        this.mApp = value;
+
+    public static get mApp() {
+         return ExpressServer.serverApp;
     }
 
     /**
@@ -187,7 +188,7 @@ export class PathHandler {
                     handler(req, res);
                 });
             } else if (method === Method.PUT) {
-                this.mApp.update(path, (req: any, res: any) => {
+                this.mApp.put(path, (req: any, res: any) => {
                     handler(req, res);
                 });
             } else if (method === Method.DELETE) {
@@ -220,7 +221,7 @@ export class PathHandler {
             proxy(req, res);
         };
 
-        this.app.all(path, (req, res) => {
+        this.mApp.all(path, (req, res) => {
             if (!isProtected) {
                 postAuth(req, res);
             } else {

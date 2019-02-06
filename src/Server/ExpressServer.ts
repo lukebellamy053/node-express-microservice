@@ -1,12 +1,14 @@
 import {PathHandler} from '../Utils';
 import {EnvironmentInterface} from '../Interfaces';
 import {Express, Request, Response} from 'express';
-import {EnvironmentConfig, DBHandler, env} from '..';
+import {DBHandler, env, EnvironmentConfig, Method} from '..';
+import {RouteItem} from '../Classes/RouteItem';
 
 const parser = require('body-parser');
 
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
+    console.error(JSON.stringify(err));
 });
 
 /**
@@ -14,16 +16,28 @@ process.on('uncaughtException', function (err) {
  * Creates the express application
  */
 export class ExpressServer {
-    // The express application
-    protected app: Express;
+    // The static app reference
+    private static mApp: Express;
     // Holds a reference to the controllers
     protected controllers = {};
 
     /**
      * Get the express app
      */
-    public get serverApp() {
-        return this.app;
+    public static get serverApp() {
+        return ExpressServer.mApp;
+    }
+
+    protected get app() {
+        return ExpressServer.serverApp;
+    }
+
+    /**
+     * Set the express app
+     * @param _app
+     */
+    protected set app(_app) {
+        ExpressServer.mApp = _app;
     }
 
 
@@ -37,7 +51,7 @@ export class ExpressServer {
         const express = require('express');
         // Create the express app
         this.app = express();
-        // Merge the environment variables to the provided list
+        // Merge the environment variables to the provided list\\
         new EnvironmentConfig(Object.assign({}, process.env, env_config));
         this.init();
         this.middleware();
@@ -65,12 +79,11 @@ export class ExpressServer {
         this.app.use(parser.json());
     }
 
-    /**
-     * Add the paths
-     */
     paths() {
-        // Add the proxy routes
-        PathHandler.app = this.app;
+        // Register paths here
+        PathHandler.register(new RouteItem('/ping', (req:any, res:any) => {
+            res.send('pong');
+        }, Method.GET));
     }
 
     /**
