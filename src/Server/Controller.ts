@@ -56,12 +56,17 @@ export class Controller {
         // Make sure the method has been provided, otherwise nothing can be called
         if (method !== undefined) {
             // Get the ID of the active user, might be null
-            this.loadActiveUser().then(() => {
+            this.loadActiveUser().then(async () => {
+                await this.preRequest();
                 this.executeMethod(method);
             }, (error) => {
                 this.fail(error);
             });
         }
+    }
+
+    protected async preRequest() {
+
     }
 
     /**
@@ -103,6 +108,8 @@ export class Controller {
      * @param code - The HTTP response code
      */
     public fail(reason: string, code: number = 500): void {
+        console.error(reason);
+        console.trace('Failing request with error');
         if (this.res != null) {
             this.res.status(code);
             this.res.json({success: false, error: reason, code: code});

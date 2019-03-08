@@ -1,7 +1,7 @@
 import {env} from '..';
 import {fail} from './ResponseUtils';
 import {Method} from '../Enums';
-import {Request, Response} from 'express';
+import {Express, Request, Response} from 'express';
 import {verifyRequest} from './AuthHandler';
 import {RouteItem} from '../Classes';
 import {RouteInterface} from '../Interfaces';
@@ -19,7 +19,7 @@ export class PathHandler {
     private static customVerification: any;
 
 
-    public static get mApp() {
+    public static get mApp(): Express {
          return ExpressServer.serverApp;
     }
 
