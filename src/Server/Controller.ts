@@ -4,7 +4,7 @@ import {Request, Response} from 'express';
  * The base controller
  * Gets the active user from a request
  */
-export class Controller {
+export abstract class Controller {
     // The required parameters for controllers
     private static required_params: Map<string, string[]>;
     // The response object
@@ -57,15 +57,30 @@ export class Controller {
         if (method !== undefined) {
             // Get the ID of the active user, might be null
             this.loadActiveUser().then(async () => {
-                await this.preRequest();
-                this.executeMethod(method);
+                try {
+                    // Perform pre-request checks
+                    await this.preRequest();
+                    // Execute the method and check for a response
+                    const result = await this.executeMethod(method);
+                    if (result != null) {
+                        // Output the response to the user
+                        this.success(result);
+                    }
+                } catch (e) {
+                    // The request failed for some reason, inform the user
+                    this.fail(e);
+                }
+
             }, (error) => {
                 this.fail(error);
             });
         }
     }
 
-    protected async preRequest() {
+    /**
+     * Perform pre-request checks to see if the request can run
+     */
+    protected async preRequest(): Promise<void> {
 
     }
 
@@ -108,8 +123,6 @@ export class Controller {
      * @param code - The HTTP response code
      */
     public fail(reason: string, code: number = 500): void {
-        console.error(reason);
-        console.trace('Failing request with error');
         if (this.res != null) {
             this.res.status(code);
             this.res.json({success: false, error: reason, code: code});
@@ -152,7 +165,7 @@ export class Controller {
      * Execute the method
      * @param {string} name
      */
-    private executeMethod(name: string) {
+    private async executeMethod(name: string) {
         const full_name = (<any>this).__proto__.constructor.name + '@' + name;
         // Check if any variables are required
         let required;
@@ -161,9 +174,9 @@ export class Controller {
             required = Controller.required_params.get(full_name);
         }
 
+        let can_continue = true;
         if (required != null) {
             // There are variables to check for first
-            let can_continue = true;
             required.forEach((item: string) => {
                 if (this.params[item] === undefined) {
                     // The variable is missing, fail the request
@@ -171,17 +184,21 @@ export class Controller {
                     return false;
                 }
             });
-            // Check if the request can continue
-            if (can_continue) {
-                // @ts-ignore
-                (<any>this[name]).apply(this, Object.values(this.urlParams));
+
+        }
+
+        // Check if the request can continue
+        if (can_continue) {
+            // @ts-ignore
+            const result = (<any>this[name]).apply(this, Object.values(this.urlParams));
+            if (typeof result.then == 'function') {
+                return await result;
             } else {
-                // Tell the caller that something is missing
-                this.fail('Missing key parameter');
+                return result;
             }
         } else {
-            // @ts-ignore
-            (<any>this[name]).apply(this, Object.values(this.urlParams));
+            // Tell the caller that something is missing
+            this.fail('Missing key parameter');
         }
     }
 
