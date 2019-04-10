@@ -3,6 +3,7 @@ import {EnvironmentInterface} from '../Interfaces';
 import {Express, Request, Response} from 'express';
 import {DBHandler, env, EnvironmentConfig, Method} from '..';
 import {RouteItem} from '../Classes/RouteItem';
+import * as http from 'http';
 
 const parser = require('body-parser');
 
@@ -18,6 +19,7 @@ process.on('uncaughtException', function (err) {
 export class ExpressServer {
     // The static app reference
     private static mApp: Express;
+    protected static mServer: http.Server;
     // Holds a reference to the controllers
     protected controllers = {};
 
@@ -26,6 +28,13 @@ export class ExpressServer {
      */
     public static get serverApp() {
         return ExpressServer.mApp;
+    }
+
+    /**
+     * Get the server object
+     */
+    public static get server() {
+        return ExpressServer.mServer;
     }
 
     protected get app() {
@@ -81,7 +90,7 @@ export class ExpressServer {
 
     paths() {
         // Register paths here
-        PathHandler.register(new RouteItem('/ping', (req:any, res:any) => {
+        PathHandler.register(new RouteItem('/ping', (req: any, res: any) => {
             res.send('pong');
         }, Method.GET));
     }
@@ -105,9 +114,9 @@ export class ExpressServer {
      * Start the server and listen to the required port
      */
     listen() {
-        const server = this.app.listen(env('PORT', 8080), () => {
+        ExpressServer.mServer = this.app.listen(env('PORT', 8080), () => {
             // @ts-ignore
-            const port = server.address().port;
+            const port = ExpressServer.mServer.address().port;
             console.log(`Service listening on ${port}`);
         });
     }
