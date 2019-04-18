@@ -21,7 +21,6 @@ export class EnvironmentConfig {
         }
         EnvironmentConfig.env_to_use = Object.assign(Environment, merge);
     }
-
 }
 
 /**
@@ -31,8 +30,14 @@ export class EnvironmentConfig {
  * @returns The value if found, the default if present or undefined
  */
 export function env(parameter: string, def?: any): any {
+    // Check if the value exists in the config set
     if (EnvironmentConfig.env_to_use[parameter] !== undefined) {
         return EnvironmentConfig.env_to_use[parameter];
     }
+    // Check if the value exists in the environment
+    if (process.env[parameter] !== undefined) {
+        return process.env[parameter];
+    }
+    // Return the default
     return def;
 }

@@ -2,8 +2,9 @@ import {PathHandler} from '../Utils';
 import {EnvironmentInterface} from '../Interfaces';
 import {Express, Request, Response} from 'express';
 import {DBHandler, env, EnvironmentConfig, Method} from '..';
-import {RouteItem} from '../Classes/RouteItem';
+import {RouteItem} from '../Classes';
 import * as http from 'http';
+import {EventEmitter} from 'events';
 
 const parser = require('body-parser');
 
@@ -23,6 +24,9 @@ export class ExpressServer {
     // Holds a reference to the controllers
     protected controllers = {};
 
+    public static events = new EventEmitter();
+
+
     /**
      * Get the express app
      */
@@ -35,6 +39,21 @@ export class ExpressServer {
      */
     public static get server() {
         return ExpressServer.mServer;
+    }
+
+    /**
+     * Shutdown the server
+     */
+    public static async shutDown() {
+        if (this.mServer) {
+            this.mServer.close();
+            console.log('Server closed');
+        }
+        const mongoose = DBHandler.mongoose();
+        if (mongoose.connection) {
+            await mongoose.connection.close();
+            console.log('Mongoose closed');
+        }
     }
 
     protected get app() {
@@ -76,7 +95,10 @@ export class ExpressServer {
         process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
         // Check if the user wants to use a custom DB system
         if (!env('CUSTOM_DB', false)) {
-            new DBHandler();
+            const dbHandler = new DBHandler();
+            dbHandler.onConnected.on('connected', (connected) => {
+                ExpressServer.events.emit('connected', connected);
+            });
         }
     }
 
@@ -118,6 +140,7 @@ export class ExpressServer {
             // @ts-ignore
             const port = ExpressServer.mServer.address().port;
             console.log(`Service listening on ${port}`);
+            ExpressServer.events.emit('ready', true);
         });
     }
 }

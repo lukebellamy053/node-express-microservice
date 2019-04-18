@@ -62,10 +62,8 @@ export abstract class Controller {
                     await this.preRequest();
                     // Execute the method and check for a response
                     const result = await this.executeMethod(method);
-                    if (result != null) {
-                        // Output the response to the user
-                        this.success(result);
-                    }
+                    // Output the response to the user
+                    this.success(result);
                 } catch (e) {
                     // The request failed for some reason, inform the user
                     this.fail(e);
@@ -221,11 +219,10 @@ export abstract class Controller {
      */
     protected success(data?: any, code: number = 200): void {
         // Send a success request
-        if (this.res !== undefined) {
+        if (this.res !== undefined && !this.res.headersSent) {
             this.res.status(code);
             this.res.json({success: true, data: data, code: code});
             this.res.end();
         }
     }
-
 }
