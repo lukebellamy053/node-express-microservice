@@ -1,1 +1,0 @@
-export const test_user_id = '5b3a99018b3c51742c007faa';

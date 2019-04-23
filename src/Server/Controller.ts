@@ -25,6 +25,8 @@ export abstract class Controller {
     protected queryParams: any;
     // noinspection JSUnusedGlobalSymbols
     protected async = require('async');
+    // The response code to send back to the client
+    protected responseCode: number;
 
     /**
      * Class constructor
@@ -120,7 +122,7 @@ export abstract class Controller {
      * @param {string} reason
      * @param code - The HTTP response code
      */
-    public fail(reason: string, code: number = 500): void {
+    public fail(reason: string, code: number = this.responseCode || 500): void {
         if (this.res != null) {
             this.res.status(code);
             this.res.json({success: false, error: reason, code: code});
@@ -217,12 +219,11 @@ export abstract class Controller {
      * @param data - The data to send back to the user
      * @param code - The HTTP Response code
      */
-    protected success(data?: any, code: number = 200): void {
+    protected success(data?: any, code: number = this.responseCode || 200): void {
         // Send a success request
         if (this.res !== undefined && !this.res.headersSent) {
             this.res.status(code);
-            this.res.json({success: true, data: data, code: code});
-            this.res.end();
+            this.send({success: true, data: data, code: code});
         }
     }
 }

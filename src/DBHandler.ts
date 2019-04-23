@@ -1,4 +1,4 @@
-import mongoose = require('mongoose');
+const mongoose = require('mongoose');
 import {env} from '..';
 import {EventEmitter} from 'events';
 
@@ -9,8 +9,21 @@ export class DBHandler {
     // An event emitter for once the connection is made or failed
     private mConnectedEvent: EventEmitter = new EventEmitter();
 
-    public static mongoose() {
-        return mongoose;
+    private static mActiveMongoose;
+
+    /**
+     * Get the active mongoose connection
+     */
+    public static get mongoose() {
+        return DBHandler.mActiveMongoose;
+    }
+
+    /**
+     * Set the active mongoose connection
+     * @param connection
+     */
+    public static set mongoose(connection) {
+        DBHandler.mActiveMongoose = connection;
     }
 
     /**
@@ -24,6 +37,10 @@ export class DBHandler {
      * Create a connection to MongoDB
      */
     constructor() {
+
+        if (!DBHandler.mActiveMongoose) {
+            DBHandler.mActiveMongoose = mongoose;
+        }
 
         if (env('mongoDSN', '').length > 0) {
             // Connect to Mongo using a DSN string

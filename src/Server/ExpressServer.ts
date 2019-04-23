@@ -49,7 +49,7 @@ export class ExpressServer {
             this.mServer.close();
             console.log('Server closed');
         }
-        const mongoose = DBHandler.mongoose();
+        const mongoose = DBHandler.mongoose;
         if (mongoose.connection) {
             await mongoose.connection.close();
             console.log('Mongoose closed');
