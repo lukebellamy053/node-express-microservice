@@ -208,10 +208,14 @@ export abstract class Controller {
                 setTimeout(() => {
                     reject('Request Timed out');
                 }, timeout);
-                // Execute the method and check for a response
-                const method = (<any>this[name]).apply(this, Object.values(this.urlParams));
-                const result = await method;
-                resolve(result);
+                try {
+                    // Execute the method and check for a response
+                    const method = (<any>this[name]).apply(this, Object.values(this.urlParams));
+                    const result = await method;
+                    resolve(result);
+                } catch (e) {
+                    reject(e);
+                }
             });
         } else {
             // Tell the caller that something is missing
