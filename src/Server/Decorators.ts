@@ -1,6 +1,6 @@
-import {PathHandler} from "../Utils/PathHandler";
-import {RouteInterface} from "../Interfaces/RouteInterface";
-import {Controller} from "./Controller";
+import {PathHandler} from '../Utils/PathHandler';
+import {RouteInterface} from '../Interfaces/RouteInterface';
+import {Controller} from './Controller';
 
 // noinspection JSUnusedGlobalSymbols
 /**
@@ -11,7 +11,7 @@ import {Controller} from "./Controller";
 export function route(data: RouteInterface) {
     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
         const route_item = {
-            handler: target.constructor.name + "@" + propertyKey
+            handler: target.constructor.name + '@' + propertyKey
         };
         PathHandler.addPendingRoute(Object.assign(data, route_item));
     };
@@ -24,7 +24,18 @@ export function route(data: RouteInterface) {
  */
 export function params(items: string[]) {
     return function (target: any, propertyKey: string) {
-        const method = target.constructor.name + "@" + propertyKey;
+        const method = target.constructor.name + '@' + propertyKey;
         Controller.addRequired(method, items);
     };
+}
+
+/**
+ * Add a timeout limit to a method, default is 10 seconds
+ * @param limit
+ */
+export function timeout(limit: number = 10 * 1000) {
+    return function (target: any, propertyKey: string) {
+        const method = target.constructor.name + '@' + propertyKey;
+        Controller.addTimeout(method, limit);
+    }
 }

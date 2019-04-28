@@ -6,6 +6,7 @@ import {verifyRequest} from './AuthHandler';
 import {RouteItem} from '../Classes';
 import {RouteInterface} from '../Interfaces';
 import {ExpressServer} from '../Server';
+import {ServiceController} from '../Controllers/ServiceController';
 
 /**
  * A class to handle the registration of routes
@@ -20,7 +21,7 @@ export class PathHandler {
 
 
     public static get mApp(): Express {
-         return ExpressServer.serverApp;
+        return ExpressServer.serverApp;
     }
 
     /**
@@ -43,35 +44,13 @@ export class PathHandler {
      * Register the default paths
      */
     public static registerDefaults(request_verifier?: (req: any, res: any, next: any) => any) {
-        PathHandler.customVerification = request_verifier;
+
+        if (request_verifier) {
+            PathHandler.customVerification = request_verifier;
+        }
 
         this.mPending.forEach((pending: RouteItem) => {
             this.register(pending);
-        });
-
-        // Handle non-used paths
-        PathHandler.registerRoute('/_service_info_', (req: Request, res: Response) => {
-            res.json({
-                success: true,
-                error: 'Service Information',
-                version: env('APP_VERSION', 'Unknown'),
-                build: env('APP_BUILD', 'Unknown'),
-                service: env('SERVICE_NAME', 'Unknown'),
-            });
-            res.end();
-        });
-
-        // Handle non-used paths
-        PathHandler.registerRoute('*', (req: Request, res: Response) => {
-            res.status(404);
-            res.json({
-                success: false,
-                error: 'Path doesn\'t exist',
-                version: env('APP_VERSION', 'Unknown'),
-                build: env('APP_BUILD', 'Unknown'),
-                service: env('SERVICE_NAME', 'Unknown'),
-            });
-            res.end();
         });
     }
 

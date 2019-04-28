@@ -7,8 +7,10 @@ import {Request, Response} from 'express';
 export abstract class Controller {
     // The required parameters for controllers
     private static required_params: Map<string, string[]>;
+    // The timeouts for methods
+    private static method_timeouts: Map<string, number>;
     // The response object
-    private res: Response;
+    protected res: Response;
     // The request object
     protected req: Request;
     // The mongoose object to get user objects
@@ -62,10 +64,8 @@ export abstract class Controller {
                 try {
                     // Perform pre-request checks
                     await this.preRequest();
-                    // Execute the method and check for a response
-                    const result = await this.executeMethod(method);
                     // Output the response to the user
-                    this.success(result);
+                    this.success(await this.executeMethod(method));
                 } catch (e) {
                     // The request failed for some reason, inform the user
                     this.fail(e);
@@ -155,6 +155,19 @@ export abstract class Controller {
     }
 
     /**
+     * Add a timeout to a method
+     * @param method
+     * @param timeout
+     */
+    public static addTimeout(method: string, timeout: number) {
+        if (Controller.method_timeouts == null) {
+            Controller.method_timeouts = new Map<string, number>();
+        }
+        // Add the required param to the map
+        Controller.method_timeouts.set(method, timeout);
+    }
+
+    /**
      * A method to allow any child classes to set values before the class is constructed
      */
     protected preConstruct() {
@@ -165,7 +178,7 @@ export abstract class Controller {
      * Execute the method
      * @param {string} name
      */
-    private async executeMethod(name: string) {
+    private executeMethod(name: string) {
         const full_name = (<any>this).__proto__.constructor.name + '@' + name;
         // Check if any variables are required
         let required;
@@ -190,15 +203,19 @@ export abstract class Controller {
         // Check if the request can continue
         if (can_continue) {
             // @ts-ignore
-            const result = (<any>this[name]).apply(this, Object.values(this.urlParams));
-            if (typeof result.then == 'function') {
-                return await result;
-            } else {
-                return result;
-            }
+            return new Promise(async (resolve, reject) => {
+                const timeout = Controller.method_timeouts != null ? Controller.method_timeouts.get(full_name) || (10 * 1000) : 10 * 1000;
+                setTimeout(() => {
+                    reject('Request Timed out');
+                }, timeout);
+                // Execute the method and check for a response
+                const method = (<any>this[name]).apply(this, Object.values(this.urlParams));
+                const result = await method;
+                resolve(result);
+            });
         } else {
             // Tell the caller that something is missing
-            this.fail('Missing key parameter');
+            throw 'Missing key parameter';
         }
     }
 

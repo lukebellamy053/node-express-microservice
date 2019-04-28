@@ -5,6 +5,7 @@ import {DBHandler, env, EnvironmentConfig, Method} from '..';
 import {RouteItem} from '../Classes';
 import * as http from 'http';
 import {EventEmitter} from 'events';
+import {ServiceController, HealthController} from '../Controllers/index';
 
 const parser = require('body-parser');
 
@@ -23,6 +24,7 @@ export class ExpressServer {
     protected static mServer: http.Server;
     // Holds a reference to the controllers
     protected controllers = {};
+    protected static mDatabaseHealthModels: Array<any> = [];
 
     public static events = new EventEmitter();
 
@@ -39,6 +41,26 @@ export class ExpressServer {
      */
     public static get server() {
         return ExpressServer.mServer;
+    }
+
+    /**
+     * Check the connection to the database
+     */
+    protected async databaseHealthCheck() {
+        let response = {
+            database: {}
+        };
+        const models = ExpressServer.mDatabaseHealthModels;
+        for (let i = 0; i < models.length; i++) {
+            const model: any = models[i];
+            try {
+                await model.findOne().maxTime(1000);
+                response.database[model.collection.name] = true;
+            } catch (e) {
+                response.database[model.collection.name] = false;
+            }
+        }
+        return response;
     }
 
     /**
@@ -84,6 +106,11 @@ export class ExpressServer {
         this.init();
         this.middleware();
         this.paths();
+        PathHandler.addController({
+            ServiceController: ServiceController,
+            HealthController: HealthController
+        });
+        PathHandler.registerDefaults();
         this.errorHandler();
         this.listen();
     }
@@ -111,10 +138,8 @@ export class ExpressServer {
     }
 
     paths() {
-        // Register paths here
-        PathHandler.register(new RouteItem('/ping', (req: any, res: any) => {
-            res.send('pong');
-        }, Method.GET));
+        // Add any other controllers here
+        HealthController.addHealthMethod(this.databaseHealthCheck);
     }
 
     /**
