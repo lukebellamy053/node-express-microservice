@@ -7,5 +7,6 @@ export interface RouteInterface {
     method?: number,
     protected?: boolean,
     admin?: boolean,
-    verify?: boolean
+    verify?: boolean,
+    priority?: number
 }

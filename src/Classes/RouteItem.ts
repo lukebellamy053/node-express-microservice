@@ -1,4 +1,4 @@
-import {Method} from "../Enums/Method";
+import {Method} from '../Enums/Method';
 
 /**
  * A class to hold route information
@@ -14,6 +14,8 @@ export class RouteItem {
     private readonly mProtected: boolean;
     // Is the route admin only?
     private readonly mAdmin: boolean;
+    // The route priority, higher priority routers are registered first
+    private readonly mPriority: number;
 
     /**
      * The http path for the route
@@ -72,18 +74,27 @@ export class RouteItem {
     }
 
     /**
+     * Get the route priority
+     */
+    get priority(): number {
+        return this.mPriority;
+    }
+
+    /**
      * Class constructor
      * @param {string} _path
      * @param _handler
      * @param {Method} _method
      * @param {boolean} _isProtected
      * @param {boolean} _isAdmin
+     * @param _priority
      */
-    constructor(_path: string, _handler: any, _method?: Method, _isProtected: boolean = false, _isAdmin: boolean = false) {
+    constructor(_path: string, _handler: any, _method?: Method, _isProtected: boolean = false, _isAdmin: boolean = false, _priority = 0) {
         this.mPath = _path;
         this.mHandler = _handler;
         this.mProtected = _isProtected;
         this.mMethod = _method || Method.ALL;
         this.mAdmin = _isAdmin;
+        this.mPriority = _priority;
     }
 }

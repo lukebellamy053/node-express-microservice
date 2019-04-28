@@ -10,7 +10,8 @@ export class ServiceController extends Controller {
     @route({
         path: '/_service_info_',
         method: Method.ALL,
-        protected: false
+        protected: false,
+        priority: -1
     })
     public async serviceInfo() {
         this.success({
@@ -24,7 +25,8 @@ export class ServiceController extends Controller {
     @route({
         path: '*',
         method: Method.ALL,
-        protected: false
+        protected: false,
+        priority: -5
     })
     public async pathNotFound() {
         this.responseCode = 404;

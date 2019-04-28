@@ -24,7 +24,8 @@ export class HealthController extends Controller {
     @route({
         path: '/health_check',
         method: Method.ALL,
-        protected: false
+        protected: false,
+        priority: -2
     })
     public async serviceHealthCheck() {
         let response = {

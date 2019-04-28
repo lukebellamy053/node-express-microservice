@@ -37,7 +37,7 @@ export class PathHandler {
      * @param route
      */
     public static addPendingRoute(route: RouteInterface) {
-        this.mPending.push(new RouteItem(route.path, route.handler, route.method, route.protected, route.admin));
+        this.mPending.push(new RouteItem(route.path, route.handler, route.method, route.protected, route.admin, route.priority));
     }
 
     /**
@@ -48,6 +48,15 @@ export class PathHandler {
         if (request_verifier) {
             PathHandler.customVerification = request_verifier;
         }
+
+        /**
+         * Sort the routes by their priorities
+         */
+        this.mPending.sort((path_a, path_b) => {
+            if (path_a.priority < path_b.priority) return 1;
+            if (path_a.priority > path_b.priority) return -1;
+            return 0;
+        });
 
         this.mPending.forEach((pending: RouteItem) => {
             this.register(pending);
