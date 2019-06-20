@@ -1,4 +1,3 @@
-import {env} from '..';
 import {fail} from './ResponseUtils';
 import {Method} from '../Enums';
 import {Express, Request, Response} from 'express';
@@ -6,7 +5,6 @@ import {verifyRequest} from './AuthHandler';
 import {RouteItem} from '../Classes';
 import {RouteInterface} from '../Interfaces';
 import {ExpressServer} from '../Server';
-import {ServiceController} from '../Controllers/ServiceController';
 
 /**
  * A class to handle the registration of routes
