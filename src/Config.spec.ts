@@ -1,9 +1,10 @@
 /**
  * A file to check the config.ts file works as expected
  */
+
 import 'mocha';
-import { EnvironmentConfig, env } from '..';
 import { expect } from 'chai';
+import {env, EnvironmentConfig} from './EnvironmentConfig';
 
 describe('Config Test', () => {
     it('Should start', () => {

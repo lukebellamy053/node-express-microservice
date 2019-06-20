@@ -1,4 +1,4 @@
-import {env} from '../Config';
+import {env} from '../EnvironmentConfig';
 import {Controller, route, timeout} from '../Server';
 import {Method} from '../Enums';
 

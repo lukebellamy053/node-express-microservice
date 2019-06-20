@@ -1,5 +1,6 @@
+import {env} from './EnvironmentConfig';
+
 const mongoose = require('mongoose');
-import {env} from '..';
 import {EventEmitter} from 'events';
 
 /**

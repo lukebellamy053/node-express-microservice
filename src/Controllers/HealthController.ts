@@ -1,7 +1,7 @@
 import {Controller, timeout} from '../Server';
 import {route} from '../Server';
 import {Method} from '../Enums';
-import {env} from '../Config';
+import {env} from '../EnvironmentConfig';
 
 /**
  * A class to handle the health checks for the service
