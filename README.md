@@ -1,4 +1,4 @@
-# express-microservice
+# Node-JS Express Microservice
 ![Logo](./assets/img/logo.png)
 
 This is a framework for building a microservice with express JS
