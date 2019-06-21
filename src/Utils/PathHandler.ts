@@ -4,6 +4,7 @@ import {Express, Request, Response} from 'express';
 import {RouteItem} from '../Classes';
 import {RouteInterface} from '../Interfaces';
 import {Controller, ExpressServer} from '../Server';
+import {verifyRequest} from './AuthHandler';
 
 /**
  * A class to handle the registration of routes
@@ -189,7 +190,15 @@ export class PathHandler {
      * @param adminOnly - Can only admins perform this request?
      */
     private static verifyRequest(req: any, adminOnly: boolean = false): Promise<any> {
-        return new Promise((resolve: any, reject: any) => {
+        return new Promise(async (resolve: any, reject: any) => {
+
+            try {
+                await verifyRequest(req);
+            } catch (err) {
+                reject(err);
+                return;
+            }
+            
             if (this.customVerification) {
                 PathHandler.customVerification(req, null, resolve);
             } else {

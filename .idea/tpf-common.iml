@@ -7,6 +7,8 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
     <content url="file://$MODULE_DIR$/../test-service" />
+    <content url="file://$USER_HOME$/Documents/octaviacode/Backend/Authenticator" />
+    <content url="file://$USER_HOME$/Documents/octaviacode/Backend/OctaviaService" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

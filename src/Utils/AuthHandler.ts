@@ -5,9 +5,8 @@ const jwt = require('jsonwebtoken');
 /**
  * Verify the token for a request and set the user_id
  * @param req
- * @param res
  */
-export async function verifyRequest(req: any, res: any) {
+export async function verifyRequest(req: any) {
     let token = getToken(req);
     if (token !== null) {
         req.token = await verifyJWTToken(token);

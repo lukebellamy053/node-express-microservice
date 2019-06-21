@@ -4,6 +4,9 @@ import {env} from '../../EnvironmentConfig';
 
 const mongoose = require('mongoose');
 
+/**
+ * A class to handle MongoDB connections
+ */
 export class MongoHandler extends DBHandler {
 
     private static mActiveMongoose;
@@ -43,10 +46,14 @@ export class MongoHandler extends DBHandler {
     }
 
     private async init() {
+        // Check if mongoose is already open
         if (!MongoHandler.mActiveMongoose) {
             MongoHandler.mActiveMongoose = mongoose;
         }
 
+        /**
+         * Check which connection to make
+         */
         if (env('mongoDSN', '').length > 0) {
             await this.connectWIthDSN();
         } else if (env('mongoHost', '').length > 0) {
@@ -56,6 +63,10 @@ export class MongoHandler extends DBHandler {
         }
     }
 
+    /**
+     * Connect to MongoDB with a DSN connection
+     * @returns {Promise<void>}
+     */
     private async connectWIthDSN() {
         // Connect to Mongo using a DSN string
         console.log('Initiating connection to Mongo');
@@ -71,6 +82,10 @@ export class MongoHandler extends DBHandler {
 
     }
 
+    /**
+     * Connect to MongoDB with authentication details
+     * @returns {Promise<void>}
+     */
     private async connectWithDetails() {
         // Connect to MongoDB the old fashioned way
         console.log('Initiating connection to Mongo');
