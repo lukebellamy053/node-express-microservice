@@ -2,9 +2,8 @@
  * A file to test the DB handler works as expected
  * Checks that the database is connected to
  */
-import { expect } from 'chai';
+import {expect} from 'chai';
 import {DBHandler} from './DBHandler';
-var mongoose = require('mongoose');
 
 describe('DB Handler', () => {
     it('Should connect', () => {

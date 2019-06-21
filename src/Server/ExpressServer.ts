@@ -1,10 +1,11 @@
 import {EnvironmentInterface} from '../Interfaces';
 import {Express, Request, Response} from 'express';
-import {DBHandler, env, EnvironmentConfig} from '..';
+import {env, EnvironmentConfig} from '..';
 import * as http from 'http';
 import {EventEmitter} from 'events';
 import {HealthController, ServiceController} from '../Controllers';
 import {PathHandler} from '../Utils';
+import {MongoHandler} from '../Classes/Database';
 
 const parser = require('body-parser');
 
@@ -70,7 +71,7 @@ export class ExpressServer {
             this.mServer.close();
             console.log('Server closed');
         }
-        const mongoose = DBHandler.mongoose;
+        const mongoose = MongoHandler.mongoose;
         if (mongoose && mongoose.connection) {
             await mongoose.connection.close();
             console.log('Mongoose closed');
@@ -118,7 +119,7 @@ export class ExpressServer {
         process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
         // Check if the user wants to use a custom DB system
         if (!env('CUSTOM_DB', false)) {
-            const dbHandler = new DBHandler();
+            const dbHandler = new MongoHandler();
             dbHandler.onConnected.on('connected', (connected) => {
                 ExpressServer.events.emit('connected', connected);
             });

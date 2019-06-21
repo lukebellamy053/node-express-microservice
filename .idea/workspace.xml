@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="315b7b22-5211-4127-bc65-8e023b58d11a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Decorators/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tpf-common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tpf-common.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Classes/Database/MongoHandler.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Classes/RouteItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/RouteItem.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/HealthController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/HealthController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/ServiceController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/ServiceController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interfaces/RouteInterface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/RouteInterface.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/Controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/RouteItem.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/RouteItem.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBHandler.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBHandler.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server/ExpressServer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ExpressServer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/PathHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/PathHandler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utils/ResponseUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/ResponseUtils.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -69,92 +64,100 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../test-service/src/Controller.ts">
+      <file leaf-file-name="DBHandler.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Classes/Database/DBHandler.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="24">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PathHandler.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Utils/PathHandler.ts">
+      <file leaf-file-name="MongoHandler.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Classes/Database/MongoHandler.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBHandler.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/DBHandler.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="85" column="16" selection-start-line="85" selection-start-column="16" selection-end-line="85" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RouteItem.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Classes/RouteItem.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="95" column="45" lean-forward="true" selection-start-line="95" selection-start-column="45" selection-end-line="95" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Route.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Decorators/Route.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RouteInterface.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Interfaces/RouteInterface.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResponseUtils.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Utils/ResponseUtils.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="service.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../test-service/src/service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-              <folding>
-                <element signature="e#0#69#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="301">
+              <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ExpressServer.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Server/ExpressServer.ts">
+        <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Server/ExpressServer.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3853">
-              <caret line="165" column="5" lean-forward="true" selection-start-line="165" selection-start-column="5" selection-end-line="165" selection-end-column="5" />
+            <state relative-caret-position="216">
+              <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Classes/Database/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="1" column="29" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RouteItem.spec.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Classes/RouteItem.spec.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
               <folding>
-                <element signature="e#0#51#0" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#70#107#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DBHandler.spec.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Classes/Database/DBHandler.spec.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#103#131#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Classes/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="1" column="36" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Classes/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/index.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -182,6 +185,8 @@
       <find>add</find>
       <find>if</find>
       <find>Not attempting</find>
+      <find>./DBHandler</find>
+      <find>new DB</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -220,6 +225,17 @@
         <option value="$PROJECT_DIR$/../test-service/src/Controller.ts" />
         <option value="$PROJECT_DIR$/src/Utils/ResponseUtils.ts" />
         <option value="$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/DBHandler.ts" />
+        <option value="$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/index.d.ts" />
+        <option value="$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/index.ts" />
+        <option value="$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Classes/DBHandler.spec.ts" />
+        <option value="$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Classes/DBHandler.ts" />
+        <option value="$PROJECT_DIR$/src/Classes/DBHandler.ts" />
+        <option value="$PROJECT_DIR$/src/Classes/RouteItem.spec.ts" />
+        <option value="$PROJECT_DIR$/src/Classes/Database/DBHandler.ts" />
+        <option value="$PROJECT_DIR$/src/Classes/Database/MongoHandler.ts" />
+        <option value="$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Server/ExpressServer.ts" />
+        <option value="$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Classes/Database/index.ts" />
+        <option value="$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Classes/index.ts" />
       </list>
     </option>
   </component>
@@ -286,45 +302,7 @@
               <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Classes" type="462c0819:PsiDirectoryNode" />
-              <item name="RouteItem.ts" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="ServiceController.ts" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Decorators" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Decorators" type="462c0819:PsiDirectoryNode" />
-              <item name="index.ts" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Decorators" type="462c0819:PsiDirectoryNode" />
-              <item name="Route.ts" type="620a8d5e:NestingTreeNode" />
+              <item name="Database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
@@ -338,14 +316,6 @@
               <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
               <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Interfaces" type="462c0819:PsiDirectoryNode" />
-              <item name="RouteInterface.ts" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -353,56 +323,71 @@
               <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
               <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller.ts" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
               <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Utils" type="462c0819:PsiDirectoryNode" />
-              <item name="PathHandler.ts" type="620a8d5e:NestingTreeNode" />
+              <item name="test-service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
               <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Utils" type="462c0819:PsiDirectoryNode" />
-              <item name="ResponseUtils.ts" type="620a8d5e:NestingTreeNode" />
+              <item name="test-service" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
               <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="test-service" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="test-service" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="test-service" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="test-service" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Classes" type="462c0819:PsiDirectoryNode" />
+              <item name="Database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="test-service" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Classes" type="462c0819:PsiDirectoryNode" />
               <item name="index.ts" type="620a8d5e:NestingTreeNode" />
             </path>
             <path>
               <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
               <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
               <item name="test-service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="test-service" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="test-service" type="462c0819:PsiDirectoryNode" />
               <item name="node_modules" type="462c0819:PsiDirectoryNode" />
               <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
@@ -411,53 +396,8 @@
               <item name="node_modules" type="462c0819:PsiDirectoryNode" />
               <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="test-service" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Decorators" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="test-service" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Decorators" type="462c0819:PsiDirectoryNode" />
-              <item name="Route.ts" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="test-service" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="test-service" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Utils" type="462c0819:PsiDirectoryNode" />
-              <item name="PathHandler.ts" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tpf-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="test-service" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="node-express-microservice" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="DBHandler.ts" type="620a8d5e:NestingTreeNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
+              <item name="ExpressServer.ts" type="620a8d5e:NestingTreeNode" />
             </path>
             <path>
               <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
@@ -468,15 +408,23 @@
           </expand>
           <select />
         </subPane>
+        <option name="show-excluded-files" value="false" />
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../test-service/dist/index.js" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="ts.external.directory.path" value="C:\Software\express-microservice\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Software\express-microservice\src\Classes\Database" />
+      <recent name="C:\Software\test-service\node_modules\node-express-microservice\src\Classes" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -524,7 +472,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15298000" />
+    <option name="totallyTimeSpent" value="16691000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -537,12 +485,12 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32990867" />
       <window_info anchor="bottom" id="TypeScript" order="10" weight="0.32996634" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25746268" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25746268" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32435465" />
       <window_info anchor="right" id="Google Cloud Storage" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39955106" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39955106" />
       <window_info anchor="bottom" id="TypeScript" order="10" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
@@ -599,9 +547,6 @@
         <option value="$PROJECT_DIR$/src/Enums/Method.js" />
         <option value="$PROJECT_DIR$/src/Enums/Method.d.ts" />
         <option value="$PROJECT_DIR$/src/Enums/Method.js.map" />
-        <option value="$PROJECT_DIR$/src/DBHandler.js" />
-        <option value="$PROJECT_DIR$/src/DBHandler.d.ts" />
-        <option value="$PROJECT_DIR$/src/DBHandler.js.map" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/index.d.ts" />
         <option value="$PROJECT_DIR$/src/index.js.map" />
@@ -612,9 +557,6 @@
         <option value="$PROJECT_DIR$/index.d.ts" />
         <option value="$PROJECT_DIR$/index.js.map" />
         <option value="$PROJECT_DIR$/src/Config.spec.js.map" />
-        <option value="$PROJECT_DIR$/src/DBHandler.spec.js.map" />
-        <option value="$PROJECT_DIR$/src/DBHandler.spec.d.ts" />
-        <option value="$PROJECT_DIR$/src/DBHandler.spec.js" />
         <option value="$PROJECT_DIR$/src/Config.spec.js" />
         <option value="$PROJECT_DIR$/src/Config.spec.d.ts" />
         <option value="$PROJECT_DIR$/src/Classes/RouteItem.spec.js" />
@@ -774,6 +716,9 @@
         <option value="$PROJECT_DIR$/src/Decorators/index.js" />
         <option value="$PROJECT_DIR$/src/Decorators/index.js.map" />
         <option value="$PROJECT_DIR$/src/Decorators/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/Classes/Database/MongoHandler.d.ts" />
+        <option value="$PROJECT_DIR$/src/Classes/Database/MongoHandler.js.map" />
+        <option value="$PROJECT_DIR$/src/Classes/Database/MongoHandler.js" />
       </list>
     </option>
   </component>
@@ -809,87 +754,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/LICENSE">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="3243">
-            <caret line="141" column="28" selection-start-line="141" selection-start-column="28" selection-end-line="141" selection-end-column="28" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="144">
-            <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -1052,13 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="24" lean-forward="true" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Decorators/index.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -1079,7 +936,7 @@
     <entry file="file://$PROJECT_DIR$/src/Server/ExpressServer.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3853">
-          <caret line="165" column="5" lean-forward="true" selection-start-line="165" selection-start-column="5" selection-end-line="165" selection-end-column="5" />
+          <caret line="165" column="5" selection-start-line="165" selection-start-column="5" selection-end-line="165" selection-end-column="5" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
@@ -1089,7 +946,7 @@
     <entry file="file://$PROJECT_DIR$/../test-service/src/service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
           <folding>
             <element signature="e#0#69#0" expanded="true" />
           </folding>
@@ -1106,7 +963,7 @@
     <entry file="file://$PROJECT_DIR$/src/Decorators/Route.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1123,7 +980,7 @@
     <entry file="file://$PROJECT_DIR$/src/Classes/RouteItem.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
-          <caret line="95" column="45" lean-forward="true" selection-start-line="95" selection-start-column="45" selection-end-line="95" selection-end-column="45" />
+          <caret line="95" column="45" selection-start-line="95" selection-start-column="45" selection-end-line="95" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -1137,7 +994,7 @@
     <entry file="file://$PROJECT_DIR$/../test-service/src/Controller.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
-          <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1158,17 +1015,122 @@
     <entry file="file://$PROJECT_DIR$/src/Utils/PathHandler.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/DBHandler.ts">
+    <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="85" column="16" selection-start-line="85" selection-start-column="16" selection-end-line="85" selection-end-column="16" />
+        <state relative-caret-position="120">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Classes/DBHandler.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="93" selection-start-line="5" selection-start-column="93" selection-end-line="5" selection-end-column="93" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#103#131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Classes/DBHandler.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-888">
+          <caret line="3" column="34" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Classes/RouteItem.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="17" column="41" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#70#107#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Classes/DBHandler.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Classes/DBHandler.spec.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Classes/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="36" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Classes/Database/DBHandler.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#103#131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Classes/Database/DBHandler.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Classes/Database/MongoHandler.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Server/ExpressServer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Classes/Database/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="29" selection-start-line="1" selection-start-column="29" selection-end-line="1" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../test-service/node_modules/node-express-microservice/src/Classes/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
         </state>
       </provider>
     </entry>

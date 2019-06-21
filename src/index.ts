@@ -4,7 +4,6 @@ export * from './Enums';
 export * from './Interfaces';
 export * from './Server';
 export * from './Utils';
-export * from './DBHandler';
 export * from './EnvironmentConfig';
 export * from './Environment';
 export * from './Controllers/index';

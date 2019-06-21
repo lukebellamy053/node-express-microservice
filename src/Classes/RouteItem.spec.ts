@@ -1,11 +1,9 @@
-
 /**
  * A file to check the route item class functions as expected
  */
-import { RouteItem } from '..';
+import {Method, RouteItem} from '..';
 import 'mocha'
-import { Method } from '..';
-import { expect } from 'chai';
+import {expect} from 'chai';
 
 describe('Route Item', () => {
     const path = '/test_item';
@@ -14,14 +12,12 @@ describe('Route Item', () => {
     let item: RouteItem;
     let item2: RouteItem;
     it('Can be created', () => {
-        item = new RouteItem(path, handler, Method.ALL, true, true);
-        item2 = new RouteItem(path, handler, Method.GET, false, false);
+        item = new RouteItem(path, handler, Method.ALL, true);
+        item2 = new RouteItem(path, handler, Method.GET, false);
         expect(item).to.not.equal(null);
         expect(item2).to.not.equal(null);
     });
     it('Returns the correct data', () => {
-        expect(item.admin).to.equal(true, 'Is Admin');
-        expect(item2.admin).to.equal(false, 'Is Admin');
         expect(item.protected).to.equal(true, 'Is Protected');
         expect(item2.protected).to.equal(false, 'Is Protected');
         expect(item.path).to.equal(path, 'Path Matches');
