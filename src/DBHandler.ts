@@ -1,7 +1,7 @@
 import {env} from './EnvironmentConfig';
+import {EventEmitter} from 'events';
 
 const mongoose = require('mongoose');
-import {EventEmitter} from 'events';
 
 /**
  * A class to handle connecting to MongoDB
@@ -84,8 +84,6 @@ export class DBHandler {
                 this.onConnected.emit('connected', false, err);
             });
         } else {
-            // There are no environment settings to connect to the DB at this time
-            console.log('Not attempting a DB connection at this time');
             this.onConnected.emit('connected', true);
         }
     }

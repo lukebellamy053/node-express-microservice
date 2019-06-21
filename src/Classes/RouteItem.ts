@@ -13,7 +13,7 @@ export class RouteItem {
     // Is the route locked by JWT?
     private readonly mProtected: boolean;
     // Is the route admin only?
-    private readonly mAdmin: boolean;
+    private readonly mAuthHandler: any;
     // The route priority, higher priority routers are registered first
     private readonly mPriority: number;
 
@@ -53,8 +53,8 @@ export class RouteItem {
      * Is the route admin only?
      * @returns {boolean}
      */
-    get admin(): boolean {
-        return this.mAdmin;
+    get authHandler(): any {
+        return this.mAuthHandler;
     }
 
     /**
@@ -86,15 +86,15 @@ export class RouteItem {
      * @param _handler
      * @param {Method} _method
      * @param {boolean} _isProtected
-     * @param {boolean} _isAdmin
+     * @param authHandler
      * @param _priority
      */
-    constructor(_path: string, _handler: any, _method?: Method, _isProtected: boolean = false, _isAdmin: boolean = false, _priority = 0) {
+    constructor(_path: string, _handler: any, _method?: Method, _isProtected: boolean = false, authHandler?: any, _priority = 0) {
         this.mPath = _path;
         this.mHandler = _handler;
         this.mProtected = _isProtected;
         this.mMethod = _method || Method.ALL;
-        this.mAdmin = _isAdmin;
+        this.mAuthHandler = authHandler;
         this.mPriority = _priority;
     }
 }

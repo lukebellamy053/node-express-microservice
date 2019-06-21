@@ -1,11 +1,10 @@
 import {EnvironmentInterface} from '../Interfaces';
 import {Express, Request, Response} from 'express';
-import {DBHandler, env, EnvironmentConfig, Method} from '..';
-import {RouteItem} from '../Classes';
+import {DBHandler, env, EnvironmentConfig} from '..';
 import * as http from 'http';
 import {EventEmitter} from 'events';
-import {ServiceController, HealthController} from '../Controllers';
-import {PathHandler} from '../Utils/PathHandler';
+import {HealthController, ServiceController} from '../Controllers';
+import {PathHandler} from '../Utils';
 
 const parser = require('body-parser');
 
@@ -106,10 +105,7 @@ export class ExpressServer {
         this.init();
         this.middleware();
         this.paths();
-        PathHandler.addController({
-            ServiceController: ServiceController,
-            HealthController: HealthController
-        });
+        PathHandler.addController([ServiceController, HealthController]);
         PathHandler.registerDefaults();
         this.errorHandler();
         this.listen();

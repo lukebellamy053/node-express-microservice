@@ -1,20 +1,18 @@
 import {fail} from './ResponseUtils';
-import {Method} from '../Enums';
+import {ErrorResponses, Method} from '../Enums';
 import {Express, Request, Response} from 'express';
-import {verifyRequest} from './AuthHandler';
 import {RouteItem} from '../Classes';
 import {RouteInterface} from '../Interfaces';
-import {ExpressServer} from '../Server';
+import {Controller, ExpressServer} from '../Server';
 
 /**
  * A class to handle the registration of routes
  */
 export class PathHandler {
 
-    public static server: any;
-    private static mControllers = {};
+    public static server: Express;
+    private static mControllers: { [x: string]: Controller } = {};
     private static mPending: RouteItem[] = [];
-    private static userDatabaseObject: any;
     private static customVerification: any;
 
     /**
@@ -27,10 +25,19 @@ export class PathHandler {
 
     /**
      * Add a new controller item
-     * @param controller_item
+     * @param controller_item - Object or array of controllers
      */
-    public static addController(controller_item: any) {
-        this.mControllers = Object.assign(this.mControllers, controller_item);
+    public static addController(controller_item: Array<any>) {
+        if (Array.isArray(controller_item)) {
+            // Work out the controller object automatically
+            const newControllers = {};
+            controller_item.forEach((item) => {
+                newControllers[(<any>item).prototype.constructor.name] = item;
+            });
+            this.mControllers = Object.assign(this.mControllers, newControllers);
+        } else {
+            this.mControllers = Object.assign(this.mControllers, controller_item);
+        }
     }
 
     /**
@@ -38,7 +45,7 @@ export class PathHandler {
      * @param route
      */
     public static addPendingRoute(route: RouteInterface) {
-        this.mPending.push(new RouteItem(route.path, route.handler, route.method, route.protected, route.admin, route.priority));
+        this.mPending.push(new RouteItem(route.path, route.handler, route.method, route.protected, route.authenticationHandler, route.priority));
     }
 
     /**
@@ -71,7 +78,7 @@ export class PathHandler {
      */
     public static registerRouteArray(routes: RouteInterface[]) {
         routes.forEach((route: RouteInterface) => {
-            const routeItem = new RouteItem(route.path, route.handler, route.method, route.protected, route.admin);
+            const routeItem = new RouteItem(route.path, route.handler, route.method, route.protected, route.authenticationHandler, route.priority);
             this.register(routeItem);
         });
     }
@@ -83,10 +90,20 @@ export class PathHandler {
     public static register(route: RouteItem): void {
 
         const handler = async (req: Request, res: Response) => {
-            const handler = PathHandler.customVerification ? PathHandler.customVerification : verifyRequest;
-            await handler(req, res);
+            if (route.protected) {
+                const handler = PathHandler.customVerification ? PathHandler.customVerification : this.verifyRequest;
+                try {
+                    await handler(req, res);
+                } catch (exception) {
+                    fail(res, exception);
+                    return;
+                }
+            }
 
             try {
+                if (route.authHandler) {
+                    await route.authHandler(req);
+                }
                 this.callHandler(route, req, res);
             } catch (exception) {
                 fail(res, exception);
@@ -130,10 +147,10 @@ export class PathHandler {
      * @param proxy
      * @param remove_path
      * @param {boolean} isProtected
-     * @param {boolean} isAdmin
+     * @param authHandler
      * @param jwtVerify
      */
-    public static registerProxy(path: string, proxy: any, remove_path: string, isProtected ?: boolean, isAdmin: boolean = false, jwtVerify: boolean = false) {
+    public static registerProxy(path: string, proxy: any, remove_path: string, isProtected ?: boolean, authHandler?: any, jwtVerify: boolean = false) {
 
         const postAuth = (req: Request, res: Response) => {
             if (remove_path != null) {
@@ -143,12 +160,25 @@ export class PathHandler {
         };
 
         this.mApp.all(path, async (req, res) => {
-            if (!isProtected) {
-                postAuth(req, res);
-            } else {
-                const authHandler = PathHandler.customVerification ? PathHandler.customVerification : verifyRequest;
-                await authHandler(req, res);
+            if (isProtected) {
+                const handler = PathHandler.customVerification ? PathHandler.customVerification : this.verifyRequest;
+                try {
+                    if (authHandler) {
+                        await authHandler(req);
+                    }
+                    await handler(req, res);
+                } catch (exception) {
+                    fail(res, exception);
+                    return;
+                }
             }
+
+            try {
+                postAuth(req, res);
+            } catch (exception) {
+                fail(res, exception);
+            }
+
         });
 
     }
@@ -163,19 +193,10 @@ export class PathHandler {
             if (this.customVerification) {
                 PathHandler.customVerification(req, null, resolve);
             } else {
-                if (req.active_user_id != null) {
-                    PathHandler.userDatabaseObject.findOne({_id: req.active_user_id})
-                        .then((user: any) => {
-                            if (adminOnly) {
-                                resolve(user != null && user.isAdmin);
-                            } else {
-                                resolve(user != null);
-                            }
-                        }, () => {
-                            reject('Invalid User ID Found');
-                        });
+                if (req.decodedToken != null) {
+                    resolve(true);
                 } else {
-                    reject('No User ID Found');
+                    reject(ErrorResponses.Invalid_Token);
                 }
             }
         });

@@ -29,6 +29,6 @@ export function fail(req: Response, reason: string, code: number = 200) {
         version: env(EnvironmentVariables.APP_VERSION),
         build: env(EnvironmentVariables.APP_BUILD),
         service: env(EnvironmentVariables.SERVICE_NAME),
-        error: reason
+        error: reason.toString()
     });
 }

@@ -1,4 +1,5 @@
 export * from './Classes';
+export * from './Decorators';
 export * from './Enums';
 export * from './Interfaces';
 export * from './Server';

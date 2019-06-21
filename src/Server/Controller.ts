@@ -15,8 +15,6 @@ export abstract class Controller {
     protected res: Response;
     // The request object
     protected req: Request;
-    // The active user object
-    protected activeUser: any;
     // The params from the request
     protected params: any;
     // The request body params
@@ -25,8 +23,6 @@ export abstract class Controller {
     protected urlParams: any;
     // The GET params from the request
     protected queryParams: any;
-    // noinspection JSUnusedGlobalSymbols
-    protected async = require('async');
     // The response code to send back to the client
     protected responseCode: number;
 
@@ -72,6 +68,7 @@ export abstract class Controller {
                     await (<loadActiveUser>this).loadActiveUser();
                 } catch (err) {
                     // Failed to load the user
+                    //@ts-ignore
                     this.fail(err);
                 }
             }
