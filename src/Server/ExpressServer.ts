@@ -1,11 +1,11 @@
-import {PathHandler} from '../Utils';
 import {EnvironmentInterface} from '../Interfaces';
 import {Express, Request, Response} from 'express';
 import {DBHandler, env, EnvironmentConfig, Method} from '..';
 import {RouteItem} from '../Classes';
 import * as http from 'http';
 import {EventEmitter} from 'events';
-import {ServiceController, HealthController} from '../Controllers/index';
+import {ServiceController, HealthController} from '../Controllers';
+import {PathHandler} from '../Utils/PathHandler';
 
 const parser = require('body-parser');
 

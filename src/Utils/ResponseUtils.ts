@@ -1,5 +1,5 @@
 import {Response} from 'express';
-import {env} from '..'
+import {env, EnvironmentVariables} from '..'
 
 /**
  * Respond with a success message
@@ -10,9 +10,9 @@ import {env} from '..'
 export function success(req: Response, data?: any, code: number = 200) {
     req.status(code).json({
         success: true,
-        version: env('APP_VERSION'),
-        build: env('APP_BUILD'),
-        service: env('SERVICE_NAME', 'Unknown'),
+        version: env(EnvironmentVariables.APP_VERSION),
+        build: env(EnvironmentVariables.APP_BUILD),
+        service: env(EnvironmentVariables.SERVICE_NAME),
         data: data
     });
 }
@@ -26,9 +26,9 @@ export function success(req: Response, data?: any, code: number = 200) {
 export function fail(req: Response, reason: string, code: number = 200) {
     req.status(code).json({
         success: false,
-        version: env('APP_VERSION'),
-        build: env('APP_BUILD'),
-        service: env('SERVICE_NAME', 'Unknown'),
+        version: env(EnvironmentVariables.APP_VERSION),
+        build: env(EnvironmentVariables.APP_BUILD),
+        service: env(EnvironmentVariables.SERVICE_NAME),
         error: reason
     });
 }

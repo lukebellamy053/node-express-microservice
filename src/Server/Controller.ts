@@ -1,4 +1,6 @@
 import {Request, Response} from 'express';
+import {ErrorResponses} from '../Enums';
+import {loadActiveUser, PreConstruct, PreRequest} from '../Interfaces/ControllerInterfaces';
 
 /**
  * The base controller
@@ -13,8 +15,6 @@ export abstract class Controller {
     protected res: Response;
     // The request object
     protected req: Request;
-    // The mongoose object to get user objects
-    protected userMongooseObj: any;
     // The active user object
     protected activeUser: any;
     // The params from the request
@@ -36,9 +36,11 @@ export abstract class Controller {
      * @param {e.Response} response
      * @param method - The method to activate when ready
      */
-    constructor(request: Request, response: Response, method?: string) {
+    protected constructor(request: Request, response: Response, method?: string) {
         // Do this in another method to allow overrides
-        this.doInit(request, response, method);
+        this.doInit(request, response, method).catch(err => {
+            this.fail(err);
+        });
     }
 
     /**
@@ -47,74 +49,45 @@ export abstract class Controller {
      * @param response
      * @param method
      */
-    protected doInit(request: Request, response: Response, method?: string) {
+    protected async doInit(request: Request, response: Response, method?: string) {
         // Allow the user to set any variables before the construction begins
-        this.preConstruct();
+        if ('preConstruct' in this) {
+            await (<PreConstruct>this).preConstruct();
+        }
+
         // Set the request, response and variables
         this.req = request;
         this.res = response;
         this.body = request.body || {};
         this.urlParams = request.params;
         this.queryParams = request.query;
+        // Load the parameters of the request
         this.params = Controller.getParams(request);
         // Make sure the method has been provided, otherwise nothing can be called
         if (method !== undefined) {
-            // Get the ID of the active user, might be null
-            this.loadActiveUser().then(async () => {
+            // Check if an active user should be loaded
+            if ('loadActiveUser' in this) {
                 try {
-                    // Perform pre-request checks
-                    await this.preRequest();
-                    // Output the response to the user
-                    this.success(await this.executeMethod(method));
-                } catch (e) {
-                    // The request failed for some reason, inform the user
-                    this.fail(e);
+                    // Load the user
+                    await (<loadActiveUser>this).loadActiveUser();
+                } catch (err) {
+                    // Failed to load the user
+                    this.fail(err);
                 }
-
-            }, (error) => {
-                this.fail(error);
-            });
-        }
-    }
-
-    /**
-     * Perform pre-request checks to see if the request can run
-     */
-    protected async preRequest(): Promise<void> {
-
-    }
-
-    /**
-     * Load the active user object
-     * Uses MongoDB by default, but can be overridden
-     */
-    protected loadActiveUser(): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            const user_id = (<any>this.req).active_user_id;
-            // Check if the user id has been set
-            if (!user_id) {
-                // There is not ID, carry on
-                resolve();
             }
 
             try {
-                // Check if a user is found
-                if (this.userMongooseObj) {
-                    // Get the user object from the DB
-                    this.userMongooseObj.findById(user_id).then((user: any) => {
-                        if (user) {
-                            // Set the active user and continue
-                            this.activeUser = user;
-                            resolve();
-                        } else {
-                            reject('Invalid ID provided. User not found');
-                        }
-                    });
+                if ('preRequest' in this) {
+                    // Perform pre-request checks
+                    await (<PreRequest>this).preRequest();
                 }
+                // Output the response to the user
+                this.success(await this.executeMethod(method));
             } catch (e) {
-                reject(e);
+                // The request failed for some reason, inform the user
+                this.fail(e);
             }
-        });
+        }
     }
 
     /**
@@ -168,13 +141,6 @@ export abstract class Controller {
     }
 
     /**
-     * A method to allow any child classes to set values before the class is constructed
-     */
-    protected preConstruct() {
-        return;
-    }
-
-    /**
      * Execute the method
      * @param {string} name
      */
@@ -206,7 +172,7 @@ export abstract class Controller {
             return new Promise(async (resolve, reject) => {
                 const timeout = Controller.method_timeouts != null ? Controller.method_timeouts.get(full_name) || (10 * 1000) : 10 * 1000;
                 setTimeout(() => {
-                    reject('Request Timed out');
+                    reject(ErrorResponses.Timeout);
                 }, timeout);
                 try {
                     // Execute the method and check for a response
@@ -219,7 +185,7 @@ export abstract class Controller {
             });
         } else {
             // Tell the caller that something is missing
-            throw 'Missing key parameter';
+            throw ErrorResponses.MissingParameters;
         }
     }
 

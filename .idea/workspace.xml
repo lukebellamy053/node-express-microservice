@@ -2,12 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="315b7b22-5211-4127-bc65-8e023b58d11a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Decorators/Params.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Decorators/Route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Decorators/Timeout.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Enums/EnvironmentVariables.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Enums/ErrorResponses.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Interfaces/ControllerInterfaces.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Enums/Method.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enums/Method.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Enums/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enums/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/Controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/Decorators.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/ExpressServer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/ExpressServer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/AuthHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/AuthHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/PathHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/PathHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Utils/ResponseUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utils/ResponseUtils.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,42 +71,119 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="3384">
-                <caret line="141" column="28" selection-start-line="141" selection-start-column="28" selection-end-line="141" selection-end-column="28" />
-              </first_editor>
-              <second_editor />
+      <file leaf-file-name="Params.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Decorators/Params.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tsconfig.json">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/LICENSE">
+      <file leaf-file-name="Timeout.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Decorators/Timeout.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+            <state>
+              <caret column="30" selection-start-column="30" selection-end-column="30" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+      <file leaf-file-name="Route.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Decorators/Route.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+            <state relative-caret-position="329">
+              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+              <folding>
+                <element signature="e#38#87#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExpressServer.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Server/ExpressServer.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="116" selection-start-line="116" selection-end-line="116" />
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Server/Controller.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PathHandler.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Utils/PathHandler.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="149" column="26" selection-start-line="149" selection-start-column="26" selection-end-line="149" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResponseUtils.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Utils/ResponseUtils.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-79">
+              <caret line="14" column="56" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthHandler.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Utils/AuthHandler.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ControllerInterfaces.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Interfaces/ControllerInterfaces.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ErrorResponses.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Enums/ErrorResponses.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>verify</find>
+      <find>APP_</find>
+      <find>APP_KEY</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -101,6 +193,22 @@
       <list>
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/Enums/index.ts" />
+        <option value="$PROJECT_DIR$/src/Enums/EnvironmentVariables.ts" />
+        <option value="$PROJECT_DIR$/src/Enums/Method.ts" />
+        <option value="$PROJECT_DIR$/src/Decorators/Route.ts" />
+        <option value="$PROJECT_DIR$/src/Decorators/Params.ts" />
+        <option value="$PROJECT_DIR$/src/Server/Decorators.ts" />
+        <option value="$PROJECT_DIR$/src/Decorators/Timeout.ts" />
+        <option value="$PROJECT_DIR$/src/Enums/ErrorResponses.ts" />
+        <option value="$PROJECT_DIR$/src/Interfaces/PreConstruct.ts" />
+        <option value="$PROJECT_DIR$/src/Utils/Utils.ts" />
+        <option value="$PROJECT_DIR$/src/Interfaces/ControllerInterfaces.ts" />
+        <option value="$PROJECT_DIR$/src/Server/Controller.ts" />
+        <option value="$PROJECT_DIR$/src/Server/ExpressServer.ts" />
+        <option value="$PROJECT_DIR$/src/Utils/AuthHandler.ts" />
+        <option value="$PROJECT_DIR$/src/Utils/ResponseUtils.ts" />
+        <option value="$PROJECT_DIR$/src/Utils/PathHandler.ts" />
       </list>
     </option>
   </component>
@@ -132,6 +240,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -142,18 +251,63 @@
             <path>
               <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
               <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="@types" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="@types" type="462c0819:PsiDirectoryNode" />
+              <item name="jsonwebtoken" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Server" type="462c0819:PsiDirectoryNode" />
+              <item name="ExpressServer.ts" type="620a8d5e:NestingTreeNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="express-microservice" type="b2602c69:ProjectViewProjectNode" />
+              <item name="express-microservice" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Utils" type="462c0819:PsiDirectoryNode" />
+              <item name="AuthHandler.ts" type="620a8d5e:NestingTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="D:/Octavia/octaviacode/WebApp" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -198,32 +352,45 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2848000" />
+    <option name="totallyTimeSpent" value="9519000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32990867" />
+      <window_info anchor="bottom" id="TypeScript" order="10" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25799572" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32990867" />
+      <window_info anchor="right" id="Google Cloud Storage" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TypeScript" order="10" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="NativeScript" order="9" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25266525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="NativeScript" order="9" />
-      <window_info anchor="bottom" id="TypeScript" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Nativescript Palette" order="3" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info id="Favorites" order="3" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,21 +421,6 @@
         <option value="$PROJECT_DIR$/src/Server/index.js" />
         <option value="$PROJECT_DIR$/src/Server/index.d.ts" />
         <option value="$PROJECT_DIR$/src/Server/index.js.map" />
-        <option value="$PROJECT_DIR$/src/Server/Decorators.js" />
-        <option value="$PROJECT_DIR$/src/Server/Decorators.d.ts" />
-        <option value="$PROJECT_DIR$/src/Server/Decorators.js.map" />
-        <option value="$PROJECT_DIR$/src/Utils/PathHandler.js" />
-        <option value="$PROJECT_DIR$/src/Utils/PathHandler.d.ts" />
-        <option value="$PROJECT_DIR$/src/Utils/PathHandler.js.map" />
-        <option value="$PROJECT_DIR$/src/Utils/ResponseUtils.js" />
-        <option value="$PROJECT_DIR$/src/Utils/ResponseUtils.d.ts" />
-        <option value="$PROJECT_DIR$/src/Utils/ResponseUtils.js.map" />
-        <option value="$PROJECT_DIR$/src/Utils/index.js" />
-        <option value="$PROJECT_DIR$/src/Utils/index.d.ts" />
-        <option value="$PROJECT_DIR$/src/Utils/index.js.map" />
-        <option value="$PROJECT_DIR$/src/Utils/AuthHandler.js" />
-        <option value="$PROJECT_DIR$/src/Utils/AuthHandler.d.ts" />
-        <option value="$PROJECT_DIR$/src/Utils/AuthHandler.js.map" />
         <option value="$PROJECT_DIR$/src/Enums/index.js" />
         <option value="$PROJECT_DIR$/src/Enums/index.d.ts" />
         <option value="$PROJECT_DIR$/src/Enums/index.js.map" />
@@ -278,9 +430,6 @@
         <option value="$PROJECT_DIR$/src/DBHandler.js" />
         <option value="$PROJECT_DIR$/src/DBHandler.d.ts" />
         <option value="$PROJECT_DIR$/src/DBHandler.js.map" />
-        <option value="$PROJECT_DIR$/src/Config.js" />
-        <option value="$PROJECT_DIR$/src/Config.d.ts" />
-        <option value="$PROJECT_DIR$/src/Config.js.map" />
         <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/index.d.ts" />
         <option value="$PROJECT_DIR$/src/index.js.map" />
@@ -290,6 +439,163 @@
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/index.d.ts" />
         <option value="$PROJECT_DIR$/index.js.map" />
+        <option value="$PROJECT_DIR$/src/Config.spec.js.map" />
+        <option value="$PROJECT_DIR$/src/DBHandler.spec.js.map" />
+        <option value="$PROJECT_DIR$/src/DBHandler.spec.d.ts" />
+        <option value="$PROJECT_DIR$/src/DBHandler.spec.js" />
+        <option value="$PROJECT_DIR$/src/Config.spec.js" />
+        <option value="$PROJECT_DIR$/src/Config.spec.d.ts" />
+        <option value="$PROJECT_DIR$/src/Classes/RouteItem.spec.js" />
+        <option value="$PROJECT_DIR$/src/Classes/RouteItem.spec.js.map" />
+        <option value="$PROJECT_DIR$/src/Classes/RouteItem.spec.d.ts" />
+        <option value="$PROJECT_DIR$/src/Controllers/index.js.map" />
+        <option value="$PROJECT_DIR$/src/Controllers/HealthController.js" />
+        <option value="$PROJECT_DIR$/src/Controllers/ServiceController.js" />
+        <option value="$PROJECT_DIR$/src/Controllers/index.js" />
+        <option value="$PROJECT_DIR$/src/Controllers/HealthController.js.map" />
+        <option value="$PROJECT_DIR$/src/Controllers/ServiceController.js.map" />
+        <option value="$PROJECT_DIR$/src/Controllers/HealthController.d.ts" />
+        <option value="$PROJECT_DIR$/src/Controllers/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/Controllers/ServiceController.d.ts" />
+        <option value="$PROJECT_DIR$/src/EnvironmentConfig.js" />
+        <option value="$PROJECT_DIR$/src/EnvironmentConfig.d.ts" />
+        <option value="$PROJECT_DIR$/src/EnvironmentConfig.js.map" />
+        <option value="$PROJECT_DIR$/src/Enums/ErrorResponses.js.map" />
+        <option value="$PROJECT_DIR$/src/Enums/ErrorResponses.d.ts" />
+        <option value="$PROJECT_DIR$/src/Enums/ErrorResponses.js" />
+        <option value="$PROJECT_DIR$/src/Enums/EnvironmentVariables.js" />
+        <option value="$PROJECT_DIR$/src/Enums/EnvironmentVariables.d.ts" />
+        <option value="$PROJECT_DIR$/src/Enums/EnvironmentVariables.js.map" />
+        <option value="$PROJECT_DIR$/src/Decorators/Route.js" />
+        <option value="$PROJECT_DIR$/src/Decorators/Route.d.ts" />
+        <option value="$PROJECT_DIR$/src/Decorators/Route.js.map" />
+        <option value="$PROJECT_DIR$/src/Decorators/Params.d.ts" />
+        <option value="$PROJECT_DIR$/src/Decorators/Params.js.map" />
+        <option value="$PROJECT_DIR$/src/Decorators/Params.js" />
+        <option value="$PROJECT_DIR$/src/Decorators/Timeout.d.ts" />
+        <option value="$PROJECT_DIR$/src/Decorators/Timeout.js.map" />
+        <option value="$PROJECT_DIR$/src/Decorators/Timeout.js" />
+        <option value="$PROJECT_DIR$/src/Utils/ResponseUtils.js" />
+        <option value="$PROJECT_DIR$/src/Utils/PathHandler.js" />
+        <option value="$PROJECT_DIR$/src/Utils/AuthHandler.js" />
+        <option value="$PROJECT_DIR$/src/Utils/PathHandler.d.ts" />
+        <option value="$PROJECT_DIR$/src/Utils/AuthHandler.js.map" />
+        <option value="$PROJECT_DIR$/src/Utils/ResponseUtils.js.map" />
+        <option value="$PROJECT_DIR$/src/Utils/ResponseUtils.d.ts" />
+        <option value="$PROJECT_DIR$/src/Utils/AuthHandler.d.ts" />
+        <option value="$PROJECT_DIR$/src/Utils/PathHandler.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Classes/OctaviaUtilities.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Classes/OctaviaUtilities.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Classes/OctaviaUtilities.js.map" />
+        <option value="$USER_HOME$/express-microservice/src/Utils/PathHandler.d.ts" />
+        <option value="$USER_HOME$/express-microservice/src/DBHandler.spec.js" />
+        <option value="$USER_HOME$/express-microservice/src/Config.spec.d.ts" />
+        <option value="$USER_HOME$/express-microservice/src/DBHandler.spec.js.map" />
+        <option value="$USER_HOME$/express-microservice/src/DBHandler.spec.d.ts" />
+        <option value="$USER_HOME$/express-microservice/src/Config.spec.js" />
+        <option value="$USER_HOME$/express-microservice/src/Config.spec.js.map" />
+        <option value="$USER_HOME$/express-microservice/src/Classes/RouteItem.spec.js" />
+        <option value="$USER_HOME$/express-microservice/src/Classes/RouteItem.spec.js.map" />
+        <option value="$USER_HOME$/express-microservice/src/Classes/RouteItem.spec.d.ts" />
+        <option value="$USER_HOME$/express-microservice/src/Controllers/index.js.map" />
+        <option value="$USER_HOME$/express-microservice/src/Controllers/HealthController.js" />
+        <option value="$USER_HOME$/express-microservice/src/Controllers/ServiceController.js" />
+        <option value="$USER_HOME$/express-microservice/src/Controllers/index.js" />
+        <option value="$USER_HOME$/express-microservice/src/Controllers/HealthController.js.map" />
+        <option value="$USER_HOME$/express-microservice/src/Controllers/ServiceController.js.map" />
+        <option value="$USER_HOME$/express-microservice/src/Controllers/HealthController.d.ts" />
+        <option value="$USER_HOME$/express-microservice/src/Controllers/index.d.ts" />
+        <option value="$USER_HOME$/express-microservice/src/Controllers/ServiceController.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/Subs/FileModel.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/Subs/FileModel.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/Subs/FileModel.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/UserModel.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/ContractModel.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/SupplierModel.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/ConferenceModel.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/index.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/ContractModel.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/TeamModel.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/ConferenceModel.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/OctaviaModel.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/OctaviaModel.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/TeamModel.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/ContractModel.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/index.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/ConferenceModel.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/UserModel.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/UserModel.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/index.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/TeamModel.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/OctaviaModel.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/SupplierModel.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Models/SupplierModel.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/PushHandler.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/NotificationHandler.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/ReviewHandler.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/octaviaDataHandler.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/octaviaDataHandler.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/PushHandler.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/ReviewHandler.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/MailHandler.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/RequestHandler.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/NotificationHandler.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/MailHandler.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/RequestHandler.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/MailHandler.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/RequestHandler.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/ReviewHandler.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/NotificationHandler.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/PushHandler.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/Handlers/octaviaDataHandler.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/enums/ObjectType.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/enums/ActionType.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/enums/ObjectType.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/enums/ObjectType.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/enums/ActionType.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/enums/ActionType.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/index.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/YAMLLoader.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/YAMLLoader.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/OctaviaServer.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/YAMLLoader.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/index.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/index.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/OctaviaServer.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/Backend/OctaviaService/src/OctaviaServer.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/index.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/index.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/index.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/index.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ResponseCode.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ConferenceType.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ObjectType.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ActionType.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/index.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ReviewAction.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ResponseCode.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ResponseCode.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/index.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ActionType.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ReviewAction.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ReviewAction.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ActionType.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ObjectType.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ConferenceType.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ErrorCode.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ConferenceType.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ErrorCode.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ObjectType.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/enums/ErrorCode.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/classes/OctaviaInstance.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/classes/OctaviaInstance.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/classes/SupplierInstance.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/classes/SupplierInstance.d.ts" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/classes/OctaviaInstance.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/classes/SupplierInstance.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/interfaces/index.js.map" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/interfaces/index.js" />
+        <option value="$USER_HOME$/Documents/octaviacode/SharedCode/src/interfaces/index.d.ts" />
       </list>
     </option>
   </component>
@@ -299,6 +605,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated the package name and readme" />
     <option name="LAST_COMMIT_MESSAGE" value="Updated the package name and readme" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/Utils/AuthHandler.ts</url>
+          <line>13</line>
+          <properties lambdaOrdinal="-1" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/README.md">
@@ -314,17 +632,252 @@
     <entry file="file://$PROJECT_DIR$/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
+        <state relative-caret-position="336">
+          <caret line="14" column="19" lean-forward="true" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="3243">
+            <caret line="141" column="28" selection-start-line="141" selection-start-column="28" selection-end-line="141" selection-end-column="28" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="23" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="144">
+            <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/PathHandler.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="264">
+            <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Config.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Enums/Method.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Enums/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Enums/EnvironmentVariables.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Decorators/Params.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Decorators/Timeout.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-start-column="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/Decorators.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Decorators/Route.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding>
+            <element signature="e#38#87#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Enums/ErrorResponses.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/Utils.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Interfaces/ControllerInterfaces.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/ExpressServer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Server/Controller.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/jsonwebtoken/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="149" column="24" selection-start-line="149" selection-start-column="24" selection-end-line="149" selection-end-column="24" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/AuthHandler.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/ResponseUtils.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-79">
+          <caret line="14" column="56" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Utils/PathHandler.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="149" column="26" selection-start-line="149" selection-start-column="26" selection-end-line="149" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

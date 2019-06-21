@@ -1,4 +1,6 @@
-// HTTP Methods
+/**
+ * The HTTP methods
+ */
 export enum Method {
     ALL,
     GET,

@@ -17,7 +17,10 @@ export class PathHandler {
     private static userDatabaseObject: any;
     private static customVerification: any;
 
-
+    /**
+     * Get the server app
+     * @returns {e.Express}
+     */
     public static get mApp(): Express {
         return ExpressServer.serverApp;
     }
@@ -78,21 +81,15 @@ export class PathHandler {
      * @param {RouteInterface} route
      */
     public static register(route: RouteItem): void {
-        if (route.protected) {
-            this.mApp.all(route.path, (req: any, res: any, next: any) => {
-                if (PathHandler.customVerification) {
-                    PathHandler.customVerification(req, res, next);
-                } else {
-                    verifyRequest(req, res, next);
-                }
-            });
-        }
 
-        const handler = (req: Request, res: Response) => {
+        const handler = async (req: Request, res: Response) => {
+            const handler = PathHandler.customVerification ? PathHandler.customVerification : verifyRequest;
+            await handler(req, res);
+
             try {
                 this.callHandler(route, req, res);
             } catch (exception) {
-                res.send({success: false, error: exception, service: 'PathHandler'});
+                fail(res, exception);
             }
         };
 
@@ -128,68 +125,6 @@ export class PathHandler {
     }
 
     /**
-     * Register a new route
-     * @param {string} path
-     * @param handler
-     * @param method
-     * @param isProtected
-     * @param isAdmin
-     * @param jwtVerify
-     */
-    public static registerRoute(path: string, handler: any, method?: number, isProtected ?: boolean, isAdmin: boolean = false, jwtVerify: boolean = false) {
-        if (isProtected !== undefined && isProtected) {
-            this.mApp.all(path, (req: any, res: any, next: any) => {
-                if (jwtVerify) {
-                    if (PathHandler.customVerification) {
-                        PathHandler.customVerification(req, res, next);
-                    } else {
-                        verifyRequest(req, res, next);
-                    }
-                } else {
-                    PathHandler.verifyRequest(req, isAdmin)
-                        .then((verified: boolean) => {
-                            if (verified) {
-                                next();
-                            } else {
-                                fail(res, 'You don\'t have permission to do that');
-                            }
-                        }, () => {
-                            fail(res, 'You don\'t have permission to do that');
-                        });
-                }
-            });
-        }
-
-        if (method === undefined) {
-            this.mApp.all(path, (req: any, res: any) => {
-                handler(req, res);
-            });
-        } else {
-            if (method === Method.GET) {
-                this.mApp.get(path, (req: any, res: any) => {
-                    handler(req, res);
-                });
-            } else if (method === Method.POST) {
-                this.mApp.post(path, (req: any, res: any) => {
-                    handler(req, res);
-                });
-            } else if (method === Method.PUT) {
-                this.mApp.put(path, (req: any, res: any) => {
-                    handler(req, res);
-                });
-            } else if (method === Method.DELETE) {
-                this.mApp.delete(path, (req: any, res: any) => {
-                    handler(req, res);
-                });
-            } else if (method === Method.OPTIONS) {
-                this.mApp.options(path, (req: any, res: any) => {
-                    handler(req, res);
-                });
-            }
-        }
-    }
-
-    /**
      * Register a route to use a proxy
      * @param {string} path
      * @param proxy
@@ -207,15 +142,12 @@ export class PathHandler {
             proxy(req, res);
         };
 
-        this.mApp.all(path, (req, res) => {
+        this.mApp.all(path, async (req, res) => {
             if (!isProtected) {
                 postAuth(req, res);
             } else {
-                if (PathHandler.customVerification) {
-                    PathHandler.customVerification(req, res, postAuth);
-                } else {
-                    verifyRequest(req, res, postAuth);
-                }
+                const authHandler = PathHandler.customVerification ? PathHandler.customVerification : verifyRequest;
+                await authHandler(req, res);
             }
         });
 
