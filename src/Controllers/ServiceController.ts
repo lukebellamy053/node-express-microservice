@@ -1,7 +1,8 @@
+import {route} from '../Decorators/Route';
 import {env} from '../EnvironmentConfig';
 import {Controller} from '../Server';
 import {Method} from '../Enums';
-import {route} from '../Decorators/Route';
+
 
 /**
  * A class to handle basic service operations

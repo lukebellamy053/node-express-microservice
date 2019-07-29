@@ -7,6 +7,7 @@ import {PathHandler} from '../Utils';
 import {MongoHandler} from '../Classes/Database';
 import * as parser from 'body-parser';
 import * as http from 'http';
+import {AddressInfo} from 'net';
 
 /**
  * The core server component
@@ -178,8 +179,7 @@ export class ExpressServer {
      */
     protected listen() {
         ExpressServer.mServer = this.app.listen(env('PORT', 8080), () => {
-            // @ts-ignore
-            const port = ExpressServer.mServer.address().port;
+            const port = (<AddressInfo>ExpressServer.mServer.address()).port;
             console.log(`Service listening on ${port}`);
             ExpressServer.events.emit(ServerEvents.SERVER_READY, true);
         });

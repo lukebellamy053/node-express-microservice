@@ -10,10 +10,13 @@ import {verifyRequest} from './AuthHandler';
  * A class to handle the registration of routes
  */
 export class PathHandler {
-
-    public static server: Express;
+    // The registered controllers
     private static mControllers: { [x: string]: Controller } = {};
+    // The paths for controllers
+    private static mControllerPaths: { [x: string]: string } = {};
+    // The pending route items to be registered
     private static mPending: RouteItem[] = [];
+    // The custom verification function
     private static customVerification: any;
 
     /**
@@ -42,11 +45,22 @@ export class PathHandler {
     }
 
     /**
-     * Add a route to be inited
-     * @param route
+     * Add a route to the pending list
+     * These routes are added to express when the server is started
+     * @param route {RouteInterface} The route item to register
      */
-    public static addPendingRoute(route: RouteInterface) {
+    public static addPendingRoute(route: RouteInterface): void {
         this.mPending.push(new RouteItem(route.path, route.handler, route.method, route.protected, route.authenticationHandler, route.priority));
+    }
+
+    /**
+     * Registers a controller for a specific path
+     * Routes inside this controller inherit the start path
+     * @param {string} path
+     * @param {string} controller_name
+     */
+    public static addControllerPath(path: string, controller_name: string): void {
+        this.mControllerPaths[controller_name] = path;
     }
 
     /**
@@ -68,6 +82,12 @@ export class PathHandler {
         });
 
         this.mPending.forEach((pending: RouteItem) => {
+            // Check if the controller has been registered already
+            const prePath = this.mControllerPaths[pending.handler.split('@')[0]];
+            if (prePath) {
+                // Add the controller path to the start of the path
+                pending = new RouteItem(`${prePath}${pending.path}`, pending.handler, pending.method, pending.protected, pending.authHandler, pending.priority);
+            }
             this.register(pending);
         });
     }
