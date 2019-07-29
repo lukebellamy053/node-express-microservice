@@ -7,3 +7,4 @@ report/
 dist/
 coverage/
 .nyc_output/
+results/

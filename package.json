@@ -8,7 +8,7 @@
   },
   "types": "src/index.d.ts",
   "scripts": {
-    "test": "mocha -r ts-node/register **/*.spec.ts --reporter mochawesome  --reporter-options reportDir=report",
+    "test": "mocha -r ts-node/register **/*.spec.ts --reporter mocha-multi-reporters --reporter-options configFile=.mocha/config.json",
     "test:coverage": "nyc npm test",
     "prepare": "tsc",
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",
@@ -28,7 +28,8 @@
     ],
     "reporter": [
       "text-summary",
-      "html"
+      "html",
+      "lcov"
     ],
     "sourceMap": true,
     "instrument": true,
@@ -51,10 +52,14 @@
     "@types/mongoose": "^5.0.18",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "eslint": "^6.1.0",
+    "eslint-config-google": "^0.13.0",
     "grunt": "^1.0.3",
     "grunt-bump": "^0.8.0",
     "grunt-cli": "^1.3.1",
     "mocha": "^5.2.0",
+    "mocha-junit-reporter": "^1.23.1",
+    "mocha-multi-reporters": "^1.1.7",
     "mochawesome": "^3.1.2",
     "nyc": "^13.1.0",
     "sinon": "^7.3.1",
