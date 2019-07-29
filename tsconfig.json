@@ -10,6 +10,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "noImplicitAny": false,
+    "outDir": "dist",
     "skipLibCheck": true,
     "lib": [
       "es2018"
@@ -17,9 +18,6 @@
   },
   "exclude": [
     "node_modules",
-    "*.spec.ts",
-    "*.d.ts",
-    "**/*.d.ts",
-    "*.json"
+    "**/*.d.ts"
   ]
 }

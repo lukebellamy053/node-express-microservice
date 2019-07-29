@@ -1,18 +1,12 @@
 import {EnvironmentInterface} from '../Interfaces';
 import {Express, Request, Response} from 'express';
-import {env, EnvironmentConfig} from '..';
-import * as http from 'http';
+import {env, EnvironmentConfig, ServerEvents} from '..';
 import {EventEmitter} from 'events';
 import {HealthController, ServiceController} from '../Controllers';
 import {PathHandler} from '../Utils';
 import {MongoHandler} from '../Classes/Database';
-
-const parser = require('body-parser');
-
-process.on('uncaughtException', function (err) {
-    console.log('Caught exception: ' + err);
-    console.error(JSON.stringify(err));
-});
+import * as parser from 'body-parser';
+import * as http from 'http';
 
 /**
  * The core server component
@@ -21,13 +15,20 @@ process.on('uncaughtException', function (err) {
 export class ExpressServer {
     // The static app reference
     private static mApp: Express;
+    // Holds a reference to the running express server
     protected static mServer: http.Server;
-    // Holds a reference to the controllers
-    protected controllers = {};
+    // The database models for the health checks
     protected static mDatabaseHealthModels: Array<any> = [];
+    // An event emitter to let other classes know when key events occur
+    protected static mEvents: EventEmitter = new EventEmitter();
 
-    public static events = new EventEmitter();
-
+    /**
+     * Get the event emitter
+     * @returns {module:events.internal.EventEmitter}
+     */
+    public static get events(): EventEmitter {
+        return ExpressServer.mEvents;
+    }
 
     /**
      * Get the express app
@@ -78,6 +79,10 @@ export class ExpressServer {
         }
     }
 
+    /**
+     * Return the active express app
+     * @returns Express
+     */
     protected get app() {
         return ExpressServer.serverApp;
     }
@@ -101,7 +106,7 @@ export class ExpressServer {
         const express = require('express');
         // Create the express app
         this.app = express();
-        // Merge the environment variables to the provided list\\
+        // Merge the environment variables to the provided list
         new EnvironmentConfig(Object.assign({}, process.env, env_config));
         this.init();
         this.middleware();
@@ -115,13 +120,17 @@ export class ExpressServer {
     /**
      * Init the server
      */
-    init() {
-        process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+    protected init() {
+        // Check if we're running in production mode
+        if (!env('PRODUCTION', true)) {
+            // Allow unauthorised certificates in development mode
+            process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+        }
         // Check if the user wants to use a custom DB system
         if (!env('CUSTOM_DB', false)) {
             const dbHandler = new MongoHandler();
             dbHandler.onConnected.on('connected', (connected) => {
-                ExpressServer.events.emit('connected', connected);
+                ExpressServer.events.emit(ServerEvents.DATABASE_CONNECTED, connected);
             });
         }
     }
@@ -129,12 +138,15 @@ export class ExpressServer {
     /**
      * Register any middleware
      */
-    middleware() {
+    protected middleware() {
         this.app.use(parser.urlencoded({extended: true}));
         this.app.use(parser.json());
     }
 
-    paths() {
+    /**
+     * Register any relevant paths here
+     */
+    protected paths() {
         // Add any other controllers here
         HealthController.addHealthMethod(this.databaseHealthCheck);
     }
@@ -142,10 +154,17 @@ export class ExpressServer {
     /**
      * Handle any uncaught errors
      */
-    errorHandler() {
+    protected errorHandler() {
+        // Register the error handler
         this.app.use((error: any, request: Request, response: Response, next: any) => {
             console.log('Exception caught');
             console.error(error);
+            // Check if the headers have already been sent
+            if (response.headersSent) {
+                // Send the error to the next function
+                return next(error);
+            }
+            // Return the error response
             response.status(500);
             response.send(JSON.stringify({
                 success: false,
@@ -157,12 +176,12 @@ export class ExpressServer {
     /**
      * Start the server and listen to the required port
      */
-    listen() {
+    protected listen() {
         ExpressServer.mServer = this.app.listen(env('PORT', 8080), () => {
             // @ts-ignore
             const port = ExpressServer.mServer.address().port;
             console.log(`Service listening on ${port}`);
-            ExpressServer.events.emit('ready', true);
+            ExpressServer.events.emit(ServerEvents.SERVER_READY, true);
         });
     }
 }
