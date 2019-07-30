@@ -8,7 +8,7 @@
   },
   "types": "src/index.d.ts",
   "scripts": {
-    "test": "mocha -r ts-node/register **/*.spec.ts --reporter mocha-multi-reporters --reporter-options configFile=.mocha/config.json --exit",
+    "test": "mocha -r ts-node/register \"**/*.spec.ts\" --reporter mocha-multi-reporters --reporter-options configFile=.mocha/config.json --exit",
     "test:coverage": "nyc npm test",
     "prepare": "tsc",
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",
