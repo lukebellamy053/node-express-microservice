@@ -1,2 +1,2 @@
-export * from "./EnvironmentInterface";
-export * from "./RouteInterface";
+export * from './EnvironmentInterface';
+export * from './RouteInterface';

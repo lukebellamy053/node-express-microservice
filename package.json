@@ -12,7 +12,8 @@
     "test:coverage": "nyc npm test",
     "prepare": "tsc",
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",
-    "clean": "git clean -fx && git clean -fd"
+    "clean": "git clean -fx && git clean -fd",
+    "fixlint": "eslint **/*.ts --fix"
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",
@@ -41,7 +42,8 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.3.12"
+    "mongoose": "^5.3.12",
+    "prettier": "^1.18.2"
   },
   "devDependencies": {
     "@types/async": "^2.0.49",

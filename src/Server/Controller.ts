@@ -1,6 +1,6 @@
-import {Request, Response} from 'express';
-import {ErrorResponses} from '../Enums';
-import {loadActiveUser, PreConstruct, PreRequest} from '../Interfaces/ControllerInterfaces';
+import { Request, Response } from 'express';
+import { ErrorResponses } from '../Enums';
+import { loadActiveUser, PreConstruct, PreRequest } from '../Interfaces/ControllerInterfaces';
 
 /**
  * The base controller
@@ -95,7 +95,7 @@ export abstract class Controller {
     public fail(reason: string, code: number = this.responseCode || 500): void {
         if (this.res != null) {
             this.res.status(code);
-            this.res.json({success: false, error: reason, code: code});
+            this.res.json({ success: false, error: reason, code: code });
             this.res.end();
         }
     }
@@ -160,14 +160,16 @@ export abstract class Controller {
                     return false;
                 }
             });
-
         }
 
         // Check if the request can continue
         if (can_continue) {
             // @ts-ignore
             return new Promise(async (resolve, reject) => {
-                const timeout = Controller.method_timeouts != null ? Controller.method_timeouts.get(full_name) || (10 * 1000) : 10 * 1000;
+                const timeout =
+                    Controller.method_timeouts != null
+                        ? Controller.method_timeouts.get(full_name) || 10 * 1000
+                        : 10 * 1000;
                 setTimeout(() => {
                     reject(ErrorResponses.Timeout);
                 }, timeout);
@@ -207,7 +209,7 @@ export abstract class Controller {
         // Send a success request
         if (this.res !== undefined && !this.res.headersSent) {
             this.res.status(code);
-            this.send({success: true, data: data, code: code});
+            this.send({ success: true, data: data, code: code });
         }
     }
 }

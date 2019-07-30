@@ -1,2 +1,2 @@
-export * from './DBHandler'
-export * from './MongoHandler'
+export * from './DBHandler';
+export * from './MongoHandler';

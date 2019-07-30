@@ -1,10 +1,10 @@
-import {fail} from './ResponseUtils';
-import {ErrorResponses, Method} from '../Enums';
-import {Express, Request, Response} from 'express';
-import {RouteItem} from '../Classes';
-import {RouteInterface} from '../Interfaces';
-import {Controller, ExpressServer} from '../Server';
-import {verifyRequest} from './AuthHandler';
+import { fail } from './ResponseUtils';
+import { ErrorResponses, Method } from '../Enums';
+import { Express, Request, Response } from 'express';
+import { RouteItem } from '../Classes';
+import { RouteInterface } from '../Interfaces';
+import { Controller, ExpressServer } from '../Server';
+import { verifyRequest } from './AuthHandler';
 
 /**
  * A class to handle the registration of routes
@@ -31,11 +31,11 @@ export class PathHandler {
      * Add a new controller item
      * @param controller_item - Object or array of controllers
      */
-    public static addController(controller_item: Array<any>) {
+    public static addController(controller_item: any[]) {
         if (Array.isArray(controller_item)) {
             // Work out the controller object automatically
             const newControllers = {};
-            controller_item.forEach((item) => {
+            controller_item.forEach(item => {
                 newControllers[(<any>item).prototype.constructor.name] = item;
             });
             this.mControllers = Object.assign(this.mControllers, newControllers);
@@ -50,7 +50,16 @@ export class PathHandler {
      * @param route {RouteInterface} The route item to register
      */
     public static addPendingRoute(route: RouteInterface): void {
-        this.mPending.push(new RouteItem(route.path, route.handler, route.method, route.protected, route.authenticationHandler, route.priority));
+        this.mPending.push(
+            new RouteItem(
+                route.path,
+                route.handler,
+                route.method,
+                route.protected,
+                route.authenticationHandler,
+                route.priority,
+            ),
+        );
     }
 
     /**
@@ -67,7 +76,6 @@ export class PathHandler {
      * Register the default paths
      */
     public static registerDefaults(request_verifier?: (req: any, res: any, next: any) => any) {
-
         if (request_verifier) {
             PathHandler.customVerification = request_verifier;
         }
@@ -86,12 +94,18 @@ export class PathHandler {
             const prePath = this.mControllerPaths[pending.handler.split('@')[0]];
             if (prePath) {
                 // Add the controller path to the start of the path
-                pending = new RouteItem(`${prePath}${pending.path}`, pending.handler, pending.method, pending.protected, pending.authHandler, pending.priority);
+                pending = new RouteItem(
+                    `${prePath}${pending.path}`,
+                    pending.handler,
+                    pending.method,
+                    pending.protected,
+                    pending.authHandler,
+                    pending.priority,
+                );
             }
             this.register(pending);
         });
     }
-
 
     /**
      * Register an array of routes
@@ -99,7 +113,14 @@ export class PathHandler {
      */
     public static registerRouteArray(routes: RouteInterface[]) {
         routes.forEach((route: RouteInterface) => {
-            const routeItem = new RouteItem(route.path, route.handler, route.method, route.protected, route.authenticationHandler, route.priority);
+            const routeItem = new RouteItem(
+                route.path,
+                route.handler,
+                route.method,
+                route.protected,
+                route.authenticationHandler,
+                route.priority,
+            );
             this.register(routeItem);
         });
     }
@@ -109,7 +130,6 @@ export class PathHandler {
      * @param {RouteInterface} route
      */
     public static register(route: RouteItem): void {
-
         const handler = async (req: Request, res: Response) => {
             if (route.protected) {
                 const handler = PathHandler.customVerification ? PathHandler.customVerification : this.verifyRequest;
@@ -171,8 +191,14 @@ export class PathHandler {
      * @param authHandler
      * @param jwtVerify
      */
-    public static registerProxy(path: string, proxy: any, remove_path: string, isProtected ?: boolean, authHandler?: any, jwtVerify: boolean = false) {
-
+    public static registerProxy(
+        path: string,
+        proxy: any,
+        remove_path: string,
+        isProtected?: boolean,
+        authHandler?: any,
+        jwtVerify: boolean = false,
+    ) {
         const postAuth = (req: Request, res: Response) => {
             if (remove_path != null) {
                 req.url = req.url.replace(remove_path, '');
@@ -199,9 +225,7 @@ export class PathHandler {
             } catch (exception) {
                 fail(res, exception);
             }
-
         });
-
     }
 
     /**
@@ -211,14 +235,13 @@ export class PathHandler {
      */
     private static verifyRequest(req: any, adminOnly: boolean = false): Promise<any> {
         return new Promise(async (resolve: any, reject: any) => {
-
             try {
                 await verifyRequest(req);
             } catch (err) {
                 reject(err);
                 return;
             }
-            
+
             if (this.customVerification) {
                 PathHandler.customVerification(req, null, resolve);
             } else {

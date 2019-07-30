@@ -1,5 +1,5 @@
-import {Response} from 'express';
-import {env, EnvironmentVariables} from '..'
+import { Response } from 'express';
+import { env, EnvironmentVariables } from '..';
 
 /**
  * Respond with a success message
@@ -13,7 +13,7 @@ export function success(req: Response, data?: any, code: number = 200) {
         version: env(EnvironmentVariables.APP_VERSION),
         build: env(EnvironmentVariables.APP_BUILD),
         service: env(EnvironmentVariables.SERVICE_NAME),
-        data: data
+        data: data,
     });
 }
 
@@ -29,6 +29,6 @@ export function fail(req: Response, reason: string, code: number = 200) {
         version: env(EnvironmentVariables.APP_VERSION),
         build: env(EnvironmentVariables.APP_BUILD),
         service: env(EnvironmentVariables.SERVICE_NAME),
-        error: reason.toString()
+        error: reason.toString(),
     });
 }

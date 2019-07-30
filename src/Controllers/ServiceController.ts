@@ -1,19 +1,17 @@
-import {route} from '../Decorators/Route';
-import {env} from '../EnvironmentConfig';
-import {Controller} from '../Server';
-import {Method} from '../Enums';
-
+import { route } from '../Decorators/Route';
+import { env } from '../EnvironmentConfig';
+import { Controller } from '../Server';
+import { Method } from '../Enums';
 
 /**
  * A class to handle basic service operations
  */
 export class ServiceController extends Controller {
-
     @route({
         path: '/_service_info_',
         method: Method.ALL,
         protected: false,
-        priority: -1
+        priority: -1,
     })
     public async serviceInfo() {
         this.success({
@@ -28,13 +26,13 @@ export class ServiceController extends Controller {
         path: '*',
         method: Method.ALL,
         protected: false,
-        priority: -5
+        priority: -5,
     })
     public async pathNotFound() {
         this.responseCode = 404;
         this.fail({
             success: false,
-            error: 'Path doesn\'t exist',
+            error: "Path doesn't exist",
             version: env('APP_VERSION', 'Unknown'),
             build: env('APP_BUILD', 'Unknown'),
             service: env('SERVICE_NAME', 'Unknown'),
@@ -64,6 +62,4 @@ export class ServiceController extends Controller {
             }
         }
     }
-
-
 }

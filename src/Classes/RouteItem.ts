@@ -1,4 +1,4 @@
-import {Method} from '../Enums/Method';
+import { Method } from '../Enums/Method';
 
 /**
  * A class to hold route information
@@ -89,7 +89,14 @@ export class RouteItem {
      * @param authHandler
      * @param _priority
      */
-    constructor(_path: string, _handler: any, _method?: Method, _isProtected: boolean = false, authHandler?: any, _priority = 0) {
+    constructor(
+        _path: string,
+        _handler: any,
+        _method?: Method,
+        _isProtected: boolean = false,
+        authHandler?: any,
+        _priority = 0,
+    ) {
         this.mPath = _path;
         this.mHandler = _handler;
         this.mProtected = _isProtected;

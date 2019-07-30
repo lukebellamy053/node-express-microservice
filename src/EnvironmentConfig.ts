@@ -1,4 +1,4 @@
-import {Environment} from './Environment';
+import { Environment } from './Environment';
 
 /**
  * Holds the environment to use
@@ -11,7 +11,7 @@ export class EnvironmentConfig {
      * Add values to the environment
      * @param values
      */
-    public static addValues(values: Object) {
+    public static addValues(values: Record<string, any>) {
         EnvironmentConfig.env_to_use = Object.assign(EnvironmentConfig.env_to_use, values);
     }
 

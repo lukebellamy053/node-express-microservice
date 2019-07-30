@@ -1,4 +1,4 @@
-import {env, EnvironmentVariables, ErrorResponses} from '..';
+import { env, EnvironmentVariables, ErrorResponses } from '..';
 
 const jwt = require('jsonwebtoken');
 
@@ -44,9 +44,9 @@ export function verifyJWTToken(token: string) {
     return new Promise((resolve, reject) => {
         jwt.verify(token, env(EnvironmentVariables.APP_KEY), (err: any, decodedToken: any) => {
             if (err || !decodedToken) {
-                return reject(err)
+                return reject(err);
             }
-            resolve(decodedToken)
-        })
-    })
+            resolve(decodedToken);
+        });
+    });
 }

@@ -3,6 +3,4 @@
  * Checks that the database is connected to
  */
 
-describe('DB Handler', () => {
-
-});
+describe('DB Handler', () => {});

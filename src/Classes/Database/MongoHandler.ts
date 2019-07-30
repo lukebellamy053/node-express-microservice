@@ -1,20 +1,18 @@
-import {EventEmitter} from 'events';
-import {DBHandler} from './DBHandler';
-import {env} from '../../EnvironmentConfig';
-
-const mongoose = require('mongoose');
+import { EventEmitter } from 'events';
+import { DBHandler } from './DBHandler';
+import { env } from '../../EnvironmentConfig';
+import * as mongoose from 'mongoose';
 
 /**
  * A class to handle MongoDB connections
  */
 export class MongoHandler extends DBHandler {
-
     private static mActiveMongoose;
 
     /**
      * Get the active mongoose connection
      */
-    public static get mongoose() {
+    public static get mongoose(): mongoose.Mongoose {
         return MongoHandler.mActiveMongoose;
     }
 
@@ -22,30 +20,30 @@ export class MongoHandler extends DBHandler {
      * Set the active mongoose connection
      * @param connection
      */
-    public static set mongoose(connection) {
+    public static set mongoose(connection: mongoose.Mongoose) {
         MongoHandler.mActiveMongoose = connection;
     }
 
     /**
      * Get the DB Connected event emitter
      */
-    get onConnected(): EventEmitter {
+    public get onConnected(): EventEmitter {
         return this.mConnectedEvent;
     }
 
     /**
      * Create a connection to MongoDB
      */
-    constructor() {
+    public constructor() {
         super();
-        this.init().catch(err => {
+        this.init().catch((err: Error): void => {
             console.log('Failed to connect to mongo');
             console.log(err);
             this.mConnectedEvent.emit('connected', false, err);
         });
     }
 
-    private async init() {
+    private async init(): Promise<void> {
         // Check if mongoose is already open
         if (!MongoHandler.mActiveMongoose) {
             MongoHandler.mActiveMongoose = mongoose;
@@ -67,7 +65,7 @@ export class MongoHandler extends DBHandler {
      * Connect to MongoDB with a DSN connection
      * @returns {Promise<void>}
      */
-    private async connectWIthDSN() {
+    private async connectWIthDSN(): Promise<void> {
         // Connect to Mongo using a DSN string
         console.log('Initiating connection to Mongo');
         console.log('Connecting with DSN');
@@ -75,36 +73,34 @@ export class MongoHandler extends DBHandler {
         await mongoose.connect(env('mongoDSN'), {
             useNewUrlParser: true,
             replicaSet: env('mongoRep', ''),
-            authSource: env('authSource', '')
+            authSource: env('authSource', ''),
         });
         console.log('Connected to mongo');
         this.mConnectedEvent.emit('connected', true);
-
     }
 
     /**
      * Connect to MongoDB with authentication details
      * @returns {Promise<void>}
      */
-    private async connectWithDetails() {
+    private async connectWithDetails(): Promise<void> {
         // Connect to MongoDB the old fashioned way
         console.log('Initiating connection to Mongo');
         console.log('Creating DSN from details');
         let mongooseString = 'mongodb+srv://';
         if (env('mongoUsername', '').length > 0) {
-            mongooseString += env('mongoUsername', '') + ':' + env('mongoPassword', '') + '@'
+            mongooseString += env('mongoUsername', '') + ':' + env('mongoPassword', '') + '@';
         }
         mongooseString += env('mongoHost', '') + ':' + env('mongoPort', '') + '/' + env('mongoDB', '');
 
         // Connect to the mongoDB server
-        await  mongoose.connect(mongooseString, {
+        await mongoose.connect(mongooseString, {
             useNewUrlParser: true,
             replicaSet: env('mongoRep', undefined),
-            authSource: env('authSource', undefined)
+            authSource: env('authSource', undefined),
         });
         // The connection was successful
         console.log('Connected to mongo');
         this.onConnected.emit('connected', true);
     }
-
 }

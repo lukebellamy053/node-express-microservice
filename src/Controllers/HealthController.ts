@@ -1,14 +1,13 @@
-import {Controller} from '../Server';;
-import {Method} from '../Enums';
-import {env} from '../EnvironmentConfig';
-import {route} from '../Decorators/Route';
+import { Controller } from '../Server';
+import { Method } from '../Enums';
+import { env } from '../EnvironmentConfig';
+import { route } from '../Decorators/Route';
 
 /**
  * A class to handle the health checks for the service
  */
 export class HealthController extends Controller {
-
-    protected static mHealthCheckMethods: Array<() => Promise<any>> = [];
+    protected static mHealthCheckMethods: (() => Promise<any>)[] = [];
 
     /**
      * A method to add a new health check method
@@ -25,12 +24,12 @@ export class HealthController extends Controller {
         path: '/health_check',
         method: Method.ALL,
         protected: false,
-        priority: -2
+        priority: -2,
     })
     public async serviceHealthCheck() {
         let response = {
             message: 'Service Health Check',
-            service: env('SERVICE_NAME', 'Unknown')
+            service: env('SERVICE_NAME', 'Unknown'),
         };
 
         for (let i = 0; i < HealthController.mHealthCheckMethods.length; i++) {
@@ -45,5 +44,4 @@ export class HealthController extends Controller {
 
         return response;
     }
-
 }

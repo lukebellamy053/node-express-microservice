@@ -1,2 +1,2 @@
-export * from './HealthController'
-export * from './ServiceController'
+export * from './HealthController';
+export * from './ServiceController';

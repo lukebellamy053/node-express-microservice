@@ -1,9 +1,9 @@
 /**
  * A file to check the route item class functions as expected
  */
-import {Method, RouteItem} from '..';
-import 'mocha'
-import {expect} from 'chai';
+import { Method, RouteItem } from '..';
+import 'mocha';
+import { expect } from 'chai';
 
 describe('Route Item', () => {
     const path = '/test_item';
@@ -27,4 +27,4 @@ describe('Route Item', () => {
         expect(item.method).to.equal(Method.ALL, 'Method Matches');
         expect(item2.method).to.equal(Method.GET, 'Method Matches');
     });
-})
+});

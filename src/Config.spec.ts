@@ -4,16 +4,16 @@
 
 import 'mocha';
 import { expect } from 'chai';
-import {env, EnvironmentConfig} from './EnvironmentConfig';
+import { env, EnvironmentConfig } from './EnvironmentConfig';
 
 describe('Config Test', () => {
     it('Should start', () => {
         expect(EnvironmentConfig.env_to_use).to.not.equal(null);
         const test = new EnvironmentConfig({
-            TEST_DATA: 123
+            TEST_DATA: 123,
         });
         expect(EnvironmentConfig.env_to_use.TEST_DATA).to.equal(123);
-        expect(env('TEST_DATA',null)).to.equal(123);
+        expect(env('TEST_DATA', null)).to.equal(123);
         expect(env('FAKE_DATA', null)).to.equal(null);
     });
 });

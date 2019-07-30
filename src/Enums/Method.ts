@@ -7,5 +7,5 @@ export enum Method {
     POST,
     PUT,
     DELETE,
-    OPTIONS
+    OPTIONS,
 }
