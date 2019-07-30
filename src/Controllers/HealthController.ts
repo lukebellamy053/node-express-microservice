@@ -1,5 +1,5 @@
-import { env } from '../EnvironmentConfig';
 import { Route } from '../Decorators/Route';
+import { env } from '../EnvironmentConfig';
 import { Controller } from '../Server';
 import { Method } from '../Enums';
 

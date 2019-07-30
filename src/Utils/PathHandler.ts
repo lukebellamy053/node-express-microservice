@@ -2,7 +2,7 @@ import { EnvironmentVariables, ErrorResponses, Method } from '../Enums';
 import { Express, Request, Response } from 'express';
 import { RouteItem } from '../Classes';
 import { HTTPControllerInterface, RouteInterface } from '../Interfaces';
-import { Controller, ExpressServer } from '../Server';
+import { Controller } from '../Server';
 import { Passport } from '../Security';
 import { env } from '../EnvironmentConfig';
 
@@ -12,8 +12,8 @@ import { env } from '../EnvironmentConfig';
 export class PathHandler {
     // The registered controllers
     protected mControllers: { [x: string]: Controller } = {};
-    // The custom verification function
-    protected customVerification: any;
+    // The Express application
+    protected mApp: () => Express;
     // The pending route items to be registered
     protected static mPending: RouteItem[] = [];
     // The active path handler instance
@@ -36,6 +36,12 @@ export class PathHandler {
      * @param handler
      */
     public static set pathHandler(handler: PathHandler) {
+        // Pass on the app object if found
+        const _app = this.pathHandler.app;
+        if (_app) {
+            handler.app = _app;
+        }
+        // Set the new path handler
         PathHandler.mPathHandler = handler;
     }
 
@@ -43,25 +49,35 @@ export class PathHandler {
      * Get the server app
      * @returns {e.Express}
      */
-    private get app(): Express {
-        return ExpressServer.serverApp;
+    public get app(): Express {
+        return this.mApp();
+    }
+
+    /**
+     * Set the path handler app
+     * @param _app
+     */
+    public set app(_app: Express) {
+        this.mApp = () => {
+            // This is one of those javascript things, if you set the value directly, it will be undefined
+            return _app;
+        };
     }
 
     /**
      * Add a new controller item
      * @param controller_item - Object or array of controllers
      */
-    public addController(controller_item: any[]) {
+    public addController(controller_item: any[] | { [x: string]: Controller }) {
+        let newControllers = controller_item;
         if (Array.isArray(controller_item)) {
             // Work out the controller object automatically
-            const newControllers = {};
+            newControllers = {};
             controller_item.forEach(item => {
                 newControllers[(<any>item).prototype.constructor.name] = item;
             });
-            this.mControllers = Object.assign(this.mControllers, newControllers);
-        } else {
-            this.mControllers = Object.assign(this.mControllers, controller_item);
         }
+        this.mControllers = Object.assign(this.mControllers, newControllers);
     }
 
     /**
@@ -95,11 +111,7 @@ export class PathHandler {
     /**
      * Register the default paths
      */
-    public registerDefaults(request_verifier?: (req: any, res: any, next: any) => any) {
-        if (request_verifier) {
-            this.customVerification = request_verifier;
-        }
-
+    public registerDefaults() {
         /**
          * Sort the routes by their priorities
          */
@@ -184,9 +196,8 @@ export class PathHandler {
              */
             if (route.protected) {
                 // Use the custom verifier or the generic verifier
-                const handler = this.customVerification ? this.customVerification : this.verifyRequest;
                 try {
-                    await handler(req, res);
+                    await Passport.passport.verifyRequest(req);
                 } catch (exception) {
                     PathHandler.fail(res, exception);
                     return;
@@ -263,14 +274,13 @@ export class PathHandler {
             proxy(req, res);
         };
 
-        this.app.all(path, async (req, res) => {
+        this.app.all(path, async (req: Request, res) => {
             if (isProtected) {
-                const handler = this.customVerification ? this.customVerification : this.verifyRequest;
                 try {
+                    await Passport.passport.verifyRequest(req);
                     if (authHandler) {
                         await authHandler(req);
                     }
-                    await handler(req, res);
                 } catch (exception) {
                     PathHandler.fail(res, exception);
                     return;
@@ -281,32 +291,6 @@ export class PathHandler {
                 postAuth(req, res);
             } catch (exception) {
                 PathHandler.fail(res, exception);
-            }
-        });
-    }
-
-    /**
-     * Verify that the user can perform the request
-     * @param req
-     * @param adminOnly - Can only admins perform this request?
-     */
-    private verifyRequest(req: any, adminOnly: boolean = false): Promise<any> {
-        return new Promise(async (resolve: any, reject: any) => {
-            try {
-                await Passport.passport.verifyRequest(req);
-            } catch (err) {
-                reject(err);
-                return;
-            }
-
-            if (this.customVerification) {
-                this.customVerification(req, null, resolve);
-            } else {
-                if (req.decodedToken != null) {
-                    resolve(true);
-                } else {
-                    reject(ErrorResponses.Invalid_Token);
-                }
             }
         });
     }

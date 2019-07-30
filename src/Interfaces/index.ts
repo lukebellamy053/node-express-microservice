@@ -3,3 +3,4 @@ export * from './RouteInterface';
 export * from './MethodInterface';
 export * from './HTTPControllerInterface';
 export * from './ControllerInterfaces';
+export * from './CustomAuthentication';

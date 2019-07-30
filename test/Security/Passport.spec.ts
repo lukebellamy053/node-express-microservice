@@ -4,6 +4,8 @@ import { SinonSandbox } from 'sinon';
 import * as sinon from 'sinon';
 import { Passport } from '../../src/Security';
 import { ErrorResponses } from '../../src/Enums';
+import { CustomAuthentication } from '../../src/Interfaces';
+import { Request } from 'express';
 
 const jwt = require('jsonwebtoken');
 
@@ -78,18 +80,23 @@ describe('Passport', function() {
                 });
         });
 
-        it('Can be extended', function(done) {
+        it('Can be extended', async function() {
             Passport.passport = new CustomPassport();
-            Passport.passport.verifyRequest({}).catch(e => {
-                expect(e).eq(ErrorResponses.Timeout);
-                done();
-            });
+            // @ts-ignore
+            const req: Request = {
+                headers: {
+                    authorization: 'Bearer 1234',
+                },
+            };
+            const res = await Passport.passport.verifyRequest(req);
+            expect(res).to.be.ok;
         });
     });
 });
 
-class CustomPassport extends Passport {
-    async verifyRequest(req: any): Promise<void> {
-        throw ErrorResponses.Timeout;
+class CustomPassport extends Passport implements CustomAuthentication {
+    async customAuth(request: Request): Promise<any> {
+        const token = this.getToken(request);
+        return token != null;
     }
 }

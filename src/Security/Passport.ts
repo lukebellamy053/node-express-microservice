@@ -1,5 +1,7 @@
 import { EnvironmentVariables, ErrorResponses } from '../Enums';
 import { env } from '../EnvironmentConfig';
+import { CustomAuthentication } from '../Interfaces/CustomAuthentication';
+import { Request, Response } from 'express';
 
 const jwt = require('jsonwebtoken');
 
@@ -25,7 +27,7 @@ export class Passport {
      */
     public static get passport(): Passport {
         if (!Passport.mCustomPassport) {
-            Passport.mCustomPassport = new Passport();
+            Passport.passport = new Passport();
         }
         return Passport.mCustomPassport;
     }
@@ -50,17 +52,29 @@ export class Passport {
     /**
      * Verify that a user is valid
      * This is not static so that it can be overridden easier
-     * @param req
+     * @throws ErrorResponses.Invalid_Token
+     * @param request
      */
-    public async verifyRequest(req: any) {
-        let token = this.getToken(req);
+    public async verifyRequest(request: Request & { token?: any; decodedToken?: any }) {
+        if ('customAuth' in this) {
+            // Activate the custom authentication method
+            return await (<CustomAuthentication>this).customAuth(request);
+        }
+        // Get the token from the request
+        let token = this.getToken(request);
         if (token !== null) {
-            req.token = await this.verifyJWTToken(token);
+            // Confirm that the token is valid
+            request.token = await this.verifyJWTToken(token);
         } else {
+            // The token is invalid, reject the request
             throw ErrorResponses.Invalid_Token;
         }
     }
 
+    /**
+     * Get the token from the request
+     * @param req
+     */
     public getToken(req: any): string | null {
         if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
             // Handle token presented as a Bearer token in the Authorization header
@@ -76,6 +90,10 @@ export class Passport {
         return null;
     }
 
+    /**
+     * Verify the JWT Token is correct
+     * @param token
+     */
     public verifyJWTToken(token: string) {
         return new Promise((resolve, reject) => {
             jwt.verify(token, env(EnvironmentVariables.APP_KEY), (err: any, decodedToken: any) => {

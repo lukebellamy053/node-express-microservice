@@ -18,11 +18,13 @@ const expect = chai.expect;
 describe('Decorators', function() {
     let serverObject: Server;
 
-    before(done => {
-        chai.use(chaiHttp);
-        serverObject = new Server({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
-        ExpressServer.events.on(ServerEvents.SERVER_READY, () => {
-            done();
+    before(() => {
+        return new Promise(resolve => {
+            chai.use(chaiHttp);
+            serverObject = new Server({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
+            ExpressServer.events.on(ServerEvents.SERVER_READY, () => {
+                resolve();
+            });
         });
     });
 

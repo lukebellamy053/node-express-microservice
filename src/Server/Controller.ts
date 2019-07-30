@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { ErrorResponses } from '../Enums';
-import { loadActiveUser, PreConstruct, PreRequest } from '../Interfaces/ControllerInterfaces';
-import { Passport } from '../Security/Passport';
+import { loadActiveUser, PreConstruct, PreRequest } from '../Interfaces';
+import { Passport } from '../Security';
 
 /**
  * The base controller
