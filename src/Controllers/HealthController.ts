@@ -1,7 +1,7 @@
-import { Controller } from '../Server';
-import { Method } from '../Enums';
 import { env } from '../EnvironmentConfig';
 import { Route } from '../Decorators/Route';
+import { Controller } from '../Server';
+import { Method } from '../Enums';
 
 /**
  * A class to handle the health checks for the service

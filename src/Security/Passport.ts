@@ -30,8 +30,6 @@ export class Passport {
         return Passport.mCustomPassport;
     }
 
-    protected constructor() {}
-
     /**
      * Add a new gate for a method
      * @param methodName
@@ -59,12 +57,12 @@ export class Passport {
         if (token !== null) {
             req.token = await this.verifyJWTToken(token);
         } else {
-            throw new Error(ErrorResponses.Invalid_Token);
+            throw ErrorResponses.Invalid_Token;
         }
     }
 
     public getToken(req: any): string | null {
-        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+        if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
             // Handle token presented as a Bearer token in the Authorization header
             return req.headers.authorization.split(' ')[1];
         } else if (req.query && req.query.token) {

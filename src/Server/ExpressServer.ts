@@ -41,8 +41,8 @@ export abstract class ExpressServer {
         this.init();
         this.middleware();
         this.paths();
-        PathHandler.addController([ServiceController, HealthController]);
-        PathHandler.registerDefaults();
+        PathHandler.pathHandler.addController([ServiceController, HealthController]);
+        PathHandler.pathHandler.registerDefaults();
         this.errorHandler();
         this.listen();
     }

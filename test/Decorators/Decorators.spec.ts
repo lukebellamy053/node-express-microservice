@@ -282,7 +282,7 @@ describe('Decorators', function() {
 
 class Server extends ExpressServer {
     paths() {
-        PathHandler.addController([TestController, SecurityController]);
+        PathHandler.pathHandler.addController([TestController, SecurityController]);
         super.paths();
     }
 }

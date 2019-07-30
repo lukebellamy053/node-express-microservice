@@ -3,7 +3,7 @@ import { Express, Request, Response } from 'express';
 import { RouteItem } from '../Classes';
 import { HTTPControllerInterface, RouteInterface } from '../Interfaces';
 import { Controller, ExpressServer } from '../Server';
-import { Passport } from './Passport';
+import { Passport } from '../Security';
 import { env } from '../EnvironmentConfig';
 
 /**
@@ -11,19 +11,39 @@ import { env } from '../EnvironmentConfig';
  */
 export class PathHandler {
     // The registered controllers
-    private static mControllers: { [x: string]: Controller } = {};
-    // The paths for controllers
-    private static mControllerPaths: { [x: string]: HTTPControllerInterface } = {};
-    // The pending route items to be registered
-    private static mPending: RouteItem[] = [];
+    protected mControllers: { [x: string]: Controller } = {};
     // The custom verification function
-    private static customVerification: any;
+    protected customVerification: any;
+    // The pending route items to be registered
+    protected static mPending: RouteItem[] = [];
+    // The active path handler instance
+    protected static mPathHandler: PathHandler;
+    // The paths for controllers
+    protected static mControllerPaths: { [x: string]: HTTPControllerInterface } = {};
+
+    /**
+     * Get the active path handler instance
+     */
+    public static get pathHandler(): PathHandler {
+        if (!PathHandler.mPathHandler) {
+            PathHandler.mPathHandler = new PathHandler();
+        }
+        return PathHandler.mPathHandler;
+    }
+
+    /**
+     * Set the active path handler instance
+     * @param handler
+     */
+    public static set pathHandler(handler: PathHandler) {
+        PathHandler.mPathHandler = handler;
+    }
 
     /**
      * Get the server app
      * @returns {e.Express}
      */
-    public static get mApp(): Express {
+    private get app(): Express {
         return ExpressServer.serverApp;
     }
 
@@ -31,7 +51,7 @@ export class PathHandler {
      * Add a new controller item
      * @param controller_item - Object or array of controllers
      */
-    public static addController(controller_item: any[]) {
+    public addController(controller_item: any[]) {
         if (Array.isArray(controller_item)) {
             // Work out the controller object automatically
             const newControllers = {};
@@ -75,28 +95,28 @@ export class PathHandler {
     /**
      * Register the default paths
      */
-    public static registerDefaults(request_verifier?: (req: any, res: any, next: any) => any) {
+    public registerDefaults(request_verifier?: (req: any, res: any, next: any) => any) {
         if (request_verifier) {
-            PathHandler.customVerification = request_verifier;
+            this.customVerification = request_verifier;
         }
 
         /**
          * Sort the routes by their priorities
          */
-        this.mPending.sort((path_a, path_b) => {
+        PathHandler.mPending.sort((path_a, path_b) => {
             if (path_a.priority < path_b.priority) return 1;
             if (path_a.priority > path_b.priority) return -1;
             return 0;
         });
 
-        this.mPending.forEach((pending: RouteItem) => {
+        PathHandler.mPending.forEach((pending: RouteItem) => {
             const controllerName = pending.handler.split('@')[0];
             if (!controllerName) {
                 // This should not happen
                 return;
             }
             // Check if the controller has been registered already
-            const prePath = this.mControllerPaths[controllerName];
+            const prePath = PathHandler.mControllerPaths[controllerName];
             if (prePath) {
                 const existingAuthHandler = pending.authHandler;
                 /**
@@ -134,7 +154,7 @@ export class PathHandler {
      * Register an array of routes
      * @param {RouteInterface[]} routes
      */
-    public static registerRouteArray(routes: RouteInterface[]) {
+    public registerRouteArray(routes: RouteInterface[]) {
         routes.forEach((route: RouteInterface) => {
             const routeItem = new RouteItem(
                 route.path,
@@ -152,7 +172,7 @@ export class PathHandler {
      * Register a http route handler
      * @param {RouteInterface} route
      */
-    public static register(route: RouteItem): void {
+    public register(route: RouteItem): void {
         /**
          * The method that will handle the incoming request
          * @param req
@@ -164,11 +184,11 @@ export class PathHandler {
              */
             if (route.protected) {
                 // Use the custom verifier or the generic verifier
-                const handler = PathHandler.customVerification ? PathHandler.customVerification : this.verifyRequest;
+                const handler = this.customVerification ? this.customVerification : this.verifyRequest;
                 try {
                     await handler(req, res);
                 } catch (exception) {
-                    this.fail(res, exception);
+                    PathHandler.fail(res, exception);
                     return;
                 }
             }
@@ -177,28 +197,28 @@ export class PathHandler {
                 // Call the method
                 this.callHandler(route, req, res);
             } catch (exception) {
-                this.fail(res, exception);
+                PathHandler.fail(res, exception);
             }
         };
 
         switch (route.method) {
             case Method.GET:
-                this.mApp.get(route.path, handler);
+                this.app.get(route.path, handler);
                 break;
             case Method.DELETE:
-                this.mApp.delete(route.path, handler);
+                this.app.delete(route.path, handler);
                 break;
             case Method.OPTIONS:
-                this.mApp.options(route.path, handler);
+                this.app.options(route.path, handler);
                 break;
             case Method.POST:
-                this.mApp.post(route.path, handler);
+                this.app.post(route.path, handler);
                 break;
             case Method.PUT:
-                this.mApp.put(route.path, handler);
+                this.app.put(route.path, handler);
                 break;
             default:
-                this.mApp.all(route.path, handler);
+                this.app.all(route.path, handler);
         }
 
         // Register the routes authentication handler if one exists
@@ -211,7 +231,7 @@ export class PathHandler {
      * @param request
      * @param response
      */
-    private static callHandler(route: RouteItem, request: Request, response: Response) {
+    protected callHandler(route: RouteItem, request: Request, response: Response) {
         if (this.mControllers[route.handlerClass]) {
             new (<any>this.mControllers[route.handlerClass])(request, response, route.handlerMethod);
         } else {
@@ -228,7 +248,7 @@ export class PathHandler {
      * @param authHandler
      * @param jwtVerify
      */
-    public static registerProxy(
+    public registerProxy(
         path: string,
         proxy: any,
         remove_path: string,
@@ -243,16 +263,16 @@ export class PathHandler {
             proxy(req, res);
         };
 
-        this.mApp.all(path, async (req, res) => {
+        this.app.all(path, async (req, res) => {
             if (isProtected) {
-                const handler = PathHandler.customVerification ? PathHandler.customVerification : this.verifyRequest;
+                const handler = this.customVerification ? this.customVerification : this.verifyRequest;
                 try {
                     if (authHandler) {
                         await authHandler(req);
                     }
                     await handler(req, res);
                 } catch (exception) {
-                    this.fail(res, exception);
+                    PathHandler.fail(res, exception);
                     return;
                 }
             }
@@ -260,7 +280,7 @@ export class PathHandler {
             try {
                 postAuth(req, res);
             } catch (exception) {
-                this.fail(res, exception);
+                PathHandler.fail(res, exception);
             }
         });
     }
@@ -270,7 +290,7 @@ export class PathHandler {
      * @param req
      * @param adminOnly - Can only admins perform this request?
      */
-    private static verifyRequest(req: any, adminOnly: boolean = false): Promise<any> {
+    private verifyRequest(req: any, adminOnly: boolean = false): Promise<any> {
         return new Promise(async (resolve: any, reject: any) => {
             try {
                 await Passport.passport.verifyRequest(req);
@@ -280,7 +300,7 @@ export class PathHandler {
             }
 
             if (this.customVerification) {
-                PathHandler.customVerification(req, null, resolve);
+                this.customVerification(req, null, resolve);
             } else {
                 if (req.decodedToken != null) {
                     resolve(true);
@@ -297,7 +317,7 @@ export class PathHandler {
      * @param {string} reason
      * @param code
      */
-    private static fail(req: Response, reason: string, code: number = 200) {
+    protected static fail(req: Response, reason: string, code: number = 200) {
         req.status(code).json({
             success: false,
             version: env(EnvironmentVariables.APP_VERSION),
