@@ -13,11 +13,11 @@
     "prepare": "tsc",
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",
     "clean": "git clean -fx && git clean -fd",
-    "fixlint": "eslint **/*.ts --fix"
+    "fixlint": "eslint **/*.ts --fix",
+    "lint": "eslint \"**/*.ts\" --format junit --output-file ./reports/eslint/eslint.xml || exit 0"
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",
-    "all": true,
     "check-coverage": true,
     "reporter": [
       "text-summary",
@@ -25,8 +25,7 @@
     ],
     "lines": 80,
     "extension": [
-      ".ts",
-      ".tsx"
+      ".ts"
     ],
     "include": [
       "**/src/**"

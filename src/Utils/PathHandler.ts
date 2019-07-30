@@ -136,7 +136,7 @@ export class PathHandler {
                  * @param controller - The active controller
                  */
                 const newHandler = async (controller: Controller) => {
-                    let res: boolean = true;
+                    let res = true;
                     // Call the controllers auth handler
                     if (prePath.authenticationHandler) {
                         res = await prePath.authenticationHandler(controller);

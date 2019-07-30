@@ -152,7 +152,7 @@ class CustomServer extends ExpressServer {
     }
 
     protected paths(): void {
-        const routes: Array<RouteInterface> = [
+        const routes: RouteInterface[] = [
             {
                 path: '/test/array/route',
                 protected: false,
