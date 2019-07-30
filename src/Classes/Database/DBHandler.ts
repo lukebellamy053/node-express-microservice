@@ -17,5 +17,5 @@ export abstract class DBHandler {
     /**
      * Class Constructor
      */
-    protected constructor() {}
+    public constructor() {}
 }

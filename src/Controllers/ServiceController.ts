@@ -13,7 +13,7 @@ export class ServiceController extends Controller {
         protected: false,
         priority: -1,
     })
-    public async serviceInfo() {
+    public async serviceInfo(): Promise<void> {
         this.success({
             success: true,
             version: env('APP_VERSION', 'Unknown'),
@@ -28,7 +28,7 @@ export class ServiceController extends Controller {
         protected: false,
         priority: -5,
     })
-    public async pathNotFound() {
+    public async pathNotFound(): Promise<void> {
         this.responseCode = 404;
         this.fail({
             success: false,
@@ -39,7 +39,12 @@ export class ServiceController extends Controller {
         });
     }
 
-    fail(reason: any, code: number = this.responseCode || 500): void {
+    /**
+     * Send a failed request response
+     * @param reason
+     * @param code
+     */
+    protected fail(reason: any, code: number = this.responseCode || 500): void {
         if (typeof reason === 'string') {
             super.fail(reason);
         } else {

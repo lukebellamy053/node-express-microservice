@@ -1,6 +1,6 @@
 import { EnvironmentInterface } from '../Interfaces';
 import { Express, Request, Response } from 'express';
-import { env, EnvironmentConfig, ServerEvents } from '..';
+import { env, EnvironmentConfig } from '..';
 import { EventEmitter } from 'events';
 import { HealthController, ServiceController } from '../Controllers';
 import { PathHandler } from '../Utils';
@@ -8,8 +8,8 @@ import { MongoHandler } from '../Classes/Database';
 import * as parser from 'body-parser';
 import * as http from 'http';
 import { AddressInfo } from 'net';
-import express from 'express';
 import * as mongoose from 'mongoose';
+import { ServerEvents } from '../Enums';
 
 /**
  * The core server component
@@ -31,9 +31,11 @@ export abstract class ExpressServer {
      * Create the new env settings
      * @param {EnvironmentInterface} envConfig
      */
-    protected constructor(envConfig: EnvironmentInterface) {
+    public constructor(envConfig: EnvironmentInterface) {
+        // Require these here so they can be used in child classes
+        const express = require('express');
         // Create the express app
-        ExpressServer.app = express();
+        this.app = express();
         // Merge the environment variables to the provided list
         new EnvironmentConfig(Object.assign({}, process.env, envConfig));
         this.init();
@@ -71,8 +73,15 @@ export abstract class ExpressServer {
      * Set the express app
      * @param _app
      */
-    protected static set app(_app) {
+    protected set app(_app) {
         ExpressServer.mApp = _app;
+    }
+
+    /**
+     * Set the express app
+     */
+    protected get app() {
+        return ExpressServer.mApp;
     }
 
     /**
@@ -93,16 +102,15 @@ export abstract class ExpressServer {
     /**
      * Check the connection to the database
      */
-    protected static async databaseHealthCheck(): Promise<{ database: { [x: string]: boolean } }> {
+    protected async databaseHealthCheck() {
         let response = {
             database: {},
         };
         const models = ExpressServer.mDatabaseHealthModels;
         for (let i = 0; i < models.length; i++) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const model: mongoose.Model<any> = models[i];
+            const model: any = models[i];
             try {
-                await model.findOne().maxTimeMS(1000);
+                await model.findOne().maxTime(1000);
                 response.database[model.collection.name] = true;
             } catch (e) {
                 response.database[model.collection.name] = false;
@@ -123,7 +131,7 @@ export abstract class ExpressServer {
         // Check if the user wants to use a custom DB system
         if (!env('CUSTOM_DB', false)) {
             const dbHandler = new MongoHandler();
-            dbHandler.onConnected.on('connected', (connected: boolean): void => {
+            dbHandler.onConnected.on(ServerEvents.DATABASE_CONNECTED, (connected: boolean): void => {
                 ExpressServer.events.emit(ServerEvents.DATABASE_CONNECTED, connected);
             });
         }
@@ -134,8 +142,8 @@ export abstract class ExpressServer {
      * Register any middleware
      */
     protected middleware(): void {
-        ExpressServer.app.use(parser.urlencoded({ extended: true }));
-        ExpressServer.app.use(parser.json());
+        this.app.use(parser.urlencoded({ extended: true }));
+        this.app.use(parser.json());
     }
 
     /**
@@ -143,7 +151,7 @@ export abstract class ExpressServer {
      */
     protected paths(): void {
         // Add any other controllers here
-        HealthController.addHealthMethod(ExpressServer.databaseHealthCheck);
+        HealthController.addHealthMethod(this.databaseHealthCheck);
     }
 
     /**
@@ -151,7 +159,7 @@ export abstract class ExpressServer {
      */
     protected errorHandler(): void {
         // Register the error handler
-        ExpressServer.serverApp.use((error: Error, request: Request, response: Response, next: (_) => void): void => {
+        this.app.use((error: any, request: Request, response: Response, next: any) => {
             console.log('Exception caught');
             console.error(error);
             // Check if the headers have already been sent
@@ -173,9 +181,9 @@ export abstract class ExpressServer {
     /**
      * Start the server and listen to the required port
      */
-    protected listen(): void {
-        ExpressServer.mServer = ExpressServer.app.listen(env('PORT', 8080), (): void => {
-            const port = (ExpressServer.mServer.address() as AddressInfo).port;
+    protected listen() {
+        ExpressServer.mServer = this.app.listen(env('PORT', 8080), () => {
+            const port = (<AddressInfo>ExpressServer.mServer.address()).port;
             console.log(`Service listening on ${port}`);
             ExpressServer.events.emit(ServerEvents.SERVER_READY, true);
         });

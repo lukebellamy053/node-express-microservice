@@ -1,6 +1,6 @@
 import { PathHandler } from '../Utils';
 import { RouteInterface } from '../Interfaces';
-import { HTTPControllerInterface } from '../Interfaces/HTTPControllerInterface';
+import { HTTPControllerInterface } from '../Interfaces';
 
 /**
  * Create a new route
@@ -9,6 +9,6 @@ import { HTTPControllerInterface } from '../Interfaces/HTTPControllerInterface';
  */
 export function HTTPController(data: HTTPControllerInterface) {
     return function(target: any) {
-        PathHandler.addControllerPath(data.path, target.name);
+        PathHandler.addControllerPath(data, target.name);
     };
 }

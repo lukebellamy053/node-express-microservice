@@ -19,7 +19,7 @@ export class EnvironmentConfig {
         if (merge === undefined) {
             merge = {};
         }
-        EnvironmentConfig.env_to_use = Object.assign(Environment, merge);
+        EnvironmentConfig.env_to_use = Object.assign({}, Environment, merge);
     }
 }
 

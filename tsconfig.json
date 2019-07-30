@@ -11,16 +11,10 @@
     "emitDecoratorMetadata": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
-    "sourceRoot": "src",
     "lib": [
       "es2018"
     ]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/*.ts",
-    "index.ts"
-  ],
   "exclude": [
     "node_modules",
     "**/*.d.ts"

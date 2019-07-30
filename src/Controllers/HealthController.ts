@@ -1,7 +1,7 @@
 import { Controller } from '../Server';
 import { Method } from '../Enums';
 import { env } from '../EnvironmentConfig';
-import { route } from '../Decorators/Route';
+import { Route } from '../Decorators/Route';
 
 /**
  * A class to handle the health checks for the service
@@ -20,7 +20,7 @@ export class HealthController extends Controller {
     /**
      * Perform a health check
      */
-    @route({
+    @Route({
         path: '/health_check',
         method: Method.ALL,
         protected: false,

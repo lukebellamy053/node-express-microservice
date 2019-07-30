@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { ErrorResponses } from '../Enums';
 import { loadActiveUser, PreConstruct, PreRequest } from '../Interfaces/ControllerInterfaces';
+import { Passport } from '../Utils/Passport';
 
 /**
  * The base controller
@@ -25,6 +26,8 @@ export abstract class Controller {
     protected queryParams: any;
     // The response code to send back to the client
     protected responseCode: number;
+    // The active user object
+    protected activeUser: any;
 
     /**
      * Class constructor
@@ -65,7 +68,7 @@ export abstract class Controller {
             if ('loadActiveUser' in this) {
                 try {
                     // Load the user
-                    await (<loadActiveUser>this).loadActiveUser();
+                    (<Controller>this).activeUser = await (<loadActiveUser>this).loadActiveUser();
                 } catch (err) {
                     // Failed to load the user
                     //@ts-ignore
@@ -92,7 +95,7 @@ export abstract class Controller {
      * @param {string} reason
      * @param code - The HTTP response code
      */
-    public fail(reason: string, code: number = this.responseCode || 500): void {
+    protected fail(reason: string, code: number = this.responseCode || 500): void {
         if (this.res != null) {
             this.res.status(code);
             this.res.json({ success: false, error: reason, code: code });
@@ -105,7 +108,7 @@ export abstract class Controller {
      * @returns {any}
      * @param request
      */
-    public static getParams(request: Request): any {
+    protected static getParams(request: Request): any {
         return Object.assign({}, request.params, request.body, request.query);
     }
 
@@ -150,42 +153,39 @@ export abstract class Controller {
             required = Controller.required_params.get(full_name);
         }
 
-        let can_continue = true;
         if (required != null) {
             // There are variables to check for first
             required.forEach((item: string) => {
                 if (this.params[item] === undefined) {
-                    // The variable is missing, fail the request
-                    can_continue = false;
-                    return false;
+                    throw ErrorResponses.MissingParameters;
                 }
             });
         }
 
-        // Check if the request can continue
-        if (can_continue) {
-            // @ts-ignore
-            return new Promise(async (resolve, reject) => {
-                const timeout =
-                    Controller.method_timeouts != null
-                        ? Controller.method_timeouts.get(full_name) || 10 * 1000
-                        : 10 * 1000;
-                setTimeout(() => {
-                    reject(ErrorResponses.Timeout);
-                }, timeout);
-                try {
-                    // Execute the method and check for a response
-                    const method = (<any>this[name]).apply(this, Object.values(this.urlParams));
-                    const result = await method;
-                    resolve(result);
-                } catch (e) {
-                    reject(e);
+        // @ts-ignore
+        return new Promise(async (resolve, reject) => {
+            const authHandler = Passport.getGateForMethod(full_name);
+
+            if (authHandler) {
+                if (!(await authHandler(this))) {
+                    reject(ErrorResponses.NOT_ALLOWED);
                 }
-            });
-        } else {
-            // Tell the caller that something is missing
-            throw ErrorResponses.MissingParameters;
-        }
+            }
+
+            const timeout =
+                Controller.method_timeouts != null ? Controller.method_timeouts.get(full_name) || 10 * 1000 : 10 * 1000;
+            setTimeout(() => {
+                reject(ErrorResponses.Timeout);
+            }, timeout);
+            try {
+                // Execute the method and check for a response
+                const method = (<any>this[name]).apply(this, Object.values(this.urlParams));
+                const result = await method;
+                resolve(result);
+            } catch (e) {
+                reject(e);
+            }
+        });
     }
 
     /**

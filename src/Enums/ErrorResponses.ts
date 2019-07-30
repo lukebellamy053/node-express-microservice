@@ -3,4 +3,6 @@ export enum ErrorResponses {
     Invalid_Token = 'error/invalid_token',
     MissingParameters = 'error/missing_parameters',
     Timeout = 'Timeout',
+    NOT_ALLOWED = 'error/authentication/not-allowed',
+    INVALID_ROUTE = 'error/server/route',
 }

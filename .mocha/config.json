@@ -1,5 +1,5 @@
 {
-  "reporterEnabled": "spec, json, mochawesome, mocha-junit-reporter",
+  "reporterEnabled": "spec, mochawesome, mocha-junit-reporter",
   "mochawesomeReporterOptions": {
     "reportDir": "report"
   },

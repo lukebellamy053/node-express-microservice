@@ -13,7 +13,7 @@ export class RouteItem {
     // Is the route locked by JWT?
     private readonly mProtected: boolean;
     // Is the route admin only?
-    private readonly mAuthHandler: any;
+    private readonly mAuthHandler: (_) => Promise<boolean>;
     // The route priority, higher priority routers are registered first
     private readonly mPriority: number;
 
@@ -21,7 +21,7 @@ export class RouteItem {
      * The http path for the route
      * @returns {string}
      */
-    get path(): string {
+    public get path(): string {
         return this.mPath;
     }
 
@@ -29,7 +29,7 @@ export class RouteItem {
      * Get the full string handler
      * @returns {string}
      */
-    get handler(): string {
+    public get handler(): string {
         return this.mHandler;
     }
 
@@ -37,7 +37,7 @@ export class RouteItem {
      * What is the HTTP method?
      * @returns {Method}
      */
-    get method(): Method {
+    public get method(): Method {
         return this.mMethod;
     }
 
@@ -45,7 +45,7 @@ export class RouteItem {
      * Is the route logged in users only?
      * @returns {boolean}
      */
-    get protected(): boolean {
+    public get protected(): boolean {
         return this.mProtected;
     }
 
@@ -53,7 +53,7 @@ export class RouteItem {
      * Is the route admin only?
      * @returns {boolean}
      */
-    get authHandler(): any {
+    public get authHandler(): (_) => Promise<boolean> {
         return this.mAuthHandler;
     }
 
@@ -61,7 +61,7 @@ export class RouteItem {
      * Get the class to handle the route
      * @returns {string}
      */
-    get handler_class(): string {
+    public get handlerClass(): string {
         return this.handler.substr(0, this.handler.indexOf('@'));
     }
 
@@ -69,14 +69,14 @@ export class RouteItem {
      * Get the method to handle the route
      * @returns {string}
      */
-    get handler_method(): string {
+    public get handlerMethod(): string {
         return this.handler.substr(this.handler.indexOf('@') + 1);
     }
 
     /**
      * Get the route priority
      */
-    get priority(): number {
+    public get priority(): number {
         return this.mPriority;
     }
 
@@ -89,19 +89,21 @@ export class RouteItem {
      * @param authHandler
      * @param _priority
      */
-    constructor(
+    public constructor(
         _path: string,
-        _handler: any,
+        _handler: string,
         _method?: Method,
         _isProtected: boolean = false,
-        authHandler?: any,
+        authHandler?: (_) => Promise<boolean>,
         _priority = 0,
     ) {
         this.mPath = _path;
         this.mHandler = _handler;
         this.mProtected = _isProtected;
         this.mMethod = _method || Method.ALL;
-        this.mAuthHandler = authHandler;
+        if (authHandler) {
+            this.mAuthHandler = authHandler;
+        }
         this.mPriority = _priority;
     }
 }

@@ -7,5 +7,5 @@ export interface PreRequest {
 }
 
 export interface loadActiveUser {
-    loadActiveUser(): Promise<void>;
+    loadActiveUser(): Promise<any>;
 }
