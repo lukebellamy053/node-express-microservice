@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     environment:
-      CC_TEST_REPORTER_ID: code_climate_id_here
+      CC_TEST_REPORTER_ID: ${CC_TEST_REPORTER_ID}
       NODE_ENV: development
     docker:
       - image: circleci/node:8
@@ -48,7 +48,7 @@ jobs:
           name: Setup Code Climate test-reporter
           command: |
             # download test reporter as a static binary
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            curl -h "Authorization: Token token=${CC_API_KEY}" -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
             ./cc-test-reporter before-build
           when: always
