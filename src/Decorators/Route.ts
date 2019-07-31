@@ -1,7 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 import { PathHandler } from '../Utils';
-import { RouteInterface } from '../Interfaces';
-import { MethodInterface } from '../Interfaces';
+import { MethodInterface, RouteInterface } from '../Interfaces';
 import { Method } from '../Enums';
 
 /**
@@ -34,19 +33,7 @@ export function Route(data: RouteInterface) {
  * @returns {(target: any, propertyKey: string, descriptor: PropertyDescriptor) => void}
  */
 export function Get(data: MethodInterface | string) {
-    return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-        if (typeof data == 'string') {
-            // If data is a string, assume its the path
-            data = {
-                path: data,
-            };
-        }
-        const route_item = {
-            method: Method.GET,
-            handler: target.constructor.name + '@' + propertyKey,
-        };
-        PathHandler.addPendingRoute(Object.assign(data, route_item));
-    };
+    return makeRoute(data, Method.GET);
 }
 
 /**
@@ -55,19 +42,7 @@ export function Get(data: MethodInterface | string) {
  * @returns {(target: any, propertyKey: string, descriptor: PropertyDescriptor) => void}
  */
 export function Post(data: MethodInterface | string) {
-    return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-        if (typeof data == 'string') {
-            // If data is a string, assume its the path
-            data = {
-                path: data,
-            };
-        }
-        const route_item = {
-            method: Method.POST,
-            handler: target.constructor.name + '@' + propertyKey,
-        };
-        PathHandler.addPendingRoute(Object.assign(data, route_item));
-    };
+    return makeRoute(data, Method.POST);
 }
 
 /**
@@ -76,19 +51,7 @@ export function Post(data: MethodInterface | string) {
  * @returns {(target: any, propertyKey: string, descriptor: PropertyDescriptor) => void}
  */
 export function Put(data: MethodInterface | string) {
-    return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-        if (typeof data == 'string') {
-            // If data is a string, assume its the path
-            data = {
-                path: data,
-            };
-        }
-        const route_item = {
-            method: Method.PUT,
-            handler: target.constructor.name + '@' + propertyKey,
-        };
-        PathHandler.addPendingRoute(Object.assign(data, route_item));
-    };
+    return makeRoute(data, Method.PUT);
 }
 
 /**
@@ -97,19 +60,7 @@ export function Put(data: MethodInterface | string) {
  * @returns {(target: any, propertyKey: string, descriptor: PropertyDescriptor) => void}
  */
 export function Delete(data: MethodInterface | string) {
-    return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-        if (typeof data == 'string') {
-            // If data is a string, assume its the path
-            data = {
-                path: data,
-            };
-        }
-        const route_item = {
-            method: Method.DELETE,
-            handler: target.constructor.name + '@' + propertyKey,
-        };
-        PathHandler.addPendingRoute(Object.assign(data, route_item));
-    };
+    return makeRoute(data, Method.DELETE);
 }
 
 /**
@@ -118,6 +69,15 @@ export function Delete(data: MethodInterface | string) {
  * @returns {(target: any, propertyKey: string, descriptor: PropertyDescriptor) => void}
  */
 export function All(data: MethodInterface | string) {
+    return makeRoute(data, Method.ALL);
+}
+
+/**
+ * A common function for the GET, POST, PUT, DELETE decorators
+ * @param data
+ * @param method
+ */
+function makeRoute(data: MethodInterface | string, method: Method) {
     return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
         if (typeof data == 'string') {
             // If data is a string, assume its the path
@@ -126,7 +86,7 @@ export function All(data: MethodInterface | string) {
             };
         }
         const route_item = {
-            method: Method.ALL,
+            method: method,
             handler: target.constructor.name + '@' + propertyKey,
         };
         PathHandler.addPendingRoute(Object.assign(data, route_item));

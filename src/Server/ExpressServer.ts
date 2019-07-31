@@ -66,8 +66,8 @@ export abstract class ExpressServer {
     /**
      * Get the server object
      */
-    public static get server(): http.Server {
-        return ExpressServer.mServer();
+    public static get server(): http.Server | undefined {
+        return ExpressServer.mServer ? ExpressServer.mServer() : undefined;
     }
 
     /**

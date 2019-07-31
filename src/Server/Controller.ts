@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { ErrorResponses } from '../Enums';
 import { loadActiveUser, PreConstruct, PreRequest } from '../Interfaces';
 import { Passport } from '../Security';
+import { env } from '../EnvironmentConfig';
 
 /**
  * The base controller
@@ -101,10 +102,17 @@ export abstract class Controller {
      * @param {string} reason
      * @param code - The HTTP response code
      */
-    protected fail(reason: string, code: number = 500): void {
+    protected fail(reason: any, code: number = 500): void {
         if (this.res != null) {
             this.res.status(this.responseCode || code);
-            this.res.json({ success: false, error: reason, code: code });
+            this.res.json({
+                success: false,
+                error: reason,
+                code: code,
+                version: env('APP_VERSION', 'Unknown'),
+                build: env('APP_BUILD', 'Unknown'),
+                service: env('SERVICE_NAME', 'Unknown'),
+            });
             this.res.end();
         }
     }
@@ -147,11 +155,11 @@ export abstract class Controller {
     }
 
     /**
-     * Execute the method
-     * @param {string} name
+     * Check if the method can be executed or not
+     * @param fullName
+     * @throws ErrorResponses.MissingParameters
      */
-    private executeMethod(name: string) {
-        const fullName = (<any>this).__proto__.constructor.name + '@' + name;
+    protected canExecute(fullName: string): void {
         // Check if any variables are required
         let required;
         if (Controller.requiredParams) {
@@ -167,7 +175,16 @@ export abstract class Controller {
                 }
             });
         }
+    }
 
+    /**
+     * Execute the method
+     * @param {string} name
+     */
+    protected executeMethod(name: string) {
+        const fullName = (<any>this).__proto__.constructor.name + '@' + name;
+        // Throws an error if it fails
+        this.canExecute(fullName);
         // @ts-ignore
         return new Promise(async (resolve, reject) => {
             const authHandler = Passport.getGateForMethod(fullName);
@@ -215,7 +232,14 @@ export abstract class Controller {
         // Send a success request
         if (this.res !== undefined && !this.res.headersSent) {
             this.res.status(code);
-            this.send({ success: true, data: data, code: code });
+            this.send({
+                success: true,
+                data: data,
+                code: code,
+                version: env('APP_VERSION', 'Unknown'),
+                build: env('APP_BUILD', 'Unknown'),
+                service: env('SERVICE_NAME', 'Unknown'),
+            });
         }
     }
 }

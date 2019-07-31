@@ -5,4 +5,5 @@ export enum ErrorResponses {
     Timeout = 'Timeout',
     NOT_ALLOWED = 'error/authentication/not-allowed',
     INVALID_ROUTE = 'error/server/route',
+    PATH_NOT_FOUND = 'error/path-not-found',
 }
