@@ -14,7 +14,10 @@
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",
     "clean": "git clean -fx && git clean -fd",
     "fixlint": "eslint **/*.ts --fix",
-    "lint": "eslint \"**/*.ts\" --format junit --output-file ./reports/eslint/eslint.xml || exit 0"
+    "lint": "eslint \"**/*.ts\" --format junit --output-file ./reports/eslint/eslint.xml || exit 0",
+    "typedoc": "npm run markdowndoc && npm run htmldoc",
+    "markdowndoc": "typedoc --theme markdown --out docs/md ./src",
+    "htmldoc": "typedoc --out docs/html ./src"
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",
@@ -45,7 +48,9 @@
     "express-http-proxy": "^1.5.1",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.3.12",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "typedoc": "^0.15.0",
+    "typedoc-plugin-markdown": "^2.1.0"
   },
   "devDependencies": {
     "@types/async": "^2.0.49",

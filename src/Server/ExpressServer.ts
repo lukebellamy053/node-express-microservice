@@ -17,14 +17,14 @@ import { ServerEvents } from '../Enums';
  */
 export abstract class ExpressServer {
     // Holds a reference to the running express server
-    protected static mServer: http.Server;
+    protected static mServer: () => http.Server;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     protected static mDatabaseHealthModels: mongoose.Model<any>[] = [];
     // The database models for the health checks
     // An event emitter to let other classes know when key events occur
     protected static mEvents: EventEmitter = new EventEmitter();
     // The static app reference
-    private static mApp: Express;
+    private static mApp: () => Express;
 
     /**
      * Class constructor
@@ -60,14 +60,14 @@ export abstract class ExpressServer {
      * Get the express app
      */
     public static get serverApp(): Express {
-        return ExpressServer.mApp;
+        return ExpressServer.mApp();
     }
 
     /**
      * Get the server object
      */
     public static get server(): http.Server {
-        return ExpressServer.mServer;
+        return ExpressServer.mServer();
     }
 
     /**
@@ -75,22 +75,41 @@ export abstract class ExpressServer {
      * @param _app
      */
     protected set app(_app) {
-        ExpressServer.mApp = _app;
+        ExpressServer.mApp = () => {
+            return _app;
+        };
     }
 
     /**
      * Set the express app
      */
     protected get app() {
-        return ExpressServer.mApp;
+        return ExpressServer.mApp();
+    }
+
+    /**
+     * Get the server object
+     */
+    protected get server(): http.Server {
+        return ExpressServer.mServer();
+    }
+
+    /**
+     * Set the server object
+     * @param _server
+     */
+    protected set server(_server: http.Server) {
+        ExpressServer.mServer = () => {
+            return _server;
+        };
     }
 
     /**
      * Shutdown the server
      */
     public static async shutDown(): Promise<void> {
-        if (this.mServer) {
-            this.mServer.close();
+        if (this.server) {
+            this.server.close();
             console.log('Server closed');
         }
         const mongoose = MongoHandler.mongoose;
@@ -183,8 +202,8 @@ export abstract class ExpressServer {
      * Start the server and listen to the required port
      */
     protected listen() {
-        ExpressServer.mServer = this.app.listen(env('PORT', 8080), () => {
-            const port = (<AddressInfo>ExpressServer.mServer.address()).port;
+        this.server = this.app.listen(env('PORT', 8080), () => {
+            const port = (<AddressInfo>this.server.address()).port;
             console.log(`Service listening on ${port}`);
             ExpressServer.events.emit(ServerEvents.SERVER_READY, true);
         });
