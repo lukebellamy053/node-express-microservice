@@ -17,80 +17,51 @@ const proxy = require('express-http-proxy');
 
 describe('PathHandler', function() {
     let sandbox: SinonSandbox;
+    let serverObject: CustomServer;
+    let http;
 
     before(function() {
         sandbox = sinon.createSandbox();
+        return new Promise(resolve => {
+            chai.use(chaiHttp);
+            serverObject = new CustomServer({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
+            ExpressServer.events.on(ServerEvents.ServerReady, () => {
+                http = chai.request.agent(ExpressServer.server);
+                resolve();
+            });
+        });
     });
 
     after(function() {
         sandbox.restore();
+        ExpressServer.shutDown();
     });
 
     describe('RegisterProxy', function() {
-        let serverObject: CustomServer;
-
-        before(() => {
-            return new Promise(resolve => {
-                chai.use(chaiHttp);
-                serverObject = new CustomServer({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
-                ExpressServer.events.on(ServerEvents.SERVER_READY, () => {
-                    resolve();
-                });
-            });
-        });
-
-        after(async () => {
-            await ExpressServer.shutDown();
-        });
-
         it('Forwards requests', function() {
-            chai.request(ExpressServer.server)
-                .get('/proxy/test')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    expect(res.body.success).to.be.ok;
-                    expect(res.body.data).to.be.ok;
-                });
+            http.get('/proxy/test').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                expect(res.body.success).to.be.ok;
+                expect(res.body.data).to.be.ok;
+            });
         });
     });
 
     describe('RegisterArray', function() {
-        let serverObject: CustomServer;
-
-        before(done => {
-            let isDone = false;
-            chai.use(chaiHttp);
-            serverObject = new CustomServer({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
-            ExpressServer.events.on(ServerEvents.SERVER_READY, () => {
-                if (!isDone) {
-                    done();
-                    isDone = true;
-                }
+        it('Registers routes in an array', function() {
+            http.get('/test/array/route').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                expect(res.body.success).to.be.ok;
+                expect(res.body.data).to.be.ok;
             });
         });
 
-        after(async () => {
-            await ExpressServer.shutDown();
-        });
-
-        it('Registers routes in an array', function() {
-            chai.request(ExpressServer.server)
-                .get('/test/array/route')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    expect(res.body.success).to.be.ok;
-                    expect(res.body.data).to.be.ok;
-                });
-        });
-
         it('Handles invalid controllers', function() {
-            chai.request(ExpressServer.server)
-                .options('/test/array/route')
-                .end((error, res) => {
-                    expect(res.body).to.haveOwnProperty('error');
-                    expect(res.body.success).to.not.be.ok;
-                    expect(res.body.data).to.not.be.ok;
-                });
+            http.options('/test/array/route').end((error, res) => {
+                expect(res.body).to.haveOwnProperty('error');
+                expect(res.body.success).to.not.be.ok;
+                expect(res.body.data).to.not.be.ok;
+            });
         });
     });
 
@@ -102,43 +73,21 @@ describe('PathHandler', function() {
     });
 
     describe('Register', function() {
-        let serverObject: CustomServer;
-
-        before(done => {
-            let isDone = false;
-            chai.use(chaiHttp);
-            serverObject = new CustomServer({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
-            ExpressServer.events.on(ServerEvents.SERVER_READY, () => {
-                if (!isDone) {
-                    done();
-                    isDone = true;
-                }
-            });
-        });
-
-        after(async () => {
-            await ExpressServer.shutDown();
-        });
-
         it('Registers protected routes', function() {
-            chai.request(ExpressServer.server)
-                .get('/protected')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    expect(res.body.success).to.be.ok;
-                    expect(res.body.data).to.be.ok;
-                });
+            http.get('/protected').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                expect(res.body.success).to.be.ok;
+                expect(res.body.data).to.be.ok;
+            });
         });
 
         it('Fails invalid requests for protected routes', function() {
             sandbox.stub(CustomPassport.prototype, 'customAuth').rejects('Nein!');
-            chai.request(ExpressServer.server)
-                .get('/protected')
-                .end((error, res) => {
-                    expect(res.body).to.haveOwnProperty('error');
-                    expect(res.body.success).to.not.be.ok;
-                    expect(res.body.data).to.not.be.ok;
-                });
+            http.get('/protected').end((error, res) => {
+                expect(res.body).to.haveOwnProperty('error');
+                expect(res.body.success).to.not.be.ok;
+                expect(res.body.data).to.not.be.ok;
+            });
         });
     });
 });

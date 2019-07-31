@@ -111,8 +111,33 @@ export class PathHandler {
     /**
      * Combine the route auth handler to the class auth handler if required
      * @param route
+     * @param prePath
      */
-    protected checkRouteHandlers(route: RouteItem): RouteItem | undefined {
+    protected checkRouteHandlers(route: RouteItem, prePath: HTTPControllerInterface): RouteItem | undefined {
+        const existingAuthHandler = route.authHandler;
+        /**
+         * Create the new authentication handler
+         * @param controller - The active controller
+         */
+        const newHandler = makeNewHandler(prePath, existingAuthHandler);
+
+        // Add the controller path to the start of the path
+        route = new RouteItem(
+            `${prePath.path}${route.path}`,
+            route.handler,
+            route.method,
+            route.protected,
+            newHandler,
+            route.priority,
+        );
+        return route;
+    }
+
+    /**
+     * Perform some checks before registering the route
+     * @param route
+     */
+    protected preRegisterRoute(route: RouteItem) {
         const controllerName = route.handler.split('@')[0];
         if (!controllerName) {
             // This should not happen
@@ -121,35 +146,15 @@ export class PathHandler {
         // Check if the controller has been registered already
         const prePath = PathHandler.mControllerPaths[controllerName];
         if (prePath) {
-            const existingAuthHandler = route.authHandler;
-            /**
-             * Create the new authentication handler
-             * @param controller - The active controller
-             */
-            const newHandler = async (controller: Controller) => {
-                let res = true;
-                // Call the controllers auth handler
-                if (prePath.authenticationHandler) {
-                    res = await prePath.authenticationHandler(controller);
-                }
-
-                if (res && existingAuthHandler) {
-                    res = await existingAuthHandler(controller);
-                }
-
-                return res;
-            };
-            // Add the controller path to the start of the path
-            return new RouteItem(
-                `${prePath.path}${route.path}`,
-                route.handler,
-                route.method,
-                route.protected,
-                newHandler,
-                route.priority,
-            );
+            // Convert the routes auth handler to include the class handler
+            const newRoute: RouteItem | undefined = this.checkRouteHandlers(route, prePath);
+            if (newRoute) {
+                // Add the route if its still valid
+                this.register(newRoute);
+            }
+        } else {
+            this.register(route);
         }
-        return route;
     }
 
     /**
@@ -165,13 +170,8 @@ export class PathHandler {
             return 0;
         });
 
-        PathHandler.mPending.forEach((pending: RouteItem) => {
-            // Convert the routes auth handler to include the class handler
-            const newRoute: RouteItem | undefined = this.checkRouteHandlers(pending);
-            // Add the route if its still valid
-            if (newRoute) {
-                this.register(newRoute);
-            }
+        PathHandler.mPending.forEach((route: RouteItem) => {
+            this.preRegisterRoute(route);
         });
     }
 
@@ -268,7 +268,7 @@ export class PathHandler {
         if (this.mControllers[route.handlerClass]) {
             new (<any>this.mControllers[route.handlerClass])(request, response, route.handlerMethod);
         } else {
-            throw ErrorResponses.INVALID_ROUTE;
+            throw ErrorResponses.InvalidRoute;
         }
     }
 
@@ -332,4 +332,20 @@ export class PathHandler {
             error: reason.toString(),
         });
     }
+}
+
+function makeNewHandler(prePath: HTTPControllerInterface, existingAuthHandler: any) {
+    return async (controller: Controller) => {
+        let res = true;
+        // Call the controllers auth handler
+        if (prePath.authenticationHandler) {
+            res = await prePath.authenticationHandler(controller);
+        }
+
+        if (res && existingAuthHandler) {
+            res = await existingAuthHandler(controller);
+        }
+
+        return res;
+    };
 }

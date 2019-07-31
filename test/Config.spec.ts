@@ -16,8 +16,8 @@ describe('EnvironmentConfig', () => {
     });
 
     it('Can be created', () => {
-        expect(EnvironmentConfig.env_to_use).to.not.equal(null);
-        expect(EnvironmentConfig.env_to_use.TEST_DATA).to.equal(123);
+        expect(EnvironmentConfig.environment).to.not.equal(null);
+        expect(EnvironmentConfig.environment.TEST_DATA).to.equal(123);
         expect(env('TEST_DATA', null)).to.equal(123);
         expect(env('FAKE_DATA', null)).to.equal(null);
     });
