@@ -29,6 +29,6 @@ export class ServiceController extends Controller {
     })
     public async pathNotFound(): Promise<void> {
         this.responseCode = 404;
-        this.fail(ErrorResponses.PATH_NOT_FOUND);
+        this.fail(ErrorResponses.PathNotFound);
     }
 }

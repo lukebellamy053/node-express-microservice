@@ -20,10 +20,10 @@ export function route(data: RouteInterface) {
  */
 export function Route(data: RouteInterface) {
     return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-        const route_item = {
+        const routeItem = {
             handler: target.constructor.name + '@' + propertyKey,
         };
-        PathHandler.addPendingRoute(Object.assign(data, route_item));
+        PathHandler.addPendingRoute(Object.assign(data, routeItem));
     };
 }
 
@@ -85,10 +85,10 @@ function makeRoute(data: MethodInterface | string, method: Method) {
                 path: data,
             };
         }
-        const route_item = {
+        const routeItem = {
             method: method,
             handler: target.constructor.name + '@' + propertyKey,
         };
-        PathHandler.addPendingRoute(Object.assign(data, route_item));
+        PathHandler.addPendingRoute(Object.assign(data, routeItem));
     };
 }

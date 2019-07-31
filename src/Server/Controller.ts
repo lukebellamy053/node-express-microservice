@@ -191,7 +191,7 @@ export abstract class Controller {
 
             if (authHandler) {
                 if (!(await authHandler(this))) {
-                    reject(ErrorResponses.NOT_ALLOWED);
+                    reject(ErrorResponses.NotAllowed);
                 }
             }
 
