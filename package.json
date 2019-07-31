@@ -8,8 +8,10 @@
   },
   "types": "src/index.d.ts",
   "scripts": {
-    "test": "snyk test && mocha -r ts-node/register \"**/*.spec.ts\" --reporter mocha-multi-reporters --reporter-options configFile=.mocha/config.json --exit",
-    "test:coverage": "nyc npm test",
+    "test": "npm run test:security && npm run test:coverage",
+    "test:security": "snyk test",
+    "test:unit": "mocha -r ts-node/register \"**/*.spec.ts\" --reporter mocha-multi-reporters --reporter-options configFile=.mocha/config.json --exit",
+    "test:coverage": "nyc npm run test:unit",
     "prepare": "tsc",
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",
     "clean": "git clean -fx && git clean -fd",
@@ -22,6 +24,7 @@
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",
     "check-coverage": true,
+    "report-dir": "./reports/coverage",
     "reporter": [
       "text-summary",
       "lcov"
@@ -47,7 +50,6 @@
     "express": "^4.16.3",
     "express-http-proxy": "^1.5.1",
     "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.3.12",
     "prettier": "^1.18.2",
     "typedoc": "^0.15.0",
     "typedoc-plugin-markdown": "^2.1.0"
@@ -59,7 +61,6 @@
     "@types/express": "^4.16.0",
     "@types/jsonwebtoken": "^7.2.7",
     "@types/mocha": "^5.2.5",
-    "@types/mongoose": "^5.0.18",
     "@typescript-eslint/eslint-plugin": "^1.13.0",
     "@typescript-eslint/parser": "^1.13.0",
     "chai": "^4.2.0",

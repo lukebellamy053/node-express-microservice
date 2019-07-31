@@ -75,7 +75,7 @@ describe('Passport', function() {
                     throw 'Didnt reject null token';
                 })
                 .catch(e => {
-                    expect(e).to.eq(ErrorResponses.Invalid_Token);
+                    expect(e).to.eq(ErrorResponses.InvalidToken);
                     done();
                 });
         });

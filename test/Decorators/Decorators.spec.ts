@@ -22,7 +22,7 @@ describe('Decorators', function() {
         return new Promise(resolve => {
             chai.use(chaiHttp);
             serverObject = new Server({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
-            ExpressServer.events.on(ServerEvents.SERVER_READY, () => {
+            ExpressServer.events.on(ServerEvents.ServerReady, () => {
                 resolve();
             });
         });
@@ -251,7 +251,7 @@ describe('Decorators', function() {
                     }
                     expect(res.body).to.haveOwnProperty('error');
                     expect(res.body).to.not.haveOwnPropertyDescriptor('data');
-                    expect(res.body.error).to.eq(ErrorResponses.NOT_ALLOWED);
+                    expect(res.body.error).to.eq(ErrorResponses.NotAllowed);
                     sandbox.restore();
                 });
         });
@@ -287,7 +287,7 @@ describe('Decorators', function() {
                     }
                     expect(res.body).to.haveOwnProperty('error');
                     expect(res.body).to.not.haveOwnPropertyDescriptor('data');
-                    expect(res.body.error).to.eq(ErrorResponses.NOT_ALLOWED);
+                    expect(res.body.error).to.eq(ErrorResponses.NotAllowed);
                     sandbox.restore();
                 });
         });

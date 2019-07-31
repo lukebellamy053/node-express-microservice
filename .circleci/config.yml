@@ -31,7 +31,7 @@ jobs:
       # Run mocha
       - run:
           name: npm test
-          command: npm run test:coverage
+          command: npm run test
           when: always
 
       # Run eslint

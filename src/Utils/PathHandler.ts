@@ -268,7 +268,7 @@ export class PathHandler {
         if (this.mControllers[route.handlerClass]) {
             new (<any>this.mControllers[route.handlerClass])(request, response, route.handlerMethod);
         } else {
-            throw ErrorResponses.INVALID_ROUTE;
+            throw ErrorResponses.InvalidRoute;
         }
     }
 

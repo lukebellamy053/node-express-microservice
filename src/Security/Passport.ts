@@ -52,7 +52,7 @@ export class Passport {
     /**
      * Verify that a user is valid
      * This is not static so that it can be overridden easier
-     * @throws ErrorResponses.Invalid_Token
+     * @throws ErrorResponses.InvalidToken
      * @param request
      */
     public async verifyRequest(request: Request & { token?: any; decodedToken?: any }) {
@@ -67,7 +67,7 @@ export class Passport {
             request.token = await this.verifyJWTToken(token);
         } else {
             // The token is invalid, reject the request
-            throw ErrorResponses.Invalid_Token;
+            throw ErrorResponses.InvalidToken;
         }
     }
 

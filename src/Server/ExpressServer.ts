@@ -4,11 +4,9 @@ import { env, EnvironmentConfig } from '..';
 import { EventEmitter } from 'events';
 import { HealthController, ServiceController } from '../Controllers';
 import { PathHandler } from '../Utils';
-import { MongoHandler } from '../Classes/Database';
 import * as parser from 'body-parser';
 import * as http from 'http';
 import { AddressInfo } from 'net';
-import * as mongoose from 'mongoose';
 import { ServerEvents } from '../Enums';
 
 /**
@@ -18,8 +16,6 @@ import { ServerEvents } from '../Enums';
 export abstract class ExpressServer {
     // Holds a reference to the running express server
     protected static mServer: () => http.Server;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    protected static mDatabaseHealthModels: mongoose.Model<any>[] = [];
     // The database models for the health checks
     // An event emitter to let other classes know when key events occur
     protected static mEvents: EventEmitter = new EventEmitter();
@@ -42,7 +38,6 @@ export abstract class ExpressServer {
         this.init();
         this.middleware();
         this.paths();
-        PathHandler.pathHandler.addController([ServiceController, HealthController]);
         PathHandler.pathHandler.registerDefaults();
         this.errorHandler();
         this.listen();
@@ -112,31 +107,6 @@ export abstract class ExpressServer {
             this.server.close();
             console.log('Server closed');
         }
-        const mongoose = MongoHandler.mongoose;
-        if (mongoose && mongoose.connection) {
-            await mongoose.connection.close();
-            console.log('Mongoose closed');
-        }
-    }
-
-    /**
-     * Check the connection to the database
-     */
-    protected async databaseHealthCheck() {
-        let response = {
-            database: {},
-        };
-        const models = ExpressServer.mDatabaseHealthModels;
-        for (let i = 0; i < models.length; i++) {
-            const model: any = models[i];
-            try {
-                await model.findOne().maxTime(1000);
-                response.database[model.collection.name] = true;
-            } catch (e) {
-                response.database[model.collection.name] = false;
-            }
-        }
-        return response;
     }
 
     /**
@@ -147,13 +117,6 @@ export abstract class ExpressServer {
         if (!env('PRODUCTION', true)) {
             // Allow unauthorised certificates in development mode
             process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-        }
-        // Check if the user wants to use a custom DB system
-        if (!env('CUSTOM_DB', false)) {
-            const dbHandler = new MongoHandler();
-            dbHandler.onConnected.on(ServerEvents.DATABASE_CONNECTED, (connected: boolean): void => {
-                ExpressServer.events.emit(ServerEvents.DATABASE_CONNECTED, connected);
-            });
         }
     }
 
@@ -170,8 +133,7 @@ export abstract class ExpressServer {
      * Register any relevant paths here
      */
     protected paths(): void {
-        // Add any other controllers here
-        HealthController.addHealthMethod(this.databaseHealthCheck);
+        PathHandler.pathHandler.addController([ServiceController, HealthController]);
     }
 
     /**
@@ -205,7 +167,7 @@ export abstract class ExpressServer {
         this.server = this.app.listen(env('PORT', 8080), () => {
             const port = (<AddressInfo>this.server.address()).port;
             console.log(`Service listening on ${port}`);
-            ExpressServer.events.emit(ServerEvents.SERVER_READY, true);
+            ExpressServer.events.emit(ServerEvents.ServerReady, true);
         });
     }
 }

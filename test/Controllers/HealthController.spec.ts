@@ -23,7 +23,7 @@ describe('Health Controller', function() {
         let isDone = false;
         chai.use(chaiHttp);
         serverObject = new Server({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
-        ExpressServer.events.on(ServerEvents.SERVER_READY, () => {
+        ExpressServer.events.on(ServerEvents.ServerReady, () => {
             if (!isDone) {
                 done();
                 isDone = true;
