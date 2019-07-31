@@ -60,13 +60,12 @@ jobs:
           when: always
 
       # Upload results
-
-      - store_test_results:
-          path: reports
-
       - run:
           name: Compress Artifacts
           command: tar -cvf ./reports.tar ./reports
+
+      - store_test_results:
+          path: reports
 
       - store_artifacts:
           path: ./reports.tar
