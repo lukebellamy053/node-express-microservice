@@ -9,9 +9,9 @@ import { Passport } from '../Security';
  */
 export abstract class Controller {
     // The required parameters for controllers
-    private static required_params: Map<string, string[]>;
+    private static requiredParams: Map<string, string[]>;
     // The timeouts for methods
-    private static method_timeouts: Map<string, number>;
+    private static methodTimeouts: Map<string, number>;
     // The response object
     protected res: Response;
     // The request object
@@ -37,23 +37,55 @@ export abstract class Controller {
      */
     protected constructor(request: Request, response: Response, method?: string) {
         // Do this in another method to allow overrides
-        this.doInit(request, response, method).catch(err => {
-            this.fail(err);
-        });
+        this.doInit(request, response);
+        this.optionalMethods(method)
+            .then(() => {
+                if (method) {
+                    this.executeMethod(method)
+                        .then((response: any) => {
+                            this.success(response);
+                        })
+                        .catch(err => {
+                            this.fail(err);
+                        });
+                }
+            })
+            .catch(err => {
+                this.fail(err);
+            });
+    }
+
+    /**
+     * Call the optional methods
+     * @param method
+     */
+    protected async optionalMethods(method?: string): Promise<void> {
+        // Allow the user to set any variables before the construction begins
+        if ('preConstruct' in this) {
+            await (<PreConstruct>this).preConstruct();
+        }
+
+        // Make sure the method has been provided, otherwise nothing can be called
+        if (method !== undefined) {
+            // Check if an active user should be loaded
+            if ('loadActiveUser' in this) {
+                // Load the user
+                (<Controller>this).activeUser = await (<loadActiveUser>this).loadActiveUser();
+            }
+
+            if ('preRequest' in this) {
+                // Perform pre-request checks
+                await (<PreRequest>this).preRequest();
+            }
+        }
     }
 
     /**
      * Parse the request and send it to the correct controller
      * @param request
      * @param response
-     * @param method
      */
-    protected async doInit(request: Request, response: Response, method?: string) {
-        // Allow the user to set any variables before the construction begins
-        if ('preConstruct' in this) {
-            await (<PreConstruct>this).preConstruct();
-        }
-
+    protected doInit(request: Request, response: Response) {
         // Set the request, response and variables
         this.req = request;
         this.res = response;
@@ -62,32 +94,6 @@ export abstract class Controller {
         this.queryParams = request.query;
         // Load the parameters of the request
         this.params = Controller.getParams(request);
-        // Make sure the method has been provided, otherwise nothing can be called
-        if (method !== undefined) {
-            // Check if an active user should be loaded
-            if ('loadActiveUser' in this) {
-                try {
-                    // Load the user
-                    (<Controller>this).activeUser = await (<loadActiveUser>this).loadActiveUser();
-                } catch (err) {
-                    // Failed to load the user
-                    //@ts-ignore
-                    this.fail(err);
-                }
-            }
-
-            try {
-                if ('preRequest' in this) {
-                    // Perform pre-request checks
-                    await (<PreRequest>this).preRequest();
-                }
-                // Output the response to the user
-                this.success(await this.executeMethod(method));
-            } catch (e) {
-                // The request failed for some reason, inform the user
-                this.fail(e);
-            }
-        }
     }
 
     /**
@@ -95,9 +101,9 @@ export abstract class Controller {
      * @param {string} reason
      * @param code - The HTTP response code
      */
-    protected fail(reason: string, code: number = this.responseCode || 500): void {
+    protected fail(reason: string, code: number = 500): void {
         if (this.res != null) {
-            this.res.status(code);
+            this.res.status(this.responseCode || code);
             this.res.json({ success: false, error: reason, code: code });
             this.res.end();
         }
@@ -114,17 +120,17 @@ export abstract class Controller {
 
     /**
      * Add a set of required variables to a method name
-     * @param {string} method_name controller_name@method_name
+     * @param {string} methodName controller_name@methodName
      * @param {string[]} required
      */
-    public static addRequired(method_name: string, required: string[]) {
+    public static addRequired(methodName: string, required: string[]) {
         // Check if the required params have been set already
-        if (Controller.required_params == null) {
+        if (Controller.requiredParams == null) {
             // Create the map
-            Controller.required_params = new Map<string, string[]>();
+            Controller.requiredParams = new Map<string, string[]>();
         }
         // Add the required param to the map
-        Controller.required_params.set(method_name, required);
+        Controller.requiredParams.set(methodName, required);
     }
 
     /**
@@ -133,11 +139,11 @@ export abstract class Controller {
      * @param timeout
      */
     public static addTimeout(method: string, timeout: number) {
-        if (Controller.method_timeouts == null) {
-            Controller.method_timeouts = new Map<string, number>();
+        if (Controller.methodTimeouts == null) {
+            Controller.methodTimeouts = new Map<string, number>();
         }
         // Add the required param to the map
-        Controller.method_timeouts.set(method, timeout);
+        Controller.methodTimeouts.set(method, timeout);
     }
 
     /**
@@ -145,12 +151,12 @@ export abstract class Controller {
      * @param {string} name
      */
     private executeMethod(name: string) {
-        const full_name = (<any>this).__proto__.constructor.name + '@' + name;
+        const fullName = (<any>this).__proto__.constructor.name + '@' + name;
         // Check if any variables are required
         let required;
-        if (Controller.required_params) {
+        if (Controller.requiredParams) {
             // Get the required variables
-            required = Controller.required_params.get(full_name);
+            required = Controller.requiredParams.get(fullName);
         }
 
         if (required != null) {
@@ -164,7 +170,7 @@ export abstract class Controller {
 
         // @ts-ignore
         return new Promise(async (resolve, reject) => {
-            const authHandler = Passport.getGateForMethod(full_name);
+            const authHandler = Passport.getGateForMethod(fullName);
 
             if (authHandler) {
                 if (!(await authHandler(this))) {
@@ -173,7 +179,7 @@ export abstract class Controller {
             }
 
             const timeout =
-                Controller.method_timeouts != null ? Controller.method_timeouts.get(full_name) || 10 * 1000 : 10 * 1000;
+                Controller.methodTimeouts != null ? Controller.methodTimeouts.get(fullName) || 10 * 1000 : 10 * 1000;
             setTimeout(() => {
                 reject(ErrorResponses.Timeout);
             }, timeout);
