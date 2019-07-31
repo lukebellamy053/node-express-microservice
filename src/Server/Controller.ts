@@ -147,11 +147,11 @@ export abstract class Controller {
     }
 
     /**
-     * Execute the method
-     * @param {string} name
+     * Check if the method can be executed or not
+     * @param fullName
+     * @throws ErrorResponses.MissingParameters
      */
-    private executeMethod(name: string) {
-        const fullName = (<any>this).__proto__.constructor.name + '@' + name;
+    protected canExecute(fullName: string): void {
         // Check if any variables are required
         let required;
         if (Controller.requiredParams) {
@@ -167,7 +167,16 @@ export abstract class Controller {
                 }
             });
         }
+    }
 
+    /**
+     * Execute the method
+     * @param {string} name
+     */
+    protected executeMethod(name: string) {
+        const fullName = (<any>this).__proto__.constructor.name + '@' + name;
+        // Throws an error if it fails
+        this.canExecute(fullName);
         // @ts-ignore
         return new Promise(async (resolve, reject) => {
             const authHandler = Passport.getGateForMethod(fullName);

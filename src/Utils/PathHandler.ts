@@ -66,14 +66,14 @@ export class PathHandler {
 
     /**
      * Add a new controller item
-     * @param controller_item - Object or array of controllers
+     * @param controllerItems - Object or array of controllers
      */
-    public addController(controller_item: any[] | { [x: string]: Controller }) {
-        let newControllers = controller_item;
-        if (Array.isArray(controller_item)) {
+    public addController(controllerItems: any[] | { [x: string]: Controller }) {
+        let newControllers = controllerItems;
+        if (Array.isArray(controllerItems)) {
             // Work out the controller object automatically
             newControllers = {};
-            controller_item.forEach(item => {
+            controllerItems.forEach(item => {
                 newControllers[(<any>item).prototype.constructor.name] = item;
             });
         }
@@ -102,10 +102,54 @@ export class PathHandler {
      * Registers a controller for a specific path
      * Routes inside this controller inherit the start path
      * @param controller
-     * @param {string} controller_name
+     * @param {string} controllerName
      */
-    public static addControllerPath(controller: HTTPControllerInterface, controller_name: string): void {
-        this.mControllerPaths[controller_name] = controller;
+    public static addControllerPath(controller: HTTPControllerInterface, controllerName: string): void {
+        this.mControllerPaths[controllerName] = controller;
+    }
+
+    /**
+     * Combine the route auth handler to the class auth handler if required
+     * @param route
+     */
+    protected checkRouteHandlers(route: RouteItem): RouteItem | undefined {
+        const controllerName = route.handler.split('@')[0];
+        if (!controllerName) {
+            // This should not happen
+            return undefined;
+        }
+        // Check if the controller has been registered already
+        const prePath = PathHandler.mControllerPaths[controllerName];
+        if (prePath) {
+            const existingAuthHandler = route.authHandler;
+            /**
+             * Create the new authentication handler
+             * @param controller - The active controller
+             */
+            const newHandler = async (controller: Controller) => {
+                let res = true;
+                // Call the controllers auth handler
+                if (prePath.authenticationHandler) {
+                    res = await prePath.authenticationHandler(controller);
+                }
+
+                if (res && existingAuthHandler) {
+                    res = await existingAuthHandler(controller);
+                }
+
+                return res;
+            };
+            // Add the controller path to the start of the path
+            return new RouteItem(
+                `${prePath.path}${route.path}`,
+                route.handler,
+                route.method,
+                route.protected,
+                newHandler,
+                route.priority,
+            );
+        }
+        return route;
     }
 
     /**
@@ -115,50 +159,19 @@ export class PathHandler {
         /**
          * Sort the routes by their priorities
          */
-        PathHandler.mPending.sort((path_a, path_b) => {
-            if (path_a.priority < path_b.priority) return 1;
-            if (path_a.priority > path_b.priority) return -1;
+        PathHandler.mPending.sort((pathA, pathB) => {
+            if (pathA.priority < pathB.priority) return 1;
+            if (pathA.priority > pathB.priority) return -1;
             return 0;
         });
 
         PathHandler.mPending.forEach((pending: RouteItem) => {
-            const controllerName = pending.handler.split('@')[0];
-            if (!controllerName) {
-                // This should not happen
-                return;
+            // Convert the routes auth handler to include the class handler
+            const newRoute: RouteItem | undefined = this.checkRouteHandlers(pending);
+            // Add the route if its still valid
+            if (newRoute) {
+                this.register(newRoute);
             }
-            // Check if the controller has been registered already
-            const prePath = PathHandler.mControllerPaths[controllerName];
-            if (prePath) {
-                const existingAuthHandler = pending.authHandler;
-                /**
-                 * Create the new authentication handler
-                 * @param controller - The active controller
-                 */
-                const newHandler = async (controller: Controller) => {
-                    let res = true;
-                    // Call the controllers auth handler
-                    if (prePath.authenticationHandler) {
-                        res = await prePath.authenticationHandler(controller);
-                    }
-
-                    if (res && existingAuthHandler) {
-                        res = await existingAuthHandler(controller);
-                    }
-
-                    return res;
-                };
-                // Add the controller path to the start of the path
-                pending = new RouteItem(
-                    `${prePath.path}${pending.path}`,
-                    pending.handler,
-                    pending.method,
-                    pending.protected,
-                    newHandler,
-                    pending.priority,
-                );
-            }
-            this.register(pending);
         });
     }
 
@@ -181,16 +194,12 @@ export class PathHandler {
     }
 
     /**
-     * Register a http route handler
-     * @param {RouteInterface} route
+     * The default request handler
+     * Checks the request is valid before forwarding it to the correct controller
+     * @param route
      */
-    public register(route: RouteItem): void {
-        /**
-         * The method that will handle the incoming request
-         * @param req
-         * @param res
-         */
-        const handler = async (req: Request, res: Response) => {
+    protected defaultHandler = (route: RouteItem) => {
+        return async (req: Request, res: Response) => {
             /**
              * Check if the route is protected by the generic authenticator
              */
@@ -211,25 +220,30 @@ export class PathHandler {
                 PathHandler.fail(res, exception);
             }
         };
+    };
 
-        switch (route.method) {
-            case Method.GET:
-                this.app.get(route.path, handler);
-                break;
-            case Method.DELETE:
-                this.app.delete(route.path, handler);
-                break;
-            case Method.OPTIONS:
-                this.app.options(route.path, handler);
-                break;
-            case Method.POST:
-                this.app.post(route.path, handler);
-                break;
-            case Method.PUT:
-                this.app.put(route.path, handler);
-                break;
-            default:
-                this.app.all(route.path, handler);
+    /**
+     * Register a http route handler
+     * @param {RouteInterface} route
+     */
+    public register(route: RouteItem): void {
+        /**
+         * The method that will handle the incoming request
+         * @param req
+         * @param res
+         */
+        const handler = this.defaultHandler(route);
+
+        /**
+         * Rather than doing a big switch
+         * These are in the correct index for the Method enum
+         */
+        const funcs = [this.app.all, this.app.get, this.app.post, this.app.put, this.app.delete, this.app.options];
+
+        if (funcs[route.method]) {
+            funcs[route.method](route.path, handler);
+        } else {
+            this.app.all(route.path, handler);
         }
 
         // Register the routes authentication handler if one exists
@@ -254,7 +268,7 @@ export class PathHandler {
      * Register a route to use a proxy
      * @param {string} path
      * @param proxy
-     * @param remove_path
+     * @param removePath
      * @param {boolean} isProtected
      * @param authHandler
      * @param jwtVerify
@@ -262,14 +276,14 @@ export class PathHandler {
     public registerProxy(
         path: string,
         proxy: any,
-        remove_path: string,
+        removePath: string,
         isProtected?: boolean,
         authHandler?: any,
         jwtVerify: boolean = false,
     ) {
         const postAuth = (req: Request, res: Response) => {
-            if (remove_path != null) {
-                req.url = req.url.replace(remove_path, '');
+            if (removePath != null) {
+                req.url = req.url.replace(removePath, '');
             }
             proxy(req, res);
         };
