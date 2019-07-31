@@ -16,7 +16,7 @@
 
 ▸ **HTTPController**(`data`: [HTTPControllerInterface](../interfaces/_interfaces_httpcontrollerinterface_.httpcontrollerinterface.md)): *`(Anonymous function)`*
 
-*Defined in [Decorators/HTTPController.ts:10](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/HTTPController.ts#L10)*
+*Defined in [Decorators/HTTPController.ts:10](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/HTTPController.ts#L10)*
 
 Create a new route
 

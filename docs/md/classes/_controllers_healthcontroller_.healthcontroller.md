@@ -32,7 +32,9 @@ A class to handle the health checks for the service
 
 ### Methods
 
+* [canExecute](_controllers_healthcontroller_.healthcontroller.md#protected-canexecute)
 * [doInit](_controllers_healthcontroller_.healthcontroller.md#protected-doinit)
+* [executeMethod](_controllers_healthcontroller_.healthcontroller.md#protected-executemethod)
 * [fail](_controllers_healthcontroller_.healthcontroller.md#protected-fail)
 * [optionalMethods](_controllers_healthcontroller_.healthcontroller.md#protected-optionalmethods)
 * [send](_controllers_healthcontroller_.healthcontroller.md#protected-send)
@@ -51,7 +53,7 @@ A class to handle the health checks for the service
 
 *Inherited from [Controller](_server_controller_.controller.md).[constructor](_server_controller_.controller.md#protected-constructor)*
 
-*Defined in [Server/Controller.ts:30](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L30)*
+*Defined in [Server/Controller.ts:31](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L31)*
 
 Class constructor
 
@@ -73,7 +75,7 @@ Name | Type | Description |
 
 *Inherited from [Controller](_server_controller_.controller.md).[activeUser](_server_controller_.controller.md#protected-activeuser)*
 
-*Defined in [Server/Controller.ts:30](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L30)*
+*Defined in [Server/Controller.ts:31](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L31)*
 
 ___
 
@@ -83,7 +85,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[body](_server_controller_.controller.md#protected-body)*
 
-*Defined in [Server/Controller.ts:22](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L22)*
+*Defined in [Server/Controller.ts:23](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L23)*
 
 ___
 
@@ -93,7 +95,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[params](_server_controller_.controller.md#protected-params)*
 
-*Defined in [Server/Controller.ts:20](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L20)*
+*Defined in [Server/Controller.ts:21](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L21)*
 
 ___
 
@@ -103,7 +105,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[queryParams](_server_controller_.controller.md#protected-queryparams)*
 
-*Defined in [Server/Controller.ts:26](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L26)*
+*Defined in [Server/Controller.ts:27](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L27)*
 
 ___
 
@@ -113,7 +115,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[req](_server_controller_.controller.md#protected-req)*
 
-*Defined in [Server/Controller.ts:18](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L18)*
+*Defined in [Server/Controller.ts:19](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L19)*
 
 ___
 
@@ -123,7 +125,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[res](_server_controller_.controller.md#protected-res)*
 
-*Defined in [Server/Controller.ts:16](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L16)*
+*Defined in [Server/Controller.ts:17](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L17)*
 
 ___
 
@@ -133,7 +135,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[responseCode](_server_controller_.controller.md#protected-responsecode)*
 
-*Defined in [Server/Controller.ts:28](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L28)*
+*Defined in [Server/Controller.ts:29](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L29)*
 
 ___
 
@@ -143,7 +145,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[urlParams](_server_controller_.controller.md#protected-urlparams)*
 
-*Defined in [Server/Controller.ts:24](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L24)*
+*Defined in [Server/Controller.ts:25](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L25)*
 
 ___
 
@@ -151,9 +153,31 @@ ___
 
 ▪ **mHealthCheckMethods**: *function[]* =  []
 
-*Defined in [Controllers/HealthController.ts:10](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Controllers/HealthController.ts#L10)*
+*Defined in [Controllers/HealthController.ts:9](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Controllers/HealthController.ts#L9)*
 
 ## Methods
+
+### `Protected` canExecute
+
+▸ **canExecute**(`fullName`: string): *void*
+
+*Inherited from [Controller](_server_controller_.controller.md).[canExecute](_server_controller_.controller.md#protected-canexecute)*
+
+*Defined in [Server/Controller.ts:162](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L162)*
+
+Check if the method can be executed or not
+
+**`throws`** ErrorResponses.MissingParameters
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`fullName` | string |
+
+**Returns:** *void*
+
+___
 
 ### `Protected` doInit
 
@@ -161,7 +185,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[doInit](_server_controller_.controller.md#protected-doinit)*
 
-*Defined in [Server/Controller.ts:88](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L88)*
+*Defined in [Server/Controller.ts:89](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L89)*
 
 Parse the request and send it to the correct controller
 
@@ -176,13 +200,33 @@ Name | Type | Description |
 
 ___
 
+### `Protected` executeMethod
+
+▸ **executeMethod**(`name`: string): *`Promise<unknown>`*
+
+*Inherited from [Controller](_server_controller_.controller.md).[executeMethod](_server_controller_.controller.md#protected-executemethod)*
+
+*Defined in [Server/Controller.ts:184](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L184)*
+
+Execute the method
+
+**Parameters:**
+
+Name | Type | Description |
+------ | ------ | ------ |
+`name` | string |   |
+
+**Returns:** *`Promise<unknown>`*
+
+___
+
 ### `Protected` fail
 
-▸ **fail**(`reason`: string, `code`: number): *void*
+▸ **fail**(`reason`: any, `code`: number): *void*
 
 *Inherited from [Controller](_server_controller_.controller.md).[fail](_server_controller_.controller.md#protected-fail)*
 
-*Defined in [Server/Controller.ts:104](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L104)*
+*Defined in [Server/Controller.ts:105](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L105)*
 
 Fail the request
 
@@ -190,7 +234,7 @@ Fail the request
 
 Name | Type | Default | Description |
 ------ | ------ | ------ | ------ |
-`reason` | string | - | - |
+`reason` | any | - | - |
 `code` | number | 500 | The HTTP response code  |
 
 **Returns:** *void*
@@ -203,7 +247,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[optionalMethods](_server_controller_.controller.md#protected-optionalmethods)*
 
-*Defined in [Server/Controller.ts:62](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L62)*
+*Defined in [Server/Controller.ts:63](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L63)*
 
 Call the optional methods
 
@@ -223,7 +267,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[send](_server_controller_.controller.md#protected-send)*
 
-*Defined in [Server/Controller.ts:201](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L201)*
+*Defined in [Server/Controller.ts:218](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L218)*
 
 Send something back to the requester
 
@@ -241,7 +285,7 @@ ___
 
 ▸ **serviceHealthCheck**(): *`Promise<object>`*
 
-*Defined in [Controllers/HealthController.ts:29](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Controllers/HealthController.ts#L29)*
+*Defined in [Controllers/HealthController.ts:27](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Controllers/HealthController.ts#L27)*
 
 Perform a health check
 
@@ -255,7 +299,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[success](_server_controller_.controller.md#protected-success)*
 
-*Defined in [Server/Controller.ts:214](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L214)*
+*Defined in [Server/Controller.ts:231](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L231)*
 
 Send a success response
 
@@ -274,7 +318,7 @@ ___
 
 ▸ **addHealthMethod**(`method`: function): *void*
 
-*Defined in [Controllers/HealthController.ts:16](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Controllers/HealthController.ts#L16)*
+*Defined in [Controllers/HealthController.ts:15](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Controllers/HealthController.ts#L15)*
 
 A method to add a new health check method
 
@@ -294,7 +338,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[addRequired](_server_controller_.controller.md#static-addrequired)*
 
-*Defined in [Server/Controller.ts:126](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L126)*
+*Defined in [Server/Controller.ts:134](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L134)*
 
 Add a set of required variables to a method name
 
@@ -315,7 +359,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[addTimeout](_server_controller_.controller.md#static-addtimeout)*
 
-*Defined in [Server/Controller.ts:141](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L141)*
+*Defined in [Server/Controller.ts:149](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L149)*
 
 Add a timeout to a method
 
@@ -336,7 +380,7 @@ ___
 
 *Inherited from [Controller](_server_controller_.controller.md).[getParams](_server_controller_.controller.md#static-protected-getparams)*
 
-*Defined in [Server/Controller.ts:117](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/Controller.ts#L117)*
+*Defined in [Server/Controller.ts:125](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/Controller.ts#L125)*
 
 Get the parameters from a request
 

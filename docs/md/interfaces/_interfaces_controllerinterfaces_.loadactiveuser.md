@@ -20,6 +20,6 @@
 
 ▸ **loadActiveUser**(): *`Promise<any>`*
 
-*Defined in [Interfaces/ControllerInterfaces.ts:10](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/ControllerInterfaces.ts#L10)*
+*Defined in [Interfaces/ControllerInterfaces.ts:10](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/ControllerInterfaces.ts#L10)*
 
 **Returns:** *`Promise<any>`*

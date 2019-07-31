@@ -42,7 +42,7 @@ A class to hold route information
 
 \+ **new RouteItem**(`_path`: string, `_handler`: string, `_method?`: [Method](../enums/_enums_method_.method.md), `_isProtected`: boolean, `authHandler?`: undefined | function, `_priority`: number): *[RouteItem](_classes_routeitem_.routeitem.md)*
 
-*Defined in [Classes/RouteItem.ts:81](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L81)*
+*Defined in [Classes/RouteItem.ts:81](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L81)*
 
 Class constructor
 
@@ -65,7 +65,7 @@ Name | Type | Default | Description |
 
 • **mAuthHandler**: *function*
 
-*Defined in [Classes/RouteItem.ts:16](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L16)*
+*Defined in [Classes/RouteItem.ts:16](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L16)*
 
 #### Type declaration:
 
@@ -83,7 +83,7 @@ ___
 
 • **mHandler**: *string*
 
-*Defined in [Classes/RouteItem.ts:10](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L10)*
+*Defined in [Classes/RouteItem.ts:10](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L10)*
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 • **mMethod**: *[Method](../enums/_enums_method_.method.md)*
 
-*Defined in [Classes/RouteItem.ts:12](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L12)*
+*Defined in [Classes/RouteItem.ts:12](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L12)*
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 • **mPath**: *string*
 
-*Defined in [Classes/RouteItem.ts:8](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L8)*
+*Defined in [Classes/RouteItem.ts:8](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L8)*
 
 ___
 
@@ -107,7 +107,7 @@ ___
 
 • **mPriority**: *number*
 
-*Defined in [Classes/RouteItem.ts:18](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L18)*
+*Defined in [Classes/RouteItem.ts:18](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L18)*
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 • **mProtected**: *boolean*
 
-*Defined in [Classes/RouteItem.ts:14](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L14)*
+*Defined in [Classes/RouteItem.ts:14](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L14)*
 
 ## Accessors
 
@@ -123,7 +123,7 @@ ___
 
 • **get authHandler**(): *function*
 
-*Defined in [Classes/RouteItem.ts:56](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L56)*
+*Defined in [Classes/RouteItem.ts:56](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L56)*
 
 Is the route admin only?
 
@@ -143,7 +143,7 @@ ___
 
 • **get handler**(): *string*
 
-*Defined in [Classes/RouteItem.ts:32](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L32)*
+*Defined in [Classes/RouteItem.ts:32](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L32)*
 
 Get the full string handler
 
@@ -155,7 +155,7 @@ ___
 
 • **get handlerClass**(): *string*
 
-*Defined in [Classes/RouteItem.ts:64](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L64)*
+*Defined in [Classes/RouteItem.ts:64](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L64)*
 
 Get the class to handle the route
 
@@ -167,7 +167,7 @@ ___
 
 • **get handlerMethod**(): *string*
 
-*Defined in [Classes/RouteItem.ts:72](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L72)*
+*Defined in [Classes/RouteItem.ts:72](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L72)*
 
 Get the method to handle the route
 
@@ -179,7 +179,7 @@ ___
 
 • **get method**(): *[Method](../enums/_enums_method_.method.md)*
 
-*Defined in [Classes/RouteItem.ts:40](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L40)*
+*Defined in [Classes/RouteItem.ts:40](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L40)*
 
 What is the HTTP method?
 
@@ -191,7 +191,7 @@ ___
 
 • **get path**(): *string*
 
-*Defined in [Classes/RouteItem.ts:24](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L24)*
+*Defined in [Classes/RouteItem.ts:24](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L24)*
 
 The http path for the route
 
@@ -203,7 +203,7 @@ ___
 
 • **get priority**(): *number*
 
-*Defined in [Classes/RouteItem.ts:79](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L79)*
+*Defined in [Classes/RouteItem.ts:79](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L79)*
 
 Get the route priority
 
@@ -215,7 +215,7 @@ ___
 
 • **get protected**(): *boolean*
 
-*Defined in [Classes/RouteItem.ts:48](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Classes/RouteItem.ts#L48)*
+*Defined in [Classes/RouteItem.ts:48](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Classes/RouteItem.ts#L48)*
 
 Is the route logged in users only?
 

@@ -4,6 +4,8 @@
 
 # Interface: RouteInterface
 
+An interface to generate a new route
+
 ## Hierarchy
 
 * **RouteInterface**
@@ -25,7 +27,7 @@
 
 • **authenticationHandler**? : *undefined | function*
 
-*Defined in [Interfaces/RouteInterface.ts:16](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/RouteInterface.ts#L16)*
+*Defined in [Interfaces/RouteInterface.ts:15](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/RouteInterface.ts#L15)*
 
 ___
 
@@ -33,7 +35,7 @@ ___
 
 • **handler**? : *any*
 
-*Defined in [Interfaces/RouteInterface.ts:10](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/RouteInterface.ts#L10)*
+*Defined in [Interfaces/RouteInterface.ts:9](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/RouteInterface.ts#L9)*
 
 ___
 
@@ -41,7 +43,7 @@ ___
 
 • **method**? : *[Method](../enums/_enums_method_.method.md)*
 
-*Defined in [Interfaces/RouteInterface.ts:12](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/RouteInterface.ts#L12)*
+*Defined in [Interfaces/RouteInterface.ts:11](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/RouteInterface.ts#L11)*
 
 ___
 
@@ -49,7 +51,7 @@ ___
 
 • **path**: *string*
 
-*Defined in [Interfaces/RouteInterface.ts:8](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/RouteInterface.ts#L8)*
+*Defined in [Interfaces/RouteInterface.ts:7](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/RouteInterface.ts#L7)*
 
 ___
 
@@ -57,7 +59,7 @@ ___
 
 • **priority**? : *undefined | number*
 
-*Defined in [Interfaces/RouteInterface.ts:18](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/RouteInterface.ts#L18)*
+*Defined in [Interfaces/RouteInterface.ts:17](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/RouteInterface.ts#L17)*
 
 ___
 
@@ -65,4 +67,4 @@ ___
 
 • **protected**? : *undefined | false | true*
 
-*Defined in [Interfaces/RouteInterface.ts:14](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/RouteInterface.ts#L14)*
+*Defined in [Interfaces/RouteInterface.ts:13](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/RouteInterface.ts#L13)*

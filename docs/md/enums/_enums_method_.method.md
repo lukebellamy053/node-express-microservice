@@ -23,7 +23,7 @@ The HTTP methods
 
 • **ALL**:
 
-*Defined in [Enums/Method.ts:5](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/Method.ts#L5)*
+*Defined in [Enums/Method.ts:5](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/Method.ts#L5)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **DELETE**:
 
-*Defined in [Enums/Method.ts:9](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/Method.ts#L9)*
+*Defined in [Enums/Method.ts:9](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/Method.ts#L9)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **GET**:
 
-*Defined in [Enums/Method.ts:6](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/Method.ts#L6)*
+*Defined in [Enums/Method.ts:6](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/Method.ts#L6)*
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 • **OPTIONS**:
 
-*Defined in [Enums/Method.ts:10](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/Method.ts#L10)*
+*Defined in [Enums/Method.ts:10](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/Method.ts#L10)*
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 • **POST**:
 
-*Defined in [Enums/Method.ts:7](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/Method.ts#L7)*
+*Defined in [Enums/Method.ts:7](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/Method.ts#L7)*
 
 ___
 
@@ -63,4 +63,4 @@ ___
 
 • **PUT**:
 
-*Defined in [Enums/Method.ts:8](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/Method.ts#L8)*
+*Defined in [Enums/Method.ts:8](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/Method.ts#L8)*

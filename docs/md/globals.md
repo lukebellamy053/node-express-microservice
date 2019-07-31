@@ -8,9 +8,6 @@
 
 ### External modules
 
-* ["Classes/Database/DBHandler"](modules/_classes_database_dbhandler_.md)
-* ["Classes/Database/MongoHandler"](modules/_classes_database_mongohandler_.md)
-* ["Classes/Database/index"](modules/_classes_database_index_.md)
 * ["Classes/RouteItem"](modules/_classes_routeitem_.md)
 * ["Classes/index"](modules/_classes_index_.md)
 * ["Controllers/HealthController"](modules/_controllers_healthcontroller_.md)

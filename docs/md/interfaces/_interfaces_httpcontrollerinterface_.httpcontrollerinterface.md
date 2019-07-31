@@ -24,7 +24,7 @@ The interface for the HTTPController decorator
 
 • **authenticationHandler**? : *undefined | function*
 
-*Defined in [Interfaces/HTTPControllerInterface.ts:11](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/HTTPControllerInterface.ts#L11)*
+*Defined in [Interfaces/HTTPControllerInterface.ts:11](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/HTTPControllerInterface.ts#L11)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **path**: *string*
 
-*Defined in [Interfaces/HTTPControllerInterface.ts:6](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/HTTPControllerInterface.ts#L6)*
+*Defined in [Interfaces/HTTPControllerInterface.ts:6](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/HTTPControllerInterface.ts#L6)*
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 • **protected**? : *undefined | false | true*
 
-*Defined in [Interfaces/HTTPControllerInterface.ts:8](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/HTTPControllerInterface.ts#L8)*
+*Defined in [Interfaces/HTTPControllerInterface.ts:8](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/HTTPControllerInterface.ts#L8)*

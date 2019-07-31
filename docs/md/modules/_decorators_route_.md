@@ -14,6 +14,7 @@
 * [Post](_decorators_route_.md#post)
 * [Put](_decorators_route_.md#put)
 * [Route](_decorators_route_.md#route)
+* [makeRoute](_decorators_route_.md#makeroute)
 * [route](_decorators_route_.md#route)
 
 ## Functions
@@ -22,7 +23,7 @@
 
 ▸ **All**(`data`: [MethodInterface](../interfaces/_interfaces_methodinterface_.methodinterface.md) | string): *`(Anonymous function)`*
 
-*Defined in [Decorators/Route.ts:120](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/Route.ts#L120)*
+*Defined in [Decorators/Route.ts:71](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Route.ts#L71)*
 
 Create a new route
 
@@ -40,7 +41,7 @@ ___
 
 ▸ **Delete**(`data`: [MethodInterface](../interfaces/_interfaces_methodinterface_.methodinterface.md) | string): *`(Anonymous function)`*
 
-*Defined in [Decorators/Route.ts:99](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/Route.ts#L99)*
+*Defined in [Decorators/Route.ts:62](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Route.ts#L62)*
 
 Create a new DELETE route
 
@@ -58,7 +59,7 @@ ___
 
 ▸ **Get**(`data`: [MethodInterface](../interfaces/_interfaces_methodinterface_.methodinterface.md) | string): *`(Anonymous function)`*
 
-*Defined in [Decorators/Route.ts:36](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/Route.ts#L36)*
+*Defined in [Decorators/Route.ts:35](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Route.ts#L35)*
 
 Create a new GET route
 
@@ -76,7 +77,7 @@ ___
 
 ▸ **Post**(`data`: [MethodInterface](../interfaces/_interfaces_methodinterface_.methodinterface.md) | string): *`(Anonymous function)`*
 
-*Defined in [Decorators/Route.ts:57](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/Route.ts#L57)*
+*Defined in [Decorators/Route.ts:44](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Route.ts#L44)*
 
 Create a new POST route
 
@@ -94,7 +95,7 @@ ___
 
 ▸ **Put**(`data`: [MethodInterface](../interfaces/_interfaces_methodinterface_.methodinterface.md) | string): *`(Anonymous function)`*
 
-*Defined in [Decorators/Route.ts:78](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/Route.ts#L78)*
+*Defined in [Decorators/Route.ts:53](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Route.ts#L53)*
 
 Create a new PUT route
 
@@ -112,7 +113,7 @@ ___
 
 ▸ **Route**(`data`: [RouteInterface](../interfaces/_interfaces_routeinterface_.routeinterface.md)): *`(Anonymous function)`*
 
-*Defined in [Decorators/Route.ts:22](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/Route.ts#L22)*
+*Defined in [Decorators/Route.ts:21](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Route.ts#L21)*
 
 Create a new route
 
@@ -126,11 +127,30 @@ Name | Type |
 
 ___
 
+###  makeRoute
+
+▸ **makeRoute**(`data`: [MethodInterface](../interfaces/_interfaces_methodinterface_.methodinterface.md) | string, `method`: [Method](../enums/_enums_method_.method.md)): *`(Anonymous function)`*
+
+*Defined in [Decorators/Route.ts:80](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Route.ts#L80)*
+
+A common function for the GET, POST, PUT, DELETE decorators
+
+**Parameters:**
+
+Name | Type | Description |
+------ | ------ | ------ |
+`data` | [MethodInterface](../interfaces/_interfaces_methodinterface_.methodinterface.md) \| string | - |
+`method` | [Method](../enums/_enums_method_.method.md) |   |
+
+**Returns:** *`(Anonymous function)`*
+
+___
+
 ###  route
 
 ▸ **route**(`data`: [RouteInterface](../interfaces/_interfaces_routeinterface_.routeinterface.md)): *`(Anonymous function)`*
 
-*Defined in [Decorators/Route.ts:13](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/Route.ts#L13)*
+*Defined in [Decorators/Route.ts:12](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Route.ts#L12)*
 
 Create a new route
 

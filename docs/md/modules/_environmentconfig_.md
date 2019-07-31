@@ -20,7 +20,7 @@
 
 ▸ **env**(`parameter`: string, `def?`: any): *any*
 
-*Defined in [EnvironmentConfig.ts:32](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/EnvironmentConfig.ts#L32)*
+*Defined in [EnvironmentConfig.ts:39](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/EnvironmentConfig.ts#L39)*
 
 Load a value from the environment
 

@@ -19,7 +19,11 @@ Default to the default environment
 
 ### Properties
 
-* [env_to_use](_environmentconfig_.environmentconfig.md#static-env_to_use)
+* [EnvToUse](_environmentconfig_.environmentconfig.md#static-protected-envtouse)
+
+### Accessors
+
+* [environment](_environmentconfig_.environmentconfig.md#static-environment)
 
 ### Methods
 
@@ -31,7 +35,7 @@ Default to the default environment
 
 \+ **new EnvironmentConfig**(`merge?`: any): *[EnvironmentConfig](_environmentconfig_.environmentconfig.md)*
 
-*Defined in [EnvironmentConfig.ts:16](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/EnvironmentConfig.ts#L16)*
+*Defined in [EnvironmentConfig.ts:23](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/EnvironmentConfig.ts#L23)*
 
 **Parameters:**
 
@@ -43,11 +47,29 @@ Name | Type |
 
 ## Properties
 
-### `Static` env_to_use
+### `Static` `Protected` EnvToUse
 
-▪ **env_to_use**: *any* =  Environment
+▪ **EnvToUse**: *object* =  Environment
 
-*Defined in [EnvironmentConfig.ts:8](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/EnvironmentConfig.ts#L8)*
+*Defined in [EnvironmentConfig.ts:8](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/EnvironmentConfig.ts#L8)*
+
+#### Type declaration:
+
+● \[▪ **x**: *string*\]: any
+
+## Accessors
+
+### `Static` environment
+
+• **get environment**(): *object*
+
+*Defined in [EnvironmentConfig.ts:13](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/EnvironmentConfig.ts#L13)*
+
+Get the environment
+
+**Returns:** *object*
+
+● \[▪ **x**: *string*\]: any
 
 ## Methods
 
@@ -55,7 +77,7 @@ Name | Type |
 
 ▸ **addValues**(`values`: `Record<string, any>`): *void*
 
-*Defined in [EnvironmentConfig.ts:14](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/EnvironmentConfig.ts#L14)*
+*Defined in [EnvironmentConfig.ts:21](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/EnvironmentConfig.ts#L21)*
 
 Add values to the environment
 

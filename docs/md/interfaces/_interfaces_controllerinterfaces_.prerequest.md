@@ -20,6 +20,6 @@
 
 ▸ **preRequest**(): *`Promise<void>`*
 
-*Defined in [Interfaces/ControllerInterfaces.ts:6](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/ControllerInterfaces.ts#L6)*
+*Defined in [Interfaces/ControllerInterfaces.ts:6](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/ControllerInterfaces.ts#L6)*
 
 **Returns:** *`Promise<void>`*

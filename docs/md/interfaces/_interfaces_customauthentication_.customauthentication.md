@@ -20,7 +20,7 @@
 
 ▸ **customAuth**(`request`: `Request`): *`Promise<any>`*
 
-*Defined in [Interfaces/CustomAuthentication.ts:4](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/CustomAuthentication.ts#L4)*
+*Defined in [Interfaces/CustomAuthentication.ts:4](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/CustomAuthentication.ts#L4)*
 
 **Parameters:**
 

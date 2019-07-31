@@ -20,20 +20,19 @@ Creates the express application
 ### Properties
 
 * [mApp](_server_expressserver_.expressserver.md#static-private-mapp)
-* [mDatabaseHealthModels](_server_expressserver_.expressserver.md#static-protected-mdatabasehealthmodels)
 * [mEvents](_server_expressserver_.expressserver.md#static-protected-mevents)
 * [mServer](_server_expressserver_.expressserver.md#static-protected-mserver)
 
 ### Accessors
 
 * [app](_server_expressserver_.expressserver.md#protected-app)
+* [server](_server_expressserver_.expressserver.md#protected-server)
 * [events](_server_expressserver_.expressserver.md#static-events)
 * [server](_server_expressserver_.expressserver.md#static-server)
 * [serverApp](_server_expressserver_.expressserver.md#static-serverapp)
 
 ### Methods
 
-* [databaseHealthCheck](_server_expressserver_.expressserver.md#protected-databasehealthcheck)
 * [errorHandler](_server_expressserver_.expressserver.md#protected-errorhandler)
 * [init](_server_expressserver_.expressserver.md#protected-init)
 * [listen](_server_expressserver_.expressserver.md#protected-listen)
@@ -47,7 +46,7 @@ Creates the express application
 
 \+ **new ExpressServer**(`envConfig`: [EnvironmentInterface](../interfaces/_interfaces_environmentinterface_.environmentinterface.md)): *[ExpressServer](_server_expressserver_.expressserver.md)*
 
-*Defined in [Server/ExpressServer.ts:27](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L27)*
+*Defined in [Server/ExpressServer.ts:23](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L23)*
 
 Class constructor
 Create the new env settings
@@ -64,17 +63,13 @@ Name | Type | Description |
 
 ### `Static` `Private` mApp
 
-▪ **mApp**: *`Express`*
+▪ **mApp**: *function*
 
-*Defined in [Server/ExpressServer.ts:27](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L27)*
+*Defined in [Server/ExpressServer.ts:23](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L23)*
 
-___
+#### Type declaration:
 
-### `Static` `Protected` mDatabaseHealthModels
-
-▪ **mDatabaseHealthModels**: *`Model<any>`[]* =  []
-
-*Defined in [Server/ExpressServer.ts:22](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L22)*
+▸ (): *`Express`*
 
 ___
 
@@ -82,15 +77,19 @@ ___
 
 ▪ **mEvents**: *`EventEmitter`* =  new EventEmitter()
 
-*Defined in [Server/ExpressServer.ts:25](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L25)*
+*Defined in [Server/ExpressServer.ts:21](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L21)*
 
 ___
 
 ### `Static` `Protected` mServer
 
-▪ **mServer**: *`Server`*
+▪ **mServer**: *function*
 
-*Defined in [Server/ExpressServer.ts:20](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L20)*
+*Defined in [Server/ExpressServer.ts:18](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L18)*
+
+#### Type declaration:
+
+▸ (): *`Server`*
 
 ## Accessors
 
@@ -98,7 +97,7 @@ ___
 
 • **get app**(): *`Express`*
 
-*Defined in [Server/ExpressServer.ts:84](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L84)*
+*Defined in [Server/ExpressServer.ts:81](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L81)*
 
 Set the express app
 
@@ -106,7 +105,7 @@ Set the express app
 
 • **set app**(`_app`: `Express`): *void*
 
-*Defined in [Server/ExpressServer.ts:77](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L77)*
+*Defined in [Server/ExpressServer.ts:72](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L72)*
 
 Set the express app
 
@@ -120,11 +119,37 @@ Name | Type | Description |
 
 ___
 
+### `Protected` server
+
+• **get server**(): *`Server`*
+
+*Defined in [Server/ExpressServer.ts:88](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L88)*
+
+Get the server object
+
+**Returns:** *`Server`*
+
+• **set server**(`_server`: `Server`): *void*
+
+*Defined in [Server/ExpressServer.ts:96](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L96)*
+
+Set the server object
+
+**Parameters:**
+
+Name | Type | Description |
+------ | ------ | ------ |
+`_server` | `Server` |   |
+
+**Returns:** *void*
+
+___
+
 ### `Static` events
 
 • **get events**(): *`EventEmitter`*
 
-*Defined in [Server/ExpressServer.ts:55](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L55)*
+*Defined in [Server/ExpressServer.ts:50](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L50)*
 
 Get the event emitter
 
@@ -134,13 +159,13 @@ ___
 
 ### `Static` server
 
-• **get server**(): *`Server`*
+• **get server**(): *`Server` | undefined*
 
-*Defined in [Server/ExpressServer.ts:69](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L69)*
+*Defined in [Server/ExpressServer.ts:64](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L64)*
 
 Get the server object
 
-**Returns:** *`Server`*
+**Returns:** *`Server` | undefined*
 
 ___
 
@@ -148,7 +173,7 @@ ___
 
 • **get serverApp**(): *`Express`*
 
-*Defined in [Server/ExpressServer.ts:62](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L62)*
+*Defined in [Server/ExpressServer.ts:57](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L57)*
 
 Get the express app
 
@@ -156,23 +181,11 @@ Get the express app
 
 ## Methods
 
-### `Protected` databaseHealthCheck
-
-▸ **databaseHealthCheck**(): *`Promise<object>`*
-
-*Defined in [Server/ExpressServer.ts:106](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L106)*
-
-Check the connection to the database
-
-**Returns:** *`Promise<object>`*
-
-___
-
 ### `Protected` errorHandler
 
 ▸ **errorHandler**(): *void*
 
-*Defined in [Server/ExpressServer.ts:161](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L161)*
+*Defined in [Server/ExpressServer.ts:142](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L142)*
 
 Handle any uncaught errors
 
@@ -184,7 +197,7 @@ ___
 
 ▸ **init**(): *void*
 
-*Defined in [Server/ExpressServer.ts:126](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L126)*
+*Defined in [Server/ExpressServer.ts:115](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L115)*
 
 Init the server
 
@@ -196,7 +209,7 @@ ___
 
 ▸ **listen**(): *void*
 
-*Defined in [Server/ExpressServer.ts:185](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L185)*
+*Defined in [Server/ExpressServer.ts:166](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L166)*
 
 Start the server and listen to the required port
 
@@ -208,7 +221,7 @@ ___
 
 ▸ **middleware**(): *void*
 
-*Defined in [Server/ExpressServer.ts:145](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L145)*
+*Defined in [Server/ExpressServer.ts:127](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L127)*
 
 Register any middleware
 
@@ -220,7 +233,7 @@ ___
 
 ▸ **paths**(): *void*
 
-*Defined in [Server/ExpressServer.ts:153](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L153)*
+*Defined in [Server/ExpressServer.ts:135](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L135)*
 
 Register any relevant paths here
 
@@ -232,7 +245,7 @@ ___
 
 ▸ **shutDown**(): *`Promise<void>`*
 
-*Defined in [Server/ExpressServer.ts:91](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L91)*
+*Defined in [Server/ExpressServer.ts:105](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L105)*
 
 Shutdown the server
 

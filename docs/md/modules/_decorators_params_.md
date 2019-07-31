@@ -17,7 +17,7 @@
 
 ▸ **Params**(`items`: string[]): *`(Anonymous function)`*
 
-*Defined in [Decorators/Params.ts:8](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/Params.ts#L8)*
+*Defined in [Decorators/Params.ts:8](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Params.ts#L8)*
 
 Require the named parameters to be present to continue
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **params**(`items`: string[]): *`(Anonymous function)`*
 
-*Defined in [Decorators/Params.ts:20](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/Params.ts#L20)*
+*Defined in [Decorators/Params.ts:20](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Params.ts#L20)*
 
 Require the named parameters to be present to continue
 

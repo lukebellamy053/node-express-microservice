@@ -8,36 +8,37 @@
 
 ### Enumeration members
 
-* [INVALID_ROUTE](_enums_errorresponses_.errorresponses.md#invalid_route)
-* [Invalid_Token](_enums_errorresponses_.errorresponses.md#invalid_token)
-* [Invalid_User](_enums_errorresponses_.errorresponses.md#invalid_user)
+* [InvalidRoute](_enums_errorresponses_.errorresponses.md#invalidroute)
+* [InvalidToken](_enums_errorresponses_.errorresponses.md#invalidtoken)
+* [InvalidUser](_enums_errorresponses_.errorresponses.md#invaliduser)
 * [MissingParameters](_enums_errorresponses_.errorresponses.md#missingparameters)
-* [NOT_ALLOWED](_enums_errorresponses_.errorresponses.md#not_allowed)
+* [NotAllowed](_enums_errorresponses_.errorresponses.md#notallowed)
+* [PathNotFound](_enums_errorresponses_.errorresponses.md#pathnotfound)
 * [Timeout](_enums_errorresponses_.errorresponses.md#timeout)
 
 ## Enumeration members
 
-###  INVALID_ROUTE
+###  InvalidRoute
 
-• **INVALID_ROUTE**: = "error/server/route"
+• **InvalidRoute**: = "error/server/route"
 
-*Defined in [Enums/ErrorResponses.ts:7](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/ErrorResponses.ts#L7)*
-
-___
-
-###  Invalid_Token
-
-• **Invalid_Token**: = "error/invalid_token"
-
-*Defined in [Enums/ErrorResponses.ts:3](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/ErrorResponses.ts#L3)*
+*Defined in [Enums/ErrorResponses.ts:7](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/ErrorResponses.ts#L7)*
 
 ___
 
-###  Invalid_User
+###  InvalidToken
 
-• **Invalid_User**: = "error/invalid_user"
+• **InvalidToken**: = "error/invalid_token"
 
-*Defined in [Enums/ErrorResponses.ts:2](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/ErrorResponses.ts#L2)*
+*Defined in [Enums/ErrorResponses.ts:3](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/ErrorResponses.ts#L3)*
+
+___
+
+###  InvalidUser
+
+• **InvalidUser**: = "error/invalid_user"
+
+*Defined in [Enums/ErrorResponses.ts:2](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/ErrorResponses.ts#L2)*
 
 ___
 
@@ -45,15 +46,23 @@ ___
 
 • **MissingParameters**: = "error/missing_parameters"
 
-*Defined in [Enums/ErrorResponses.ts:4](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/ErrorResponses.ts#L4)*
+*Defined in [Enums/ErrorResponses.ts:4](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/ErrorResponses.ts#L4)*
 
 ___
 
-###  NOT_ALLOWED
+###  NotAllowed
 
-• **NOT_ALLOWED**: = "error/authentication/not-allowed"
+• **NotAllowed**: = "error/authentication/not-allowed"
 
-*Defined in [Enums/ErrorResponses.ts:6](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/ErrorResponses.ts#L6)*
+*Defined in [Enums/ErrorResponses.ts:6](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/ErrorResponses.ts#L6)*
+
+___
+
+###  PathNotFound
+
+• **PathNotFound**: = "error/path-not-found"
+
+*Defined in [Enums/ErrorResponses.ts:8](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/ErrorResponses.ts#L8)*
 
 ___
 
@@ -61,4 +70,4 @@ ___
 
 • **Timeout**: = "Timeout"
 
-*Defined in [Enums/ErrorResponses.ts:5](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/ErrorResponses.ts#L5)*
+*Defined in [Enums/ErrorResponses.ts:5](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/ErrorResponses.ts#L5)*

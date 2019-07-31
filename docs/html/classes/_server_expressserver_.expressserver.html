@@ -99,7 +99,6 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="_server_expressserver_.expressserver.html#mapp" class="tsd-kind-icon">m<wbr>App</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static"><a href="_server_expressserver_.expressserver.html#mdatabasehealthmodels" class="tsd-kind-icon">m<wbr>Database<wbr>Health<wbr>Models</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static"><a href="_server_expressserver_.expressserver.html#mevents" class="tsd-kind-icon">m<wbr>Events</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static"><a href="_server_expressserver_.expressserver.html#mserver" class="tsd-kind-icon">m<wbr>Server</a></li>
 							</ul>
@@ -108,15 +107,15 @@
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><a href="_server_expressserver_.expressserver.html#app" class="tsd-kind-icon">app</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><a href="_server_expressserver_.expressserver.html#server" class="tsd-kind-icon">server</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="_server_expressserver_.expressserver.html#events" class="tsd-kind-icon">events</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="_server_expressserver_.expressserver.html#server" class="tsd-kind-icon">server</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="_server_expressserver_.expressserver.html#server-1" class="tsd-kind-icon">server</a></li>
 								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-static"><a href="_server_expressserver_.expressserver.html#serverapp" class="tsd-kind-icon">server<wbr>App</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_server_expressserver_.expressserver.html#databasehealthcheck" class="tsd-kind-icon">database<wbr>Health<wbr>Check</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_server_expressserver_.expressserver.html#errorhandler" class="tsd-kind-icon">error<wbr>Handler</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_server_expressserver_.expressserver.html#init" class="tsd-kind-icon">init</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_server_expressserver_.expressserver.html#listen" class="tsd-kind-icon">listen</a></li>
@@ -140,7 +139,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L27">Server/ExpressServer.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L23">Server/ExpressServer.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -169,22 +168,27 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
 					<a name="mapp" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> m<wbr>App</h3>
-					<div class="tsd-signature tsd-kind-icon">m<wbr>App<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Express</span></div>
+					<div class="tsd-signature tsd-kind-icon">m<wbr>App<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L27">Server/ExpressServer.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L23">Server/ExpressServer.ts:23</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static">
-					<a name="mdatabasehealthmodels" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagProtected">Protected</span> m<wbr>Database<wbr>Health<wbr>Models</h3>
-					<div class="tsd-signature tsd-kind-icon">m<wbr>Database<wbr>Health<wbr>Models<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L22">Server/ExpressServer.ts:22</a></li>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Express</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Express</span></h4>
+									</li>
+								</ul>
+							</li>
 						</ul>
-					</aside>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static">
 					<a name="mevents" class="tsd-anchor"></a>
@@ -192,19 +196,34 @@
 					<div class="tsd-signature tsd-kind-icon">m<wbr>Events<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span><span class="tsd-signature-symbol"> =&nbsp;new EventEmitter()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L25">Server/ExpressServer.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L21">Server/ExpressServer.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static">
 					<a name="mserver" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagProtected">Protected</span> m<wbr>Server</h3>
-					<div class="tsd-signature tsd-kind-icon">m<wbr>Server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Server</span></div>
+					<div class="tsd-signature tsd-kind-icon">m<wbr>Server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L20">Server/ExpressServer.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L18">Server/ExpressServer.ts:18</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Server</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Server</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -220,7 +239,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L84">Server/ExpressServer.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L81">Server/ExpressServer.ts:81</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -233,7 +252,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L77">Server/ExpressServer.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L72">Server/ExpressServer.ts:72</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -255,6 +274,52 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-protected">
+					<a name="server" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> server</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> server<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Server</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> server<span class="tsd-signature-symbol">(</span>_server<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Server</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L88">Server/ExpressServer.ts:88</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the server object</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Server</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L96">Server/ExpressServer.ts:96</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the server object</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>_server: <span class="tsd-signature-type">Server</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
 					<a name="events" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> events</h3>
@@ -265,7 +330,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L55">Server/ExpressServer.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L50">Server/ExpressServer.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -278,16 +343,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
-					<a name="server" class="tsd-anchor"></a>
+					<a name="server-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> server</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> server<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Server</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> server<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Server</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L69">Server/ExpressServer.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L64">Server/ExpressServer.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -295,7 +360,10 @@
 									<p>Get the server object</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Server</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Server</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
 						</li>
 					</ul>
 				</section>
@@ -309,7 +377,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L62">Server/ExpressServer.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L57">Server/ExpressServer.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -325,28 +393,6 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="databasehealthcheck" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> database<wbr>Health<wbr>Check</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">database<wbr>Health<wbr>Check<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L106">Server/ExpressServer.ts:106</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Check the connection to the database</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="errorhandler" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> error<wbr>Handler</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
@@ -356,7 +402,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L161">Server/ExpressServer.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L142">Server/ExpressServer.ts:142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -378,7 +424,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L126">Server/ExpressServer.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L115">Server/ExpressServer.ts:115</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -400,7 +446,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L185">Server/ExpressServer.ts:185</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L166">Server/ExpressServer.ts:166</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -422,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L145">Server/ExpressServer.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L127">Server/ExpressServer.ts:127</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -444,7 +490,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L153">Server/ExpressServer.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L135">Server/ExpressServer.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -466,7 +512,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Server/ExpressServer.ts#L91">Server/ExpressServer.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Server/ExpressServer.ts#L105">Server/ExpressServer.ts:105</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -505,9 +551,6 @@
 								<a href="_server_expressserver_.expressserver.html#mapp" class="tsd-kind-icon">m<wbr>App</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static">
-								<a href="_server_expressserver_.expressserver.html#mdatabasehealthmodels" class="tsd-kind-icon">m<wbr>Database<wbr>Health<wbr>Models</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static">
 								<a href="_server_expressserver_.expressserver.html#mevents" class="tsd-kind-icon">m<wbr>Events</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-static">
@@ -516,17 +559,17 @@
 							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-protected">
 								<a href="_server_expressserver_.expressserver.html#app" class="tsd-kind-icon">app</a>
 							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-protected">
+								<a href="_server_expressserver_.expressserver.html#server" class="tsd-kind-icon">server</a>
+							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
 								<a href="_server_expressserver_.expressserver.html#events" class="tsd-kind-icon">events</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
-								<a href="_server_expressserver_.expressserver.html#server" class="tsd-kind-icon">server</a>
+								<a href="_server_expressserver_.expressserver.html#server-1" class="tsd-kind-icon">server</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-static">
 								<a href="_server_expressserver_.expressserver.html#serverapp" class="tsd-kind-icon">server<wbr>App</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="_server_expressserver_.expressserver.html#databasehealthcheck" class="tsd-kind-icon">database<wbr>Health<wbr>Check</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="_server_expressserver_.expressserver.html#errorhandler" class="tsd-kind-icon">error<wbr>Handler</a>

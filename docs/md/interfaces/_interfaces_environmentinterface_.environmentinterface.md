@@ -25,7 +25,7 @@ The interface for the initial environment object
 
 • **APP_BUILD**: *number*
 
-*Defined in [Interfaces/EnvironmentInterface.ts:6](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/EnvironmentInterface.ts#L6)*
+*Defined in [Interfaces/EnvironmentInterface.ts:6](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/EnvironmentInterface.ts#L6)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **APP_VERSION**: *string*
 
-*Defined in [Interfaces/EnvironmentInterface.ts:5](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/EnvironmentInterface.ts#L5)*
+*Defined in [Interfaces/EnvironmentInterface.ts:5](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/EnvironmentInterface.ts#L5)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **PORT**: *string | number*
 
-*Defined in [Interfaces/EnvironmentInterface.ts:7](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/EnvironmentInterface.ts#L7)*
+*Defined in [Interfaces/EnvironmentInterface.ts:7](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/EnvironmentInterface.ts#L7)*
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 • **SERVICE_NAME**: *string*
 
-*Defined in [Interfaces/EnvironmentInterface.ts:8](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/EnvironmentInterface.ts#L8)*
+*Defined in [Interfaces/EnvironmentInterface.ts:8](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/EnvironmentInterface.ts#L8)*

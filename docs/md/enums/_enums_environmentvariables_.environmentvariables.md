@@ -21,7 +21,7 @@ Maps the important environment variables to Enums
 
 • **APP_BUILD**: = "APP_BUILD"
 
-*Defined in [Enums/EnvironmentVariables.ts:7](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/EnvironmentVariables.ts#L7)*
+*Defined in [Enums/EnvironmentVariables.ts:7](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/EnvironmentVariables.ts#L7)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **APP_KEY**: = "APP_KEY"
 
-*Defined in [Enums/EnvironmentVariables.ts:5](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/EnvironmentVariables.ts#L5)*
+*Defined in [Enums/EnvironmentVariables.ts:5](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/EnvironmentVariables.ts#L5)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **APP_VERSION**: = "APP_VERSION"
 
-*Defined in [Enums/EnvironmentVariables.ts:6](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/EnvironmentVariables.ts#L6)*
+*Defined in [Enums/EnvironmentVariables.ts:6](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/EnvironmentVariables.ts#L6)*
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **SERVICE_NAME**: = "SERVICE_NAME"
 
-*Defined in [Enums/EnvironmentVariables.ts:8](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/EnvironmentVariables.ts#L8)*
+*Defined in [Enums/EnvironmentVariables.ts:8](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/EnvironmentVariables.ts#L8)*

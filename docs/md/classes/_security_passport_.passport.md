@@ -35,7 +35,7 @@ A class that handles the authentication of users
 
 ▪ **mCustomPassport**: *[Passport](_security_passport_.passport.md)*
 
-*Defined in [Security/Passport.ts:15](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Security/Passport.ts#L15)*
+*Defined in [Security/Passport.ts:15](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Security/Passport.ts#L15)*
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 ▪ **mRouteAuthenticators**: *object*
 
-*Defined in [Security/Passport.ts:13](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Security/Passport.ts#L13)*
+*Defined in [Security/Passport.ts:13](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Security/Passport.ts#L13)*
 
 #### Type declaration:
 
@@ -63,7 +63,7 @@ Name | Type |
 
 • **get passport**(): *[Passport](_security_passport_.passport.md)*
 
-*Defined in [Security/Passport.ts:28](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Security/Passport.ts#L28)*
+*Defined in [Security/Passport.ts:28](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Security/Passport.ts#L28)*
 
 Get the active passport instance
 
@@ -71,7 +71,7 @@ Get the active passport instance
 
 • **set passport**(`_passport`: [Passport](_security_passport_.passport.md)): *void*
 
-*Defined in [Security/Passport.ts:21](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Security/Passport.ts#L21)*
+*Defined in [Security/Passport.ts:21](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Security/Passport.ts#L21)*
 
 Set the passport instance to use
 
@@ -89,7 +89,7 @@ Name | Type | Description |
 
 ▸ **getToken**(`req`: any): *string | null*
 
-*Defined in [Security/Passport.ts:78](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Security/Passport.ts#L78)*
+*Defined in [Security/Passport.ts:78](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Security/Passport.ts#L78)*
 
 Get the token from the request
 
@@ -107,7 +107,7 @@ ___
 
 ▸ **verifyJWTToken**(`token`: string): *`Promise<unknown>`*
 
-*Defined in [Security/Passport.ts:97](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Security/Passport.ts#L97)*
+*Defined in [Security/Passport.ts:97](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Security/Passport.ts#L97)*
 
 Verify the JWT Token is correct
 
@@ -125,12 +125,12 @@ ___
 
 ▸ **verifyRequest**(`request`: `Request` & object): *`Promise<any>`*
 
-*Defined in [Security/Passport.ts:58](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Security/Passport.ts#L58)*
+*Defined in [Security/Passport.ts:58](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Security/Passport.ts#L58)*
 
 Verify that a user is valid
 This is not static so that it can be overridden easier
 
-**`throws`** ErrorResponses.Invalid_Token
+**`throws`** ErrorResponses.InvalidToken
 
 **Parameters:**
 
@@ -146,7 +146,7 @@ ___
 
 ▸ **addGatedMethod**(`methodName`: string, `handler`: function): *void*
 
-*Defined in [Security/Passport.ts:40](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Security/Passport.ts#L40)*
+*Defined in [Security/Passport.ts:40](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Security/Passport.ts#L40)*
 
 Add a new gate for a method
 
@@ -172,7 +172,7 @@ ___
 
 ▸ **getGateForMethod**(`methodName`: string): *function | undefined*
 
-*Defined in [Security/Passport.ts:48](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Security/Passport.ts#L48)*
+*Defined in [Security/Passport.ts:48](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Security/Passport.ts#L48)*
 
 Get the gate for a method
 

@@ -10,21 +10,30 @@ Holds the server events
 
 ### Enumeration members
 
-* [DATABASE_CONNECTED](_enums_serverevents_.serverevents.md#database_connected)
-* [SERVER_READY](_enums_serverevents_.serverevents.md#server_ready)
+* [DatabaseConnected](_enums_serverevents_.serverevents.md#databaseconnected)
+* [DatabaseDisconnected](_enums_serverevents_.serverevents.md#databasedisconnected)
+* [ServerReady](_enums_serverevents_.serverevents.md#serverready)
 
 ## Enumeration members
 
-###  DATABASE_CONNECTED
+###  DatabaseConnected
 
-• **DATABASE_CONNECTED**: = "connected"
+• **DatabaseConnected**: = "connected"
 
-*Defined in [Enums/ServerEvents.ts:5](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/ServerEvents.ts#L5)*
+*Defined in [Enums/ServerEvents.ts:5](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/ServerEvents.ts#L5)*
 
 ___
 
-###  SERVER_READY
+###  DatabaseDisconnected
 
-• **SERVER_READY**: = "ready"
+• **DatabaseDisconnected**: = "disconnected"
 
-*Defined in [Enums/ServerEvents.ts:6](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Enums/ServerEvents.ts#L6)*
+*Defined in [Enums/ServerEvents.ts:6](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/ServerEvents.ts#L6)*
+
+___
+
+###  ServerReady
+
+• **ServerReady**: = "ready"
+
+*Defined in [Enums/ServerEvents.ts:7](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Enums/ServerEvents.ts#L7)*

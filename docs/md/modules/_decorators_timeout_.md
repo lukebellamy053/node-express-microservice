@@ -17,7 +17,7 @@
 
 ▸ **Timeout**(`limit`: number): *`(Anonymous function)`*
 
-*Defined in [Decorators/Timeout.ts:16](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/Timeout.ts#L16)*
+*Defined in [Decorators/Timeout.ts:16](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Timeout.ts#L16)*
 
 Add a timeout limit to a method, default is 10 seconds
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **timeout**(`limit`: number): *`(Anonymous function)`*
 
-*Defined in [Decorators/Timeout.ts:8](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Decorators/Timeout.ts#L8)*
+*Defined in [Decorators/Timeout.ts:8](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Decorators/Timeout.ts#L8)*
 
 Add a timeout limit to a method, default is 10 seconds
 

@@ -20,4 +20,4 @@
 
 • **jwt**: *any* =  require('jsonwebtoken')
 
-*Defined in [Security/Passport.ts:6](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Security/Passport.ts#L6)*
+*Defined in [Security/Passport.ts:6](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Security/Passport.ts#L6)*

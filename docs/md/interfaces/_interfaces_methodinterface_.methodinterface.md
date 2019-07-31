@@ -26,7 +26,7 @@ An interface to generate a new route
 
 • **authenticationHandler**? : *undefined | function*
 
-*Defined in [Interfaces/MethodInterface.ts:12](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/MethodInterface.ts#L12)*
+*Defined in [Interfaces/MethodInterface.ts:12](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/MethodInterface.ts#L12)*
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 • **handler**? : *any*
 
-*Defined in [Interfaces/MethodInterface.ts:8](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/MethodInterface.ts#L8)*
+*Defined in [Interfaces/MethodInterface.ts:8](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/MethodInterface.ts#L8)*
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 • **path**: *string*
 
-*Defined in [Interfaces/MethodInterface.ts:6](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/MethodInterface.ts#L6)*
+*Defined in [Interfaces/MethodInterface.ts:6](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/MethodInterface.ts#L6)*
 
 ___
 
@@ -50,7 +50,7 @@ ___
 
 • **priority**? : *undefined | number*
 
-*Defined in [Interfaces/MethodInterface.ts:14](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/MethodInterface.ts#L14)*
+*Defined in [Interfaces/MethodInterface.ts:14](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/MethodInterface.ts#L14)*
 
 ___
 
@@ -58,4 +58,4 @@ ___
 
 • **protected**? : *undefined | false | true*
 
-*Defined in [Interfaces/MethodInterface.ts:10](https://github.com/lukebellamy053/express-microservice/blob/afd2c9a/src/Interfaces/MethodInterface.ts#L10)*
+*Defined in [Interfaces/MethodInterface.ts:10](https://github.com/lukebellamy053/express-microservice/blob/f7a5771/src/Interfaces/MethodInterface.ts#L10)*
