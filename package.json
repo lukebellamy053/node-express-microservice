@@ -15,7 +15,9 @@
     "clean": "git clean -fx && git clean -fd",
     "fixlint": "eslint **/*.ts --fix",
     "lint": "eslint \"**/*.ts\" --format junit --output-file ./reports/eslint/eslint.xml || exit 0",
-    "typedoc": "typedoc --theme markdown --out docs ./src"
+    "typedoc": "npm run markdowndoc && npm run htmldoc",
+    "markdowndoc": "typedoc --theme markdown --out docs/md ./src",
+    "htmldoc": "typedoc --out docs/html ./src"
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",
