@@ -1,70 +1,34 @@
-import { route } from '../Decorators/Route';
+import { All, Route, route } from '../Decorators/Route';
 import { env } from '../EnvironmentConfig';
 import { Controller } from '../Server';
-import { Method } from '../Enums';
+import { ErrorResponses } from '../Enums';
 
 /**
  * A class to handle basic service operations
  */
 export class ServiceController extends Controller {
-    @route({
+    /**
+     * Display the service information to the user
+     */
+    @All({
         path: '/_service_info_',
-        method: Method.ALL,
         protected: false,
         priority: -1,
     })
     public async serviceInfo(): Promise<void> {
-        this.success({
-            success: true,
-            version: env('APP_VERSION', 'Unknown'),
-            build: env('APP_BUILD', 'Unknown'),
-            service: env('SERVICE_NAME', 'Unknown'),
-        });
+        this.success();
     }
 
-    @route({
+    /**
+     * Inform the user of an unknown path
+     */
+    @All({
         path: '*',
-        method: Method.ALL,
         protected: false,
         priority: -5,
     })
     public async pathNotFound(): Promise<void> {
         this.responseCode = 404;
-        this.fail({
-            success: false,
-            error: "Path doesn't exist",
-            version: env('APP_VERSION', 'Unknown'),
-            build: env('APP_BUILD', 'Unknown'),
-            service: env('SERVICE_NAME', 'Unknown'),
-        });
-    }
-
-    /**
-     * Send a failed request response
-     * @param reason
-     * @param code
-     */
-    protected fail(reason: any, code: number = this.responseCode || 500): void {
-        if (typeof reason === 'string') {
-            super.fail(reason);
-        } else {
-            if (this.res != null) {
-                this.res.status(code);
-                this.res.json(reason);
-                this.res.end();
-            }
-        }
-    }
-
-    protected success(data?: any, code: number = this.responseCode || 200): void {
-        if (typeof data === 'string') {
-            super.fail(data);
-        } else {
-            if (this.res != null) {
-                this.res.status(code);
-                this.res.json(data);
-                this.res.end();
-            }
-        }
+        this.fail(ErrorResponses.PATH_NOT_FOUND);
     }
 }

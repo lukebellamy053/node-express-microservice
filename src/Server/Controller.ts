@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { ErrorResponses } from '../Enums';
 import { loadActiveUser, PreConstruct, PreRequest } from '../Interfaces';
 import { Passport } from '../Security';
+import { env } from '../EnvironmentConfig';
 
 /**
  * The base controller
@@ -101,10 +102,17 @@ export abstract class Controller {
      * @param {string} reason
      * @param code - The HTTP response code
      */
-    protected fail(reason: string, code: number = 500): void {
+    protected fail(reason: any, code: number = 500): void {
         if (this.res != null) {
             this.res.status(this.responseCode || code);
-            this.res.json({ success: false, error: reason, code: code });
+            this.res.json({
+                success: false,
+                error: reason,
+                code: code,
+                version: env('APP_VERSION', 'Unknown'),
+                build: env('APP_BUILD', 'Unknown'),
+                service: env('SERVICE_NAME', 'Unknown'),
+            });
             this.res.end();
         }
     }
@@ -224,7 +232,14 @@ export abstract class Controller {
         // Send a success request
         if (this.res !== undefined && !this.res.headersSent) {
             this.res.status(code);
-            this.send({ success: true, data: data, code: code });
+            this.send({
+                success: true,
+                data: data,
+                code: code,
+                version: env('APP_VERSION', 'Unknown'),
+                build: env('APP_BUILD', 'Unknown'),
+                service: env('SERVICE_NAME', 'Unknown'),
+            });
         }
     }
 }

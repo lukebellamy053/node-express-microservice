@@ -234,16 +234,24 @@ export class PathHandler {
          */
         const handler = this.defaultHandler(route);
 
-        /**
-         * Rather than doing a big switch
-         * These are in the correct index for the Method enum
-         */
-        const funcs = [this.app.all, this.app.get, this.app.post, this.app.put, this.app.delete, this.app.options];
-
-        if (funcs[route.method]) {
-            funcs[route.method](route.path, handler);
-        } else {
-            this.app.all(route.path, handler);
+        switch (route.method) {
+            case Method.GET:
+                this.app.get(route.path, handler);
+                break;
+            case Method.DELETE:
+                this.app.delete(route.path, handler);
+                break;
+            case Method.OPTIONS:
+                this.app.options(route.path, handler);
+                break;
+            case Method.POST:
+                this.app.post(route.path, handler);
+                break;
+            case Method.PUT:
+                this.app.put(route.path, handler);
+                break;
+            default:
+                this.app.all(route.path, handler);
         }
 
         // Register the routes authentication handler if one exists
