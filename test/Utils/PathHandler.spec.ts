@@ -29,15 +29,13 @@ describe('PathHandler', function() {
     describe('RegisterProxy', function() {
         let serverObject: CustomServer;
 
-        before(done => {
-            let isDone = false;
-            chai.use(chaiHttp);
-            serverObject = new CustomServer({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
-            ExpressServer.events.on(ServerEvents.SERVER_READY, () => {
-                if (!isDone) {
-                    done();
-                    isDone = true;
-                }
+        before(() => {
+            return new Promise(resolve => {
+                chai.use(chaiHttp);
+                serverObject = new CustomServer({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
+                ExpressServer.events.on(ServerEvents.SERVER_READY, () => {
+                    resolve();
+                });
             });
         });
 
