@@ -2,7 +2,6 @@ version: 2
 jobs:
   build:
     environment:
-      CC_TEST_REPORTER_ID: $CC_TEST_REPORTER_ID
       NODE_ENV: development
     docker:
       - image: circleci/node:8
