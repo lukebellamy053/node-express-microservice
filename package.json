@@ -8,7 +8,7 @@
   },
   "types": "src/index.d.ts",
   "scripts": {
-    "test": "mocha -r ts-node/register \"**/*.spec.ts\" --reporter mocha-multi-reporters --reporter-options configFile=.mocha/config.json --exit",
+    "test": "snyk test && mocha -r ts-node/register \"**/*.spec.ts\" --reporter mocha-multi-reporters --reporter-options configFile=.mocha/config.json --exit",
     "test:coverage": "nyc npm test",
     "prepare": "tsc",
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",
@@ -77,6 +77,7 @@
     "mochawesome": "^3.1.2",
     "nyc": "^13.1.0",
     "sinon": "^7.3.2",
+    "snyk": "^1.207.1",
     "ts-mocha": "^2.0.0",
     "ts-node": "^7.0.1",
     "typescript": "^3.1.6"
