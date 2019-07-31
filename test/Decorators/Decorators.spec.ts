@@ -76,7 +76,7 @@ describe('Decorators', function() {
         /**
          * Check the method rejects when one parameter is missing
          */
-        it('Rejects missing parameters (Two)', function(done) {
+        it('Rejects missing parameters (Two)', function(done): void {
             chai.request(ExpressServer.server)
                 .post('/test/handler')
                 .send({
