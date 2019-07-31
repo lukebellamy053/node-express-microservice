@@ -228,6 +228,9 @@ describe('Decorators', function() {
             chai.request(ExpressServer.server)
                 .get('/security/luke')
                 .end((error, res) => {
+                    if (error) {
+                        console.error(error);
+                    }
                     expect(res.body).to.not.haveOwnProperty('error');
                     res.body.data.should.eq('Luke Secret');
                     sandbox.restore();
@@ -243,6 +246,9 @@ describe('Decorators', function() {
             chai.request(ExpressServer.server)
                 .get('/security/luke')
                 .end((error, res) => {
+                    if (error) {
+                        console.error(error);
+                    }
                     expect(res.body).to.haveOwnProperty('error');
                     expect(res.body).to.not.haveOwnPropertyDescriptor('data');
                     expect(res.body.error).to.eq(ErrorResponses.NOT_ALLOWED);
@@ -258,6 +264,9 @@ describe('Decorators', function() {
             chai.request(ExpressServer.server)
                 .get('/security/public')
                 .end((error, res) => {
+                    if (error) {
+                        console.error(error);
+                    }
                     expect(res.body).to.not.haveOwnProperty('error');
                     res.body.data.should.eq('Public Stuff');
                     sandbox.restore();
@@ -273,6 +282,9 @@ describe('Decorators', function() {
             chai.request(ExpressServer.server)
                 .get('/security/john')
                 .end((error, res) => {
+                    if (error) {
+                        console.error(error);
+                    }
                     expect(res.body).to.haveOwnProperty('error');
                     expect(res.body).to.not.haveOwnPropertyDescriptor('data');
                     expect(res.body.error).to.eq(ErrorResponses.NOT_ALLOWED);
