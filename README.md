@@ -3,6 +3,10 @@
 
 This is a framework for building a microservice with express JS
 
+[![CircleCI](https://circleci.com/gh/lukebellamy053/node-express-microservice/tree/master.svg?style=svg)](https://circleci.com/gh/lukebellamy053/node-express-microservice/tree/master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
+<a href="https://codeclimate.com/github/codeclimate/codeclimate/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage" /></a>
+
 ## Installation
 Newer versions of NPM save the package to your package.json by default
 ```sh
