@@ -24,7 +24,6 @@
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",
     "check-coverage": true,
-    "report-dir": "./reports/coverage",
     "reporter": [
       "text-summary",
       "lcov"

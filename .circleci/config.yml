@@ -55,7 +55,7 @@ jobs:
       - run:
           name: code-coverage
           command: |
-            ./cc-test-reporter after-build -t lcov --prefix /home/circleci/repo/reports
+            ./cc-test-reporter after-build -t lcov
           when: always
 
       # Upload results
