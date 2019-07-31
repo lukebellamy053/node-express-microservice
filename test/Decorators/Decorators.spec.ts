@@ -17,12 +17,14 @@ const expect = chai.expect;
 
 describe('Decorators', function() {
     let serverObject: Server;
+    let http;
 
     before(() => {
         return new Promise(resolve => {
             chai.use(chaiHttp);
             serverObject = new Server({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
             ExpressServer.events.on(ServerEvents.ServerReady, () => {
+                http = chai.request.agent(ExpressServer.server);
                 resolve();
             });
         });
@@ -41,8 +43,7 @@ describe('Decorators', function() {
          * Check that the method works with both parameters
          */
         it('Accepts 2 parameters', function(done) {
-            chai.request(ExpressServer.server)
-                .post('/test/handler')
+            http.post('/test/handler')
                 .send({
                     one: 'hello',
                     two: 'world',
@@ -60,8 +61,7 @@ describe('Decorators', function() {
          * Check the method rejects when one parameter is missing
          */
         it('Rejects missing parameters (One)', function(done) {
-            chai.request(ExpressServer.server)
-                .post('/test/handler')
+            http.post('/test/handler')
                 .send({
                     two: 'world',
                 })
@@ -77,8 +77,7 @@ describe('Decorators', function() {
          * Check the method rejects when one parameter is missing
          */
         it('Rejects missing parameters (Two)', function(done): void {
-            chai.request(ExpressServer.server)
-                .post('/test/handler')
+            http.post('/test/handler')
                 .send({
                     one: 'Hello',
                 })
@@ -94,8 +93,7 @@ describe('Decorators', function() {
          * Check the method rejects when one parameter is missing
          */
         it('Allows additional parameters', function(done) {
-            chai.request(ExpressServer.server)
-                .post('/test/handler')
+            http.post('/test/handler')
                 .send({
                     one: 'Hello',
                     two: 'World',
@@ -113,98 +111,78 @@ describe('Decorators', function() {
 
     describe('Timeout', function() {
         it('Expires after timeout', function() {
-            chai.request(ExpressServer.server)
-                .get('/test/timeout')
-                .end((error, res) => {
-                    res.body.error.should.not.be.undefined;
-                    expect(res.body).to.not.haveOwnProperty('data');
-                    res.body.error.should.eq(ErrorResponses.Timeout);
-                });
+            http.get('/test/timeout').end((error, res) => {
+                res.body.error.should.not.be.undefined;
+                expect(res.body).to.not.haveOwnProperty('data');
+                res.body.error.should.eq(ErrorResponses.Timeout);
+            });
         });
 
         it('Returns before timeout', function() {
-            chai.request(ExpressServer.server)
-                .get('/test/timeout/pass')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    res.body.data.should.eq('Done');
-                });
+            http.get('/test/timeout/pass').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                res.body.data.should.eq('Done');
+            });
         });
     });
 
     describe('Get', function() {
         it('Accepts requests', function() {
-            chai.request(ExpressServer.server)
-                .get('/test/testURL')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    res.body.data.should.eq('Get');
-                });
+            http.get('/test/testURL').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                res.body.data.should.eq('Get');
+            });
         });
     });
 
     describe('Post', function() {
         it('Accepts requests', function() {
-            chai.request(ExpressServer.server)
-                .post('/test/testURL')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    res.body.data.should.eq('Post');
-                });
+            http.post('/test/testURL').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                res.body.data.should.eq('Post');
+            });
         });
     });
 
     describe('Put', function() {
         it('Accepts requests', function() {
-            chai.request(ExpressServer.server)
-                .put('/test/testURL')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    res.body.data.should.eq('Put');
-                });
+            http.put('/test/testURL').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                res.body.data.should.eq('Put');
+            });
         });
     });
 
     describe('Delete', function() {
         it('Accepts requests', function() {
-            chai.request(ExpressServer.server)
-                .delete('/test/testURL')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    res.body.data.should.eq('Delete');
-                });
+            http.delete('/test/testURL').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                res.body.data.should.eq('Delete');
+            });
         });
     });
 
     describe('All', function() {
         it('Accepts requests', function() {
-            chai.request(ExpressServer.server)
-                .get('/test/allTest')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    res.body.data.should.eq('All');
-                });
+            http.get('/test/allTest').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                res.body.data.should.eq('All');
+            });
 
-            chai.request(ExpressServer.server)
-                .put('/test/allTest')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    res.body.data.should.eq('All');
-                });
+            http.put('/test/allTest').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                res.body.data.should.eq('All');
+            });
 
-            chai.request(ExpressServer.server)
-                .post('/test/allTest')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    res.body.data.should.eq('All');
-                });
+            http.post('/test/allTest').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                res.body.data.should.eq('All');
+            });
 
-            chai.request(ExpressServer.server)
-                .delete('/test/allTest')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    res.body.data.should.eq('All');
-                });
+            http.delete('/test/allTest').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                res.body.data.should.eq('All');
+            });
         });
     });
 
@@ -225,16 +203,14 @@ describe('Decorators', function() {
                 first: 'luke',
             });
 
-            chai.request(ExpressServer.server)
-                .get('/security/luke')
-                .end((error, res) => {
-                    if (error) {
-                        console.error(error);
-                    }
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    res.body.data.should.eq('Luke Secret');
-                    sandbox.restore();
-                });
+            http.get('/security/luke').end((error, res) => {
+                if (error) {
+                    console.error(error);
+                }
+                expect(res.body).to.not.haveOwnProperty('error');
+                res.body.data.should.eq('Luke Secret');
+                sandbox.restore();
+            });
         });
 
         it('Blocks invalid controller actions', function() {
@@ -243,17 +219,19 @@ describe('Decorators', function() {
                 first: 'luke',
             });
 
-            chai.request(ExpressServer.server)
-                .get('/security/luke')
-                .end((error, res) => {
-                    if (error) {
-                        console.error(error);
-                    }
-                    expect(res.body).to.haveOwnProperty('error');
-                    expect(res.body).to.not.haveOwnPropertyDescriptor('data');
-                    expect(res.body.error).to.eq(ErrorResponses.NotAllowed);
-                    sandbox.restore();
-                });
+            if (!ExpressServer.server) {
+                throw 'Server is undefined';
+            }
+
+            http.get('/security/luke').end((error, res) => {
+                if (error) {
+                    console.error(error);
+                }
+                expect(res.body).to.haveOwnProperty('error');
+                expect(res.body).to.not.haveOwnPropertyDescriptor('data');
+                expect(res.body.error).to.eq(ErrorResponses.NotAllowed);
+                sandbox.restore();
+            });
         });
 
         it('Allows valid controller actions', function() {
@@ -261,16 +239,14 @@ describe('Decorators', function() {
                 email: 'a.user@gmail.com',
             });
 
-            chai.request(ExpressServer.server)
-                .get('/security/public')
-                .end((error, res) => {
-                    if (error) {
-                        console.error(error);
-                    }
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    res.body.data.should.eq('Public Stuff');
-                    sandbox.restore();
-                });
+            http.get('/security/public').end((error, res) => {
+                if (error) {
+                    console.error(error);
+                }
+                expect(res.body).to.not.haveOwnProperty('error');
+                res.body.data.should.eq('Public Stuff');
+                sandbox.restore();
+            });
         });
 
         it('Blocks invalid method requests', function() {
@@ -279,17 +255,15 @@ describe('Decorators', function() {
                 first: 'luke',
             });
 
-            chai.request(ExpressServer.server)
-                .get('/security/john')
-                .end((error, res) => {
-                    if (error) {
-                        console.error(error);
-                    }
-                    expect(res.body).to.haveOwnProperty('error');
-                    expect(res.body).to.not.haveOwnPropertyDescriptor('data');
-                    expect(res.body.error).to.eq(ErrorResponses.NotAllowed);
-                    sandbox.restore();
-                });
+            http.get('/security/john').end((error, res) => {
+                if (error) {
+                    console.error(error);
+                }
+                expect(res.body).to.haveOwnProperty('error');
+                expect(res.body).to.not.haveOwnPropertyDescriptor('data');
+                expect(res.body.error).to.eq(ErrorResponses.NotAllowed);
+                sandbox.restore();
+            });
         });
     });
 });

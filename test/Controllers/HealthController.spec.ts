@@ -18,16 +18,16 @@ const expect = chai.expect;
 
 describe('Health Controller', function() {
     let serverObject: Server;
+    let http;
 
-    before(done => {
-        let isDone = false;
-        chai.use(chaiHttp);
-        serverObject = new Server({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
-        ExpressServer.events.on(ServerEvents.ServerReady, () => {
-            if (!isDone) {
-                done();
-                isDone = true;
-            }
+    before(() => {
+        return new Promise(resolve => {
+            chai.use(chaiHttp);
+            serverObject = new Server({ PORT: 8081, APP_BUILD: 1, APP_VERSION: '1', SERVICE_NAME: 'Test' });
+            ExpressServer.events.on(ServerEvents.ServerReady, () => {
+                http = chai.request.agent(ExpressServer.server);
+                resolve();
+            });
         });
     });
 
@@ -43,15 +43,13 @@ describe('Health Controller', function() {
                 };
             });
 
-            chai.request(ExpressServer.server)
-                .get('/health_check')
-                .end((error, res) => {
-                    expect(res.body).to.not.haveOwnProperty('error');
-                    expect(res.body.success).to.be.ok;
-                    expect(res.body.data).to.be.ok;
-                    const response = res.body.data;
-                    expect(response.test).to.be.ok;
-                });
+            http.get('/health_check').end((error, res) => {
+                expect(res.body).to.not.haveOwnProperty('error');
+                expect(res.body.success).to.be.ok;
+                expect(res.body.data).to.be.ok;
+                const response = res.body.data;
+                expect(response.test).to.be.ok;
+            });
         });
     });
 });
