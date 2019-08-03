@@ -1,6 +1,6 @@
-import { PathHandler } from '../Utils';
 import { RouteInterface } from '../Interfaces';
 import { HTTPControllerInterface } from '../Interfaces';
+import {DecoratorUtils} from './DecoratorUtils';
 
 /**
  * Create a new route
@@ -9,6 +9,6 @@ import { HTTPControllerInterface } from '../Interfaces';
  */
 export function HTTPController(data: HTTPControllerInterface) {
     return function(target: any) {
-        PathHandler.addControllerPath(data, target.name);
+        DecoratorUtils.addControllerPath(data, target.name);
     };
 }
