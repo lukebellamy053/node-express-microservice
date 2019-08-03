@@ -3,9 +3,7 @@ import { Controller, ExpressServer } from '../../src/Server';
 import { HTTPController } from '../../src/Decorators/HTTPController';
 import { ErrorResponses, Method, ServerEvents } from '../../src/Enums';
 import { PathHandler } from '../../src/Utils';
-import { All, Delete, Get, Post, Put, Route, timeout } from '../../src/Decorators';
-import { Params } from '../../src/Decorators';
-import { Timeout } from '../../src/Decorators';
+import { All, Delete, Get, Post, Put, Route, Timeout, Params } from '../../src/Decorators';
 import { loadActiveUser } from '../../src/Interfaces';
 import { SinonSandbox } from 'sinon';
 import * as sinon from 'sinon';
@@ -306,7 +304,7 @@ class TestController extends Controller {
         path: '/timeout/pass',
         method: Method.GET,
     })
-    @timeout(2000)
+    @Timeout(2000)
     public timeoutTestTwo() {
         return new Promise(resolve => {
             setTimeout(() => {

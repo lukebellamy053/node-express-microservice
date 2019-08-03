@@ -1,15 +1,7 @@
 import 'mocha';
-import { Controller, ExpressServer } from '../../src/Server';
-import { HTTPController } from '../../src/Decorators/HTTPController';
-import { ErrorResponses, Method, ServerEvents } from '../../src/Enums';
-import { PathHandler } from '../../src/Utils';
-import { All, Delete, Get, Post, Put, Route, timeout } from '../../src/Decorators';
-import { Params } from '../../src/Decorators';
-import { Timeout } from '../../src/Decorators';
-import { loadActiveUser } from '../../src/Interfaces';
-import { SinonSandbox } from 'sinon';
-import * as sinon from 'sinon';
-import { HealthController, ServiceController } from '../../src/Controllers';
+import { ExpressServer } from '../../src/Server';
+import { ServerEvents } from '../../src/Enums';
+import { HealthController} from '../../src/Controllers';
 
 const chaiHttp = require('chai-http');
 const chai = require('chai');
