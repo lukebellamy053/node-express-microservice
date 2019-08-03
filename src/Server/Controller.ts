@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-import { ErrorResponses } from '../Enums';
-import { loadActiveUser, PreConstruct, PreRequest } from '../Interfaces';
-import { Passport } from '../Security';
-import { env } from '../Environment/EnvironmentConfig';
+import {Request, Response} from 'express';
+import {ErrorResponses} from '../Enums';
+import {loadActiveUser, PreConstruct, PreRequest} from '../Interfaces';
+import {Passport} from '../Security';
+import {env} from '../Environment/EnvironmentConfig';
 
 /**
  * The base controller
@@ -195,11 +195,15 @@ export abstract class Controller {
                 }
             }
 
-            const timeout =
+            const timeout = env('NO_TIMEOUT', false) ? -1 :
                 Controller.methodTimeouts != null ? Controller.methodTimeouts.get(fullName) || 10 * 1000 : 10 * 1000;
-            setTimeout(() => {
-                reject(ErrorResponses.Timeout);
-            }, timeout);
+
+            if (timeout > 0) {
+                setTimeout(() => {
+                    reject(ErrorResponses.Timeout);
+                }, timeout);
+            }
+
             try {
                 // Execute the method and check for a response
                 const method = (<any>this[name]).apply(this, Object.values(this.urlParams));
