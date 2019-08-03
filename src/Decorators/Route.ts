@@ -1,7 +1,7 @@
 // noinspection JSUnusedGlobalSymbols
-import { PathHandler } from '../Utils';
 import { MethodInterface, RouteInterface } from '../Interfaces';
 import { Method } from '../Enums';
+import {DecoratorUtils} from './DecoratorUtils';
 
 
 /**
@@ -14,7 +14,7 @@ export function Route(data: RouteInterface) {
         const routeItem = {
             handler: target.constructor.name + '@' + propertyKey,
         };
-        PathHandler.addPendingRoute(Object.assign(data, routeItem));
+        DecoratorUtils.addPendingRoute(Object.assign(data, routeItem));
     };
 }
 
@@ -80,6 +80,6 @@ function makeRoute(data: MethodInterface | string, method: Method) {
             method: method,
             handler: target.constructor.name + '@' + propertyKey,
         };
-        PathHandler.addPendingRoute(Object.assign(data, routeItem));
+        DecoratorUtils.addPendingRoute(Object.assign(data, routeItem));
     };
 }

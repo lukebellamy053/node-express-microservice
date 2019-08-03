@@ -1,5 +1,5 @@
 // noinspection JSUnusedGlobalSymbols
-import { Controller } from '../Server';
+import {DecoratorUtils} from './DecoratorUtils';
 
 /**
  * Require the named parameters to be present to continue
@@ -8,7 +8,7 @@ import { Controller } from '../Server';
 export function Params(items: string[]) {
     return function(target: any, propertyKey: string) {
         const method = target.constructor.name + '@' + propertyKey;
-        Controller.addRequired(method, items);
+        DecoratorUtils.addRequired(method, items);
     };
 }
 

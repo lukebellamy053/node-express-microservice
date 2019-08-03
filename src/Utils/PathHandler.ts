@@ -5,6 +5,7 @@ import {HTTPControllerInterface, RouteInterface} from '../Interfaces';
 import {Controller} from '../Server';
 import {Passport} from '../Security';
 import {env} from '../Environment/EnvironmentConfig';
+import {DecoratorUtils} from '../Decorators/DecoratorUtils';
 
 /**
  * A class to handle the registration of routes
@@ -14,12 +15,8 @@ export class PathHandler {
     protected mControllers: { [x: string]: Controller } = {};
     // The Express application
     protected mApp: () => Express;
-    // The pending route items to be registered
-    protected static mPending: RouteItem[] = [];
     // The active path handler instance
     protected static mPathHandler: PathHandler;
-    // The paths for controllers
-    protected static mControllerPaths: { [x: string]: HTTPControllerInterface } = {};
 
     /**
      * Get the active path handler instance
@@ -81,34 +78,6 @@ export class PathHandler {
     }
 
     /**
-     * Add a route to the pending list
-     * These routes are added to express when the server is started
-     * @param route {RouteInterface} The route item to register
-     */
-    public static addPendingRoute(route: RouteInterface): void {
-        this.mPending.push(
-            new RouteItem(
-                route.path,
-                route.handler,
-                route.method,
-                route.protected,
-                route.authenticationHandler,
-                route.priority,
-            ),
-        );
-    }
-
-    /**
-     * Registers a controller for a specific path
-     * Routes inside this controller inherit the start path
-     * @param controller
-     * @param {string} controllerName
-     */
-    public static addControllerPath(controller: HTTPControllerInterface, controllerName: string): void {
-        this.mControllerPaths[controllerName] = controller;
-    }
-
-    /**
      * Combine the route auth handler to the class auth handler if required
      * @param route
      * @param prePath
@@ -144,7 +113,7 @@ export class PathHandler {
             return undefined;
         }
         // Check if the controller has been registered already
-        const prePath = PathHandler.mControllerPaths[controllerName];
+        const prePath = DecoratorUtils.controllerPaths[controllerName];
         if (prePath) {
             // Convert the routes auth handler to include the class handler
             const newRoute: RouteItem | undefined = this.checkRouteHandlers(route, prePath);
@@ -164,13 +133,13 @@ export class PathHandler {
         /**
          * Sort the routes by their priorities
          */
-        PathHandler.mPending.sort((pathA, pathB) => {
+        DecoratorUtils.pending.sort((pathA, pathB) => {
             if (pathA.priority < pathB.priority) return 1;
             if (pathA.priority > pathB.priority) return -1;
             return 0;
         });
 
-        PathHandler.mPending.forEach((route: RouteItem) => {
+        DecoratorUtils.pending.forEach((route: RouteItem) => {
             this.preRegisterRoute(route);
         });
     }

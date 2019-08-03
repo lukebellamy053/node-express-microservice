@@ -3,16 +3,13 @@ import {ErrorResponses} from '../Enums';
 import {loadActiveUser, PreConstruct, PreRequest} from '../Interfaces';
 import {Passport} from '../Security';
 import {env} from '../Environment/EnvironmentConfig';
+import {DecoratorUtils} from '../Decorators/DecoratorUtils';
 
 /**
  * The base controller
  * Gets the active user from a request
  */
 export abstract class Controller {
-    // The required parameters for controllers
-    private static requiredParams: Map<string, string[]>;
-    // The timeouts for methods
-    private static methodTimeouts: Map<string, number>;
     // The response object
     protected res: Response;
     // The request object
@@ -127,34 +124,6 @@ export abstract class Controller {
     }
 
     /**
-     * Add a set of required variables to a method name
-     * @param {string} methodName controller_name@methodName
-     * @param {string[]} required
-     */
-    public static addRequired(methodName: string, required: string[]) {
-        // Check if the required params have been set already
-        if (Controller.requiredParams == null) {
-            // Create the map
-            Controller.requiredParams = new Map<string, string[]>();
-        }
-        // Add the required param to the map
-        Controller.requiredParams.set(methodName, required);
-    }
-
-    /**
-     * Add a timeout to a method
-     * @param method
-     * @param timeout
-     */
-    public static addTimeout(method: string, timeout: number) {
-        if (Controller.methodTimeouts == null) {
-            Controller.methodTimeouts = new Map<string, number>();
-        }
-        // Add the required param to the map
-        Controller.methodTimeouts.set(method, timeout);
-    }
-
-    /**
      * Check if the method can be executed or not
      * @param fullName
      * @throws ErrorResponses.MissingParameters
@@ -162,9 +131,9 @@ export abstract class Controller {
     protected canExecute(fullName: string): void {
         // Check if any variables are required
         let required;
-        if (Controller.requiredParams) {
+        if (DecoratorUtils.required) {
             // Get the required variables
-            required = Controller.requiredParams.get(fullName);
+            required = DecoratorUtils.required.get(fullName);
         }
 
         if (required != null) {
@@ -196,7 +165,7 @@ export abstract class Controller {
             }
 
             const timeout = env('NO_TIMEOUT', false) ? -1 :
-                Controller.methodTimeouts != null ? Controller.methodTimeouts.get(fullName) || 10 * 1000 : 10 * 1000;
+                DecoratorUtils.timeouts != null ?  DecoratorUtils.timeouts.get(fullName) || 10 * 1000 : 10 * 1000;
 
             if (timeout > 0) {
                 setTimeout(() => {

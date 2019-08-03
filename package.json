@@ -1,6 +1,6 @@
 {
   "name": "node-express-microservice",
-  "version": "0.9.3",
+  "version": "0.9.5",
   "description": "Creates a new simple microservice server using express and nodejs.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,6 @@
     "type": "git",
     "url": "https://github.com/lukebellamy053/node-express-microservice"
   },
-
   "scripts": {
     "test": "npm run test:security && npm run test:coverage",
     "test:security": "snyk test",
@@ -19,7 +18,8 @@
     "clean": "git clean -fx && git clean -fd",
     "typedoc": "npm run markdowndoc && npm run htmldoc",
     "markdowndoc": "typedoc --theme markdown --out docs/md ./src",
-    "htmldoc": "typedoc --out docs/html ./src"
+    "htmldoc": "typedoc --out docs/html ./src",
+    "deploy": "npm publish"
   },
   "nyc": {
     "extends": "@istanbuljs/nyc-config-typescript",
