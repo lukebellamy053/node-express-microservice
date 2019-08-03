@@ -2,4 +2,10 @@
 .idea
 node_modules
 .gitignore
-src
+out
+report
+coverage
+.nyc_output
+results
+reports
+docs

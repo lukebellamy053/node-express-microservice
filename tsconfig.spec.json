@@ -19,6 +19,7 @@
     ]
   },
   "exclude": [
+    "src",
     "node_modules",
     "**/*.d.ts"
   ]
