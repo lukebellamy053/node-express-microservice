@@ -3,7 +3,7 @@
  */
 export interface HTTPControllerInterface {
     // The path to register the controller for
-    path: string;
+    path?: string;
     // Is this controller restricted access
     protected?: boolean;
     // Fine grain access handler to prevent unauthorised access to controller

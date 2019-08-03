@@ -1,5 +1,5 @@
 import { All } from '../Decorators';
-import { env } from '../EnvironmentConfig';
+import { env } from '../Environment/EnvironmentConfig';
 import { Controller } from '../Server';
 
 /**

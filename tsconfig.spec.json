@@ -12,14 +12,14 @@
     "emitDecoratorMetadata": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
-    "outDir": "dist",
-    "sourceRoot": "src",
+    "sourceRoot": "test",
+    "outDir": "out/spec",
     "lib": [
       "es2018"
     ]
   },
   "exclude": [
-    "test",
+    "src",
     "node_modules",
     "**/*.d.ts"
   ]

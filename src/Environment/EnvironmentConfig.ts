@@ -1,11 +1,9 @@
-import { Environment } from './Environment';
-
 /**
  * Holds the environment to use
  * Default to the default environment
  */
 export class EnvironmentConfig {
-    protected static EnvToUse: { [x: string]: any } = Environment;
+    protected static EnvToUse: { [x: string]: any } = {};
 
     /**
      * Get the environment
@@ -14,19 +12,23 @@ export class EnvironmentConfig {
         return EnvironmentConfig.EnvToUse;
     }
 
+    public static set environment(_environment: { [x: string]: any }) {
+        EnvironmentConfig.EnvToUse = _environment;
+    }
+
     /**
      * Add values to the environment
      * @param values
      */
     public static addValues(values: Record<string, any>) {
-        EnvironmentConfig.EnvToUse = Object.assign(EnvironmentConfig.EnvToUse, values);
+        EnvironmentConfig.EnvToUse = Object.assign({}, EnvironmentConfig.EnvToUse, values);
     }
 
     constructor(merge?: any) {
         if (merge === undefined) {
             merge = {};
         }
-        EnvironmentConfig.EnvToUse = Object.assign({}, Environment, merge);
+        EnvironmentConfig.EnvToUse = Object.assign({}, EnvironmentConfig.EnvToUse, merge);
     }
 }
 

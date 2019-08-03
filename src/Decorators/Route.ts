@@ -3,15 +3,6 @@ import { PathHandler } from '../Utils';
 import { MethodInterface, RouteInterface } from '../Interfaces';
 import { Method } from '../Enums';
 
-/**
- * Create a new route
- * @param {RouteInterface} data
- * @returns {(target: any, propertyKey: string, descriptor: PropertyDescriptor) => void}
- * @deprecated use Route instead
- */
-export function route(data: RouteInterface) {
-    return Route(data);
-}
 
 /**
  * Create a new route

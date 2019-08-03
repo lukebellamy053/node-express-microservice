@@ -4,7 +4,7 @@
 
 import 'mocha';
 import { expect } from 'chai';
-import { env, EnvironmentConfig } from '../src';
+import { env, EnvironmentConfig } from '../src/Environment/EnvironmentConfig';
 
 describe('EnvironmentConfig', () => {
     let testData: EnvironmentConfig;

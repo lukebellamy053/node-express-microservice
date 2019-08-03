@@ -1,5 +1,5 @@
 import { All, Route, route } from '../Decorators/Route';
-import { env } from '../EnvironmentConfig';
+import { env } from '../Environment/EnvironmentConfig';
 import { Controller } from '../Server';
 import { ErrorResponses } from '../Enums';
 

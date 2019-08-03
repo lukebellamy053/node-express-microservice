@@ -1,10 +1,10 @@
-import { EnvironmentVariables, ErrorResponses, Method } from '../Enums';
-import { Express, Request, Response } from 'express';
-import { RouteItem } from '../Classes';
-import { HTTPControllerInterface, RouteInterface } from '../Interfaces';
-import { Controller } from '../Server';
-import { Passport } from '../Security';
-import { env } from '../EnvironmentConfig';
+import {EnvironmentVariables, ErrorResponses, Method} from '../Enums';
+import {Express, Request, Response} from 'express';
+import {RouteItem} from '../Classes';
+import {HTTPControllerInterface, RouteInterface} from '../Interfaces';
+import {Controller} from '../Server';
+import {Passport} from '../Security';
+import {env} from '../Environment/EnvironmentConfig';
 
 /**
  * A class to handle the registration of routes
@@ -334,6 +334,11 @@ export class PathHandler {
     }
 }
 
+/**
+ * Creates the new joined auth handler
+ * @param prePath
+ * @param existingAuthHandler
+ */
 function makeNewHandler(prePath: HTTPControllerInterface, existingAuthHandler: any) {
     return async (controller: Controller) => {
         let res = true;
