@@ -1,11 +1,11 @@
 export interface PreConstruct {
-    preConstruct(): Promise<void>;
+    preConstruct(): Promise<void> | void;
 }
 
 export interface PreRequest {
-    preRequest(): Promise<void>;
+    preRequest(): Promise<void> | void;
 }
 
 export interface loadActiveUser {
-    loadActiveUser(): Promise<any>;
+    loadActiveUser(): Promise<any> | any;
 }

@@ -34,15 +34,7 @@ jobs:
           command: npm run test
           when: always
 
-      # Run eslint
-      - run:
-          name: eslint
-          command: |
-            npm run lint
-          when: always
-
       # Run coverage report for Code Climate
-
       - run:
           name: Setup Code Climate test-reporter
           command: |
@@ -72,9 +64,6 @@ jobs:
 
       - store_artifacts:
           path: ./reports/junit-custom.xml
-
-      - store_artifacts:
-          path: ./reports/eslint/eslint.xml
 
       - store_artifacts: # upload test coverage as artifact
           path: ./reports/coverage/lcov.info

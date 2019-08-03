@@ -1,13 +1,13 @@
-import { EnvironmentInterface } from '../Interfaces';
-import { Express, Request, Response } from 'express';
-import { env, EnvironmentConfig } from '..';
-import { EventEmitter } from 'events';
-import { HealthController, ServiceController } from '../Controllers';
-import { PathHandler } from '../Utils';
+import {EnvironmentInterface} from '../Interfaces';
+import {Express, Request, Response} from 'express';
+import {env, EnvironmentConfig} from '../Environment/EnvironmentConfig';
+import {EventEmitter} from 'events';
+import {HealthController, ServiceController} from '../Controllers';
+import {PathHandler} from '../Utils';
 import * as parser from 'body-parser';
 import * as http from 'http';
-import { AddressInfo } from 'net';
-import { ServerEvents } from '../Enums';
+import {AddressInfo} from 'net';
+import {ServerEvents} from '../Enums';
 
 /**
  * The core server component
@@ -102,11 +102,15 @@ export abstract class ExpressServer {
     /**
      * Shutdown the server
      */
-    public static async shutDown(): Promise<void> {
-        if (this.server) {
-            this.server.close();
-            console.log('Server closed');
-        }
+    public static shutDown(): Promise<void> {
+        return new Promise((resolve) => {
+            if (this.server) {
+                this.server.close((err) => {
+                    console.log('Server closed');
+                    resolve();
+                });
+            }
+        });
     }
 
     /**
@@ -125,7 +129,7 @@ export abstract class ExpressServer {
      * Register any middleware
      */
     protected middleware(): void {
-        this.app.use(parser.urlencoded({ extended: true }));
+        this.app.use(parser.urlencoded({extended: true}));
         this.app.use(parser.json());
     }
 

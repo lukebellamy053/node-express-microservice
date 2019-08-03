@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ErrorResponses } from '../Enums';
 import { loadActiveUser, PreConstruct, PreRequest } from '../Interfaces';
 import { Passport } from '../Security';
-import { env } from '../EnvironmentConfig';
+import { env } from '../Environment/EnvironmentConfig';
 
 /**
  * The base controller

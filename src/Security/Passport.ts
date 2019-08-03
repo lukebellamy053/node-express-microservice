@@ -1,7 +1,7 @@
 import { EnvironmentVariables, ErrorResponses } from '../Enums';
-import { env } from '../EnvironmentConfig';
-import { CustomAuthentication } from '../Interfaces/CustomAuthentication';
-import { Request, Response } from 'express';
+import { env } from '../Environment/EnvironmentConfig';
+import { CustomAuthentication } from '../Interfaces';
+import { Request} from 'express';
 
 const jwt = require('jsonwebtoken');
 
@@ -55,7 +55,7 @@ export class Passport {
      * @throws ErrorResponses.InvalidToken
      * @param request
      */
-    public async verifyRequest(request: Request & { token?: any; decodedToken?: any }) {
+    public async verifyRequest(request: Request & any) {
         if ('customAuth' in this) {
             // Activate the custom authentication method
             return await (<CustomAuthentication>this).customAuth(request);
