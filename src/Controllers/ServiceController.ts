@@ -1,7 +1,6 @@
-import { All, Route, route } from '../Decorators/Route';
-import { env } from '../Environment/EnvironmentConfig';
-import { Controller } from '../Server';
-import { ErrorResponses } from '../Enums';
+import {All} from '../Decorators';
+import {Controller} from '../Server';
+import {ErrorResponses} from '../Enums';
 
 /**
  * A class to handle basic service operations
