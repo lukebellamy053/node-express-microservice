@@ -92,7 +92,7 @@ export class PathHandler {
 
         // Add the controller path to the start of the path
         route = new RouteItem(
-            `${prePath.path}${route.path}`,
+            `${prePath.path || ''}${route.path}`,
             route.handler,
             route.method,
             route.protected,
