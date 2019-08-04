@@ -150,17 +150,18 @@ export abstract class Controller {
      * Execute the method
      * @param {string} name
      */
-    protected executeMethod(name: string) {
+    protected executeMethod(name: string): Promise<any> {
         const fullName = (<any>this).__proto__.constructor.name + '@' + name;
         // Throws an error if it fails
         this.canExecute(fullName);
-        // @ts-ignore
+
         return new Promise(async (resolve, reject) => {
             const authHandler = Passport.getGateForMethod(fullName);
 
             if (authHandler) {
                 if (!(await authHandler(this))) {
                     reject(ErrorResponses.NotAllowed);
+                    return;
                 }
             }
 
