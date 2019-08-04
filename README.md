@@ -7,7 +7,9 @@ This is a framework for building a microservice with express JS
 [![Maintainability](https://api.codeclimate.com/v1/badges/8f19766e87bd425fb5b6/maintainability)](https://codeclimate.com/github/lukebellamy053/node-express-microservice/maintainability)
 <a href="https://codeclimate.com/github/lukebellamy053/node-express-microservice/test_coverage"><img src="https://api.codeclimate.com/v1/badges/8f19766e87bd425fb5b6/test_coverage" /></a>
 [![Known Vulnerabilities](https://snyk.io//test/github/lukebellamy053/node-express-microservice/badge.svg?targetFile=package.json)](https://snyk.io//test/github/lukebellamy053/node-express-microservice?targetFile=package.json)
+<a href="https://david-dm.org/lukebellamy053/node-express-microservice">
 <img id="badge" src="https://david-dm.org/lukebellamy053/node-express-microservice.svg" alt="badge" class="" data-reactid="68">
+</a>
 <a href="https://www.npmjs.org/package/node-express-microservice" rel="nofollow">
 <img src="http://img.shields.io/npm/v/node-express-microservice.svg?style=flat" alt="NPM">
 </a>
