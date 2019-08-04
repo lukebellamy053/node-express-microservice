@@ -159,8 +159,13 @@ export abstract class Controller {
             const authHandler = Passport.getGateForMethod(fullName);
 
             if (authHandler) {
-                if (!(await authHandler(this))) {
-                    reject(ErrorResponses.NotAllowed);
+                try {
+                    if (!(await authHandler(this))) {
+                        reject(ErrorResponses.NotAllowed);
+                        return;
+                    }
+                } catch (err) {
+                    reject(err);
                     return;
                 }
             }
