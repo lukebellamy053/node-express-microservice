@@ -1,6 +1,6 @@
 {
   "name": "node-express-microservice",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Creates a new simple microservice server using express and nodejs.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "ejs": "^2.6.2",
     "express": "^4.16.3",
     "express-http-proxy": "^1.5.1",
     "jsonwebtoken": "^8.3.0"
