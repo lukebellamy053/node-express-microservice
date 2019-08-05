@@ -1,7 +1,5 @@
-# Node-JS Express Microservice
+# Typescript Express Server
 ![Logo](./assets/img/logo.png)
-
-This is a framework for building a microservice with express JS
 
 [![CircleCI](https://circleci.com/gh/lukebellamy053/node-express-microservice/tree/master.svg?style=shield)](https://circleci.com/gh/lukebellamy053/node-express-microservice/tree/master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8f19766e87bd425fb5b6/maintainability)](https://codeclimate.com/github/lukebellamy053/node-express-microservice/maintainability)
@@ -11,6 +9,10 @@ This is a framework for building a microservice with express JS
 [![NPM Version](https://img.shields.io/npm/v/node-express-microservice.svg?style=flat)](https://www.npmjs.org/package/node-express-microservice)
 [![Downloads](https://img.shields.io/npm/dw/node-express-microservice)](https://www.npmjs.org/package/node-express-microservice)
 
+A framework to create a Typescript Object Oriented ExpressJS Server. The point of the framework is to provide a clear architecture on which to build your server to increase maintainability and development speed. Checkout the [(Demo Repo)](https://github.com/lukebellamy053/microservice-example) to see some examples.
+
+This framework works great for API servers and also to render HTML pages. The framework has built in support for ESJ rendering.
+
 
 ## Installation
 Newer versions of NPM save the package to your package.json by default
@@ -19,7 +21,7 @@ $ npm i node-express-microservice
 ```
 
 ## Usage
-This package sets up a basic express server that can connect to MongoDB and map methods in controllers to your routes. The aim of this package is to speed up API development by allowing the developer to spend less time writing infrastructure and more time writing code.
+This package sets up a basic express server that can map methods in controllers to your routes. The aim of this package is to speed up API development by allowing the developer to spend less time writing infrastructure and more time writing code.
 
 ### Extend The ExpressServer Class
 In order to create a new server, you need to create a server that extends the ExpressServer class and imports any controllers you want to use.
@@ -82,6 +84,7 @@ If you don't want to use the pre-defined response object, you can also use the t
 If a path is protected, the server will naturally look for a JWT in the bearer header. If one is found, it will be processed and checked to ensure it's valid. If the token is valid, the request will be allowed to proceed to the handler. Failed requests will see a message telling them they are unauthorised.
 
 The controller has now been updated to include a protected method
+
 ```
 import { Controller, route, Method } from 'express-microservice';
 
@@ -121,7 +124,7 @@ When trying to access this method from the brower, the user will see the followi
 This response is designed to give the developer enough information to help debug any issues whilst informing the user that they don't have access to the requested resource.
 
 ### Starting a server
-Once you have a server class and a controller set up, you'll want to create the server class to get everything working. The server class takes a JSON object containing environment variables that you want the server to know. Some of these variables will allow features such as MongoDB connectivity.
+Once you have a server class and a controller set up, you'll want to create the server class to get everything working. The server class takes a JSON object containing environment variables that you want the server to know.
 
 The following code will create a new Gateway Server and set the app version, build number, port to run on and the service name
 ```
