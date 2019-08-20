@@ -34,7 +34,7 @@ describe('Service Controller', function() {
                 const response = res.body;
                 expect(response.success).to.be.ok;
                 expect(response.version).to.eq('1');
-                expect(response.build).to.eq(1);
+                expect(response.build).to.eq('1');
                 expect(response.service).to.eq('Test');
             });
         });

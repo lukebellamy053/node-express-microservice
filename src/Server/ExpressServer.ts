@@ -34,7 +34,7 @@ export abstract class ExpressServer {
         this.app = express();
         PathHandler.pathHandler.app = this.app;
         // Merge the environment variables to the provided list
-        new EnvironmentConfig(Object.assign({}, process.env, envConfig));
+        EnvironmentConfig.addValues(envConfig);
         this.init();
         this.middleware();
         this.paths();

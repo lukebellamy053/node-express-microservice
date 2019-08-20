@@ -1,6 +1,6 @@
 {
   "name": "node-express-microservice",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Creates a new simple microservice server using express and nodejs.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,7 +11,7 @@
   "scripts": {
     "test": "npm run test:security && npm run test:coverage",
     "test:security": "snyk test",
-    "test:unit": "mocha -r ts-node/register \"**/*.spec.ts\" --reporter mocha-multi-reporters --reporter-options configFile=.mocha/config.json --exit",
+    "test:unit": "mocha -r ts-node/register \"test/**/*.spec.ts\" --reporter mocha-multi-reporters --reporter-options configFile=.mocha/config.json --exit",
     "test:coverage": "nyc npm run test:unit",
     "prepare": "tsc",
     "update:minor": "call grunt bump && tsc --skipLibCheck & exit 0",

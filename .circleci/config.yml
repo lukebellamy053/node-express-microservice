@@ -34,6 +34,16 @@ jobs:
           command: npm run test
           when: always
 
+      - run:
+          name: Publish Key
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+
+      - run:
+          name: Deploy
+          command: |
+              if [ "${CIRCLE_BRANCH}" == "master" ]; then
+                npm publish
+              fi
       # Run coverage report for Code Climate
       - run:
           name: Setup Code Climate test-reporter
