@@ -95,7 +95,7 @@ export class PathHandler {
             `${prePath.path || ''}${route.path}`,
             route.handler,
             route.method,
-            route.protected,
+            prePath.protected || route.protected,
             newHandler,
             route.priority,
         );
