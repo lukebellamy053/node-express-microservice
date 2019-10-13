@@ -260,6 +260,9 @@ export class PathHandler {
     ) {
         const postAuth = (req: Request, res: Response) => {
             if (removePath != null) {
+                if(req.method == 'GET') {
+                    delete req.body;
+                }
                 req.url = req.url.replace(removePath, '');
             }
             proxy(req, res);
